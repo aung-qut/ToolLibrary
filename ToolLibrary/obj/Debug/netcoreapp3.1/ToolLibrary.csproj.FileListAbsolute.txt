@@ -1,0 +1,4 @@
+C:\Users\n10500511\source\repos\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.csprojAssemblyReference.cache
+C:\Users\n10500511\source\repos\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.AssemblyInfoInputs.cache
+C:\Users\n10500511\source\repos\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.AssemblyInfo.cs
+C:\Users\n10500511\source\repos\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.csproj.CoreCompileInputs.cache

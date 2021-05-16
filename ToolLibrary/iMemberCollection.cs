@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Assignment
+namespace ToolLibrary
 {
     //The specification of MemberCollection ADT, which is used to store and manipulate a collection of members
     

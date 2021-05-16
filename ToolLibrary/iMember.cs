@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Assignment
+namespace ToolLibrary
 {
     //The specification of Member ADT
     interface iMember
