@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace ToolLibrary
 {
-    class Program
+    class Demo
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             Console.Write("You password please: ");
             StringBuilder passwordBuilder = new StringBuilder();
             bool continueReading = true;

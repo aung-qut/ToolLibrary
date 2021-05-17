@@ -8,20 +8,25 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\n10500511\\.nuget\\packages\\": {}
+    "C:\\Users\\n10500511\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\n10500511\\source\\repos\\ToolLibrary\\ToolLibrary\\ToolLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\n10500511\\Documents\\GitHub\\ToolLibrary\\ToolLibrary\\ToolLibrary.csproj",
       "projectName": "ToolLibrary",
-      "projectPath": "C:\\Users\\n10500511\\source\\repos\\ToolLibrary\\ToolLibrary\\ToolLibrary.csproj",
+      "projectPath": "C:\\Users\\n10500511\\Documents\\GitHub\\ToolLibrary\\ToolLibrary\\ToolLibrary.csproj",
       "packagesPath": "C:\\Users\\n10500511\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\n10500511\\source\\repos\\ToolLibrary\\ToolLibrary\\obj\\",
+      "outputPath": "C:\\Users\\n10500511\\Documents\\GitHub\\ToolLibrary\\ToolLibrary\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
         "C:\\Users\\n10500511\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -60,7 +65,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.103\\RuntimeIdentifierGraph.json"
       }
     }
   }

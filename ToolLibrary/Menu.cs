@@ -9,6 +9,8 @@ namespace ToolLibrary
         static string num1;
         static string num2;
         static string num3;
+        static string staffUsername = "staff";
+        static string staffPassword = "today123";
         static void Main(string[] args)
         {
             MainMenu();
@@ -18,7 +20,7 @@ namespace ToolLibrary
                 if (num1.Equals("1"))
                 {
                     Console.Clear();
-                    StaffMenu();
+                    StaffLogin("staff", "today123");
                 }
                 else if (num1.Equals("2"))
                 {
@@ -57,6 +59,14 @@ namespace ToolLibrary
             if (num2.Equals("0"))
             {
                 MainMenu();
+            } 
+            else if (num2.Equals("1"))
+            {
+                // call methods ToolLibrarySystem.cs
+            }
+            else if (num3.Equals("2"))
+            {
+
             }
         }
 
@@ -77,6 +87,30 @@ namespace ToolLibrary
             {
                 MainMenu();
             }
+        }
+
+        static void StaffLogin(string username, string password)
+        {
+            PrintLineTitle();
+            PrintLine("==========Staff Login==========");
+            Print("Username: ");
+            staffUsername = Console.ReadLine();
+            Print("Password: ");
+            staffPassword = Console.ReadLine();
+            if (username.Equals(staffUsername) && password.Equals(staffPassword))
+            {
+                Console.Clear();
+                StaffMenu();
+            }
+            else
+            {
+                PrintLine("\nStaff not found.");
+            }
+        }
+
+        static void MemberLogin()
+        {
+
         }
 
         private static void Print(string text)

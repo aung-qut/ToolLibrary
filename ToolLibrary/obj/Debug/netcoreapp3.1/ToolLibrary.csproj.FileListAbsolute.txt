@@ -11,3 +11,16 @@ C:\Users\n10500511\source\repos\ToolLibrary\ToolLibrary\bin\Debug\netcoreapp3.1\
 C:\Users\n10500511\source\repos\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.dll
 C:\Users\n10500511\source\repos\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.pdb
 C:\Users\n10500511\source\repos\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.genruntimeconfig.cache
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\bin\Debug\netcoreapp3.1\ToolLibrary.exe
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\bin\Debug\netcoreapp3.1\ToolLibrary.deps.json
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\bin\Debug\netcoreapp3.1\ToolLibrary.runtimeconfig.json
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\bin\Debug\netcoreapp3.1\ToolLibrary.runtimeconfig.dev.json
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\bin\Debug\netcoreapp3.1\ToolLibrary.dll
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\bin\Debug\netcoreapp3.1\ToolLibrary.pdb
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.csprojAssemblyReference.cache
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.AssemblyInfoInputs.cache
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.AssemblyInfo.cs
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.csproj.CoreCompileInputs.cache
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.dll
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.pdb
+C:\Users\n10500511\Documents\GitHub\ToolLibrary\ToolLibrary\obj\Debug\netcoreapp3.1\ToolLibrary.genruntimeconfig.cache
