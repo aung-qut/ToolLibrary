@@ -7,19 +7,20 @@ namespace ToolLibrary
 {
     class Menu
     {
-        static string num1;
-        static string num2;
-        static string num3;
+        // variables to read menu items
+        static string num1; // menu number for main menu
+        static string num2; // menu number for sub-menu 1
+        static string num3; // menu number for sub-menu 2
 
         // default values for staff login
         static string staffUsername = "staff";
         static string staffPassword = "today123";
 
         // variables for registering a new member
-        static string firstName;
-        static string lastName;
-        static string contactNumber;
-        static string pin;
+        static string mfirstName;
+        static string mlastName;
+        static string mcontactNumber;
+        static string mpin;
 
         // main method for the program to run
         static void Main(string[] args)
@@ -41,6 +42,7 @@ namespace ToolLibrary
             } while (!num1.Equals("0"));
         }
 
+        // contents for main menu
         static void MainMenu()
         {
             Console.Clear();
@@ -70,40 +72,49 @@ namespace ToolLibrary
             if (num2.Equals("0"))
             {
                 MainMenu();
-            } 
+            }
+            // 1. Add a new tool
             else if (num2.Equals("1"))
             {
                 // call methods ToolLibrarySystem.cs
                 PrintLine("Let's add a new tool");
                 Tool aTool = new Tool();
-                aTool.Name = "Gardening Tools";
             }
             // 2. Add new pieces of an existing tool
-            else if (num3.Equals("2"))
+            else if (num2.Equals("2"))
             {
                 
             }
+            // 3. Remove some pieces of a tool
+            else if (num2.Equals("3"))
+            {
+
+            }
             // 4. Register a new member
-            else if (num3.Equals("4"))
+            else if (num2.Equals("4"))
             {
                 PrintLine("First Name: ");
-                firstName = Console.ReadLine();
+                mfirstName = Console.ReadLine();
                 PrintLine("Last Name: ");
-                lastName = Console.ReadLine();
+                mlastName = Console.ReadLine();
                 PrintLine("Contact Number: ");
-                contactNumber = Console.ReadLine();
+                mcontactNumber = Console.ReadLine();
                 PrintLine("PIN: ");
-                pin = Console.ReadLine();
-                Member aMember = new Member(firstName, lastName, contactNumber, pin);
+                mpin = Console.ReadLine();
+                Member aMember = new Member(mfirstName, mlastName, mcontactNumber, mpin);
                 MemberCollection newMember = new MemberCollection();
                 newMember.add(aMember);
-                PrintLine(aMember);
             }
-        }
+            // 5. Remove a member
+            else if (num2.Equals("5"))
+            {
+                
+            }
+            // 6. Find the contact number of a member
+            else if (num2.Equals("6"))
+            {
 
-        private static void PrintLine(Member aMember)
-        {
-            Console.WriteLine(aMember.FirstName);
+            }
         }
 
         static void MemberMenu()
@@ -123,6 +134,35 @@ namespace ToolLibrary
             {
                 MainMenu();
             }
+            // 1. Display all the tools of a tool type
+            else if (num3.Equals("1"))
+            {
+
+            }
+            // 2. Borrow a tool
+            else if (num3.Equals("2"))
+            {
+                
+            }
+            // 3. Return a tool
+            else if (num3.Equals("3"))
+            {
+
+            }
+            // 4. List all the tools that I am renting
+            else if (num3.Equals("4"))
+            {
+
+            }
+            // 5. Display top three (3) most frequently rented tools
+            else if (num3.Equals("5"))
+            {
+
+            }
+            else
+            {
+                invalidInput(num3);
+            }
         }
 
         static void StaffLogin(string username, string password)
@@ -140,13 +180,28 @@ namespace ToolLibrary
             }
             else
             {
-                PrintLine("\nStaff not found.");
+                Console.WriteLine("\nStaff '{0}' not found.", username);
             }
         }
 
-        static void MemberLogin()
+        static void MemberLogin(string firstName, string lastName, string pin)
         {
-
+            PrintLineTitle();
+            PrintLine("Fist name: ");
+            mfirstName = Console.ReadLine();
+            PrintLine("Last name: ");
+            mlastName = Console.ReadLine();
+            PrintLine("      PIN: ");
+            mpin = Console.ReadLine();
+            if (mfirstName.Equals(firstName) && mlastName.Equals(lastName) && mpin.Equals(pin))
+            {
+                Console.Clear();
+                MemberMenu();
+            }
+            else
+            {
+                Console.WriteLine("Member '{0}' does not exist. Please register to use the system.", firstName + " " + lastName);
+            }
         }
 
         private static void Print(string text)
@@ -161,6 +216,10 @@ namespace ToolLibrary
         private static void PrintLineTitle()
         {
             Console.WriteLine("Welcome to the Tool Library");
+        }
+        private static void invalidInput(string num)
+        {
+            Console.WriteLine("Error, input '{0}' is invalid", num);
         }
     }
 }

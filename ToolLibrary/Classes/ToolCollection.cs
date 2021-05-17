@@ -6,6 +6,7 @@ namespace ToolLibrary.Classes
 {
     class ToolCollection : iToolCollection
     {
+        private iTool[] tools;
         public int Number => throw new NotImplementedException();
 
         public void add(iTool aTool)

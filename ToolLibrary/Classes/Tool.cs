@@ -10,7 +10,6 @@ namespace ToolLibrary.Classes
         private int quantity; // quantity field
         private int availableQuantity; // availableQuantity field
         private int noBorrowings; // noBorrowings field
-        private MemberCollection mc;
 
         public string Name { get => name; set => name = value; }
         public int Quantity { get => quantity; set => quantity = value; }
