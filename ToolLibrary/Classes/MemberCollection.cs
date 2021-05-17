@@ -28,8 +28,9 @@ namespace ToolLibrary.Classes
             {
                 members[count] = aMember;
                 count++;
-                Console.WriteLine("Number(s) of members: {0}", count);
             }
+
+            Console.WriteLine("Number(s) of members: {0}", count);
         }
 
         public void delete(iMember aMember)

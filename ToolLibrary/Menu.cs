@@ -45,7 +45,6 @@ namespace ToolLibrary
         // contents for main menu
         static void MainMenu()
         {
-            Console.Clear();
             PrintLineTitle();
             PrintLine("===========Main Menu===========");
             PrintLine("1. Staff Login");
@@ -69,12 +68,8 @@ namespace ToolLibrary
             PrintLine("==========================================\n");
             Print("Please make a selection (1-6, or 0 to return to main menu): ");
             num2 = Console.ReadLine();
-            if (num2.Equals("0"))
-            {
-                MainMenu();
-            }
             // 1. Add a new tool
-            else if (num2.Equals("1"))
+            if (num2.Equals("1"))
             {
                 // call methods ToolLibrarySystem.cs
                 PrintLine("Let's add a new tool");
@@ -115,6 +110,7 @@ namespace ToolLibrary
             {
 
             }
+            StaffMenu();
         }
 
         static void MemberMenu()
