@@ -11,6 +11,7 @@ namespace ToolLibrary.Classes
         private string contactNumber; // contactNumbe field
         private string pin; // pin field
         private string[] tools; // tools field
+        private MemberCollection mc;
 
         public Member(string firstName, string lastName, string contactNumber, string pin)
         {

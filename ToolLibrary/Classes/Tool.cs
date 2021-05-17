@@ -2,14 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ToolLibrary
+namespace ToolLibrary.Classes
 {
     class Tool : iTool
     {
-        public string Name { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Quantity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int AvailableQuantity { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int NoBorrowings { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private string name; // name field
+        private int quantity; // quantity field
+        private int availableQuantity; // availableQuantity field
+        private int noBorrowings; // noBorrowings field
+        private MemberCollection mc;
+
+        public string Name { get => name; set => name = value; }
+        public int Quantity { get => quantity; set => quantity = value; }
+        public int AvailableQuantity { get => availableQuantity; set => availableQuantity = value; }
+        public int NoBorrowings { get => noBorrowings; set => noBorrowings = value; }
 
         public iMemberCollection GetBorrowers => throw new NotImplementedException();
 

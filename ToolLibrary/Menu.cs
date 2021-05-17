@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ToolLibrary.Classes;
 
 namespace ToolLibrary
 {
@@ -9,8 +10,18 @@ namespace ToolLibrary
         static string num1;
         static string num2;
         static string num3;
+
+        // default values for staff login
         static string staffUsername = "staff";
         static string staffPassword = "today123";
+
+        // variables for registering a new member
+        static string firstName;
+        static string lastName;
+        static string contactNumber;
+        static string pin;
+
+        // main method for the program to run
         static void Main(string[] args)
         {
             MainMenu();
@@ -63,11 +74,36 @@ namespace ToolLibrary
             else if (num2.Equals("1"))
             {
                 // call methods ToolLibrarySystem.cs
+                PrintLine("Let's add a new tool");
+                Tool aTool = new Tool();
+                aTool.Name = "Gardening Tools";
             }
+            // 2. Add new pieces of an existing tool
             else if (num3.Equals("2"))
             {
-
+                
             }
+            // 4. Register a new member
+            else if (num3.Equals("4"))
+            {
+                PrintLine("First Name: ");
+                firstName = Console.ReadLine();
+                PrintLine("Last Name: ");
+                lastName = Console.ReadLine();
+                PrintLine("Contact Number: ");
+                contactNumber = Console.ReadLine();
+                PrintLine("PIN: ");
+                pin = Console.ReadLine();
+                Member aMember = new Member(firstName, lastName, contactNumber, pin);
+                MemberCollection newMember = new MemberCollection();
+                newMember.add(aMember);
+                PrintLine(aMember);
+            }
+        }
+
+        private static void PrintLine(Member aMember)
+        {
+            Console.WriteLine(aMember.FirstName);
         }
 
         static void MemberMenu()

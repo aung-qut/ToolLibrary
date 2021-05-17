@@ -6,6 +6,8 @@ namespace ToolLibrary.Classes
 {
     class MemberCollection : iMemberCollection
     {
+        private int number;
+        private iMember[] array;
         public int Number => throw new NotImplementedException();
 
         public void add(iMember aMember)
