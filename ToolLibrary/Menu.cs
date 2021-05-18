@@ -67,6 +67,10 @@ namespace ToolLibrary
             // 1. Add a new tool
             if (num2.Equals("1"))
             {
+                // ask tool name
+                Console.Write("Enter the name of a new tool: ");
+                string toolName = Console.ReadLine();
+
                 // Display all the nine (9) tool categories
                 ToolCategories cat = new ToolCategories();
                 cat.DisplayToolCategories();
@@ -115,8 +119,6 @@ namespace ToolLibrary
                 {
                     Console.WriteLine("Please enter a valid input.");
                 }
-
-                
                 // Select a tool type
                 // Display all the tools of the selected tool type
                 // Add a new tool to the tool type

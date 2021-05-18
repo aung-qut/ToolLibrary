@@ -11,6 +11,7 @@ namespace ToolLibrary.Classes
         // displaying tool categories
         public void DisplayToolCategories()
         {
+            Console.WriteLine("Select a category");
             tools = new string[] { "Gardening tools", "Flooring tools", "Fencing tools", "Measuring tools", "Cleaning tools", "Painting tools", "Electronic tools", "Electricity tools", "Automotive tools" };
             Console.WriteLine("\n=====Tool Categories=====");
             DisplayList(tools);
