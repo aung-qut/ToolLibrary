@@ -6,12 +6,11 @@ namespace ToolLibrary.Classes
 {
     class Member : iMember
     {
-        private string firstName; // firstName field
-        private string lastName; // lastName field
+        private string firstName;     // firstName field
+        private string lastName;      // lastName field
         private string contactNumber; // contactNumbe field
-        private string pin; // pin field
-        private string[] tools; // tools field
-        private MemberCollection mc;
+        private string pin;           // pin field
+        private string[] tools;       // tools field
 
         public Member(string firstName, string lastName, string contactNumber, string pin)
         {
@@ -40,7 +39,7 @@ namespace ToolLibrary.Classes
 
         public override string ToString()
         {
-            return "First name: " + this.firstName + "\nLast name: " + this.lastName + "\nContact number: " + this.contactNumber;
+            return "First name - " + this.firstName + "\nLast name - " + this.lastName + "\nContact number - " + this.contactNumber;
         }
     }
 }

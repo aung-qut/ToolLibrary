@@ -6,31 +6,19 @@ namespace ToolLibrary.Classes
 {
     class MemberCollection : iMemberCollection
     {
-        private int number;
-        // private List<iMember> members = new List<iMember>();
-        private iMember[] members;
+        private List<iMember> members = new List<iMember>();
 
-        private int capacity;
-        private int count;
-
-        public int Number => number;
-
-        public MemberCollection()
+        public int Number
         {
-            count = 0;
-            capacity = 20;
-            members = new iMember[capacity];
+            get
+            {
+                return members.Count;
+            }
         }
 
         public void add(iMember aMember)
         {
-            if (count < capacity)
-            {
-                members[count] = aMember;
-                count++;
-            }
-
-            Console.WriteLine("Number(s) of members: {0}", count);
+            members.Add(aMember);
         }
 
         public void delete(iMember aMember)
@@ -45,7 +33,7 @@ namespace ToolLibrary.Classes
 
         public iMember[] toArray()
         {
-            throw new NotImplementedException();
+            return members.ToArray();
         }
 
         public void FindContactNumber()

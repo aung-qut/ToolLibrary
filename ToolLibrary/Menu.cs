@@ -16,12 +16,6 @@ namespace ToolLibrary
         static string staffUsername = "staff";
         static string staffPassword = "today123";
 
-        // variables for registering a new member
-        static string mfirstName;
-        static string mlastName;
-        static string mcontactNumber;
-        static string mpin;
-
         // main method for the program to run
         static void Main(string[] args)
         {
@@ -54,8 +48,10 @@ namespace ToolLibrary
             Print("Please make a selection (1-2, or 0 to exit): ");
         }
 
+        // contents for staff menu
         static void StaffMenu()
         {
+            ToolLibrarySystem tls = new ToolLibrarySystem();
             PrintLineTitle();
             PrintLine("================Staff Menu================");
             PrintLine("1. Add a new tool");
@@ -88,17 +84,21 @@ namespace ToolLibrary
             // 4. Register a new member
             else if (num2.Equals("4"))
             {
-                PrintLine("First Name: ");
-                mfirstName = Console.ReadLine();
-                PrintLine("Last Name: ");
-                mlastName = Console.ReadLine();
-                PrintLine("Contact Number: ");
-                mcontactNumber = Console.ReadLine();
-                PrintLine("PIN: ");
-                mpin = Console.ReadLine();
-                Member aMember = new Member(mfirstName, mlastName, mcontactNumber, mpin);
-                MemberCollection newMember = new MemberCollection();
-                newMember.add(aMember);
+                string firstName, lastName, contactNumber, pin;
+                // call methods from Member.cs and MemberCollection.cs
+                Print("----First Name: ");
+                firstName = Console.ReadLine();
+                Print("-----Last Name: ");
+                lastName = Console.ReadLine();
+                Print("Contact Number: ");
+                contactNumber = Console.ReadLine();
+                Print("-----------PIN: ");
+                pin = Console.ReadLine();
+                Member newMember = new Member(firstName, lastName, contactNumber, pin);
+                tls.add(newMember);
+                Console.WriteLine("Member added successfully.");
+                Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number + 1);
+                StaffMenu();
             }
             // 5. Remove a member
             else if (num2.Equals("5"))
@@ -110,9 +110,9 @@ namespace ToolLibrary
             {
 
             }
-            StaffMenu();
         }
 
+        // contents for member menu
         static void MemberMenu()
         {
             PrintLineTitle();
@@ -125,10 +125,10 @@ namespace ToolLibrary
             PrintLine("0. Return to main menu");
             PrintLine("=========================================\n");
             Print("Please make a selection (1-5, or 0 to return to main menu): ");
-            num3 = Console.ReadLine();
+            num3 = Console.ReadLine(); // read the number input
             if (num3.Equals("0"))
             {
-                MainMenu();
+                MainMenu(); // show the main menu
             }
             // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
@@ -161,6 +161,7 @@ namespace ToolLibrary
             }
         }
 
+        // handle staff login using default values 
         static void StaffLogin(string username, string password)
         {
             PrintLineTitle();
@@ -171,33 +172,34 @@ namespace ToolLibrary
             staffPassword = Console.ReadLine();
             if (username.Equals(staffUsername) && password.Equals(staffPassword))
             {
-                Console.Clear();
-                StaffMenu();
+                Console.Clear(); // clear the console
+                StaffMenu(); 
             }
             else
             {
-                Console.WriteLine("\nStaff '{0}' not found.", username);
+                Console.WriteLine("\nStaff '{0}' not found.", username); // show the error when staff is not found
             }
         }
 
+        // handle member login
         static void MemberLogin(string firstName, string lastName, string pin)
         {
             PrintLineTitle();
-            PrintLine("Fist name: ");
-            mfirstName = Console.ReadLine();
-            PrintLine("Last name: ");
-            mlastName = Console.ReadLine();
-            PrintLine("      PIN: ");
-            mpin = Console.ReadLine();
-            if (mfirstName.Equals(firstName) && mlastName.Equals(lastName) && mpin.Equals(pin))
-            {
-                Console.Clear();
-                MemberMenu();
-            }
-            else
-            {
-                Console.WriteLine("Member '{0}' does not exist. Please register to use the system.", firstName + " " + lastName);
-            }
+            //PrintLine("Fist name: ");
+            //mfirstName = Console.ReadLine();
+            //PrintLine("Last name: ");
+            //mlastName = Console.ReadLine();
+            //PrintLine("      PIN: ");
+            //mpin = Console.ReadLine();
+            //if (mfirstName.Equals(firstName) && mlastName.Equals(lastName) && mpin.Equals(pin))
+            //{
+            //    Console.Clear(); // clear the console
+            //    MemberMenu(); // display member menu
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Member '{0}' does not exist. Please register to use the system.", firstName + " " + lastName);
+            //}
         }
 
         private static void Print(string text)

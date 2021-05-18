@@ -6,6 +6,7 @@ namespace ToolLibrary.Classes
 {
     class ToolLibrarySystem : iToolLibrarySystem
     {
+        public MemberCollection mc = new MemberCollection();
         public void add(iTool aTool)
         {
             throw new NotImplementedException();
@@ -18,7 +19,7 @@ namespace ToolLibrary.Classes
 
         public void add(iMember aMember)
         {
-            throw new NotImplementedException();
+            mc.add(aMember);
         }
 
         public void borrowTool(iMember aMember, iTool aTool)
