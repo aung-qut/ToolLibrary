@@ -6,8 +6,9 @@ namespace ToolLibrary.Classes
 {
     class ToolCollection : iToolCollection
     {
-        private iTool[] tools;
-        public int Number => throw new NotImplementedException();
+        private List<iTool> tools = new List<iTool>();
+
+        public int Number => tools.Count;
 
         public void add(iTool aTool)
         {
@@ -26,7 +27,8 @@ namespace ToolLibrary.Classes
 
         public iTool[] toArray()
         {
-            throw new NotImplementedException();
+            tools.Add(new Tool() { Name = "Gardening tools" });
+            return tools.ToArray();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ToolLibrary.Classes
 {
     class ToolLibrarySystem : iToolLibrarySystem
     {
-        public MemberCollection mc = new MemberCollection();
+        public iMemberCollection mc = new MemberCollection();
         public void add(iTool aTool)
         {
             throw new NotImplementedException();

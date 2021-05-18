@@ -12,6 +12,11 @@ namespace ToolLibrary.Classes
         private string pin;           // pin field
         private string[] tools;       // tools field
 
+        public Member()
+        {
+
+        }
+
         public Member(string firstName, string lastName, string contactNumber, string pin)
         {
             this.firstName = firstName;
@@ -35,6 +40,17 @@ namespace ToolLibrary.Classes
         public void deleteTool(iTool aTool)
         {
             throw new NotImplementedException();
+        }
+
+        public int CompareTo(Member another)
+        {
+            if (this.lastName.CompareTo(another.lastName) < 0)
+                return -1;
+            else
+                if (this.lastName.CompareTo(another.lastName) == 0)
+                return this.firstName.CompareTo(another.firstName);
+            else
+                return 1;
         }
 
         public override string ToString()

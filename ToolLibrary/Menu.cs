@@ -67,19 +67,83 @@ namespace ToolLibrary
             // 1. Add a new tool
             if (num2.Equals("1"))
             {
-                // call methods ToolLibrarySystem.cs
-                PrintLine("Let's add a new tool");
-                Tool aTool = new Tool();
+                // Display all the nine (9) tool categories
+                ToolCategories cat = new ToolCategories();
+                cat.DisplayToolCategories();
+
+                // select a category
+                string c1 = Console.ReadLine();
+
+                // Display all the tool types of the selected category
+                if (c1.Equals("1"))
+                {
+                    cat.DisplayToolCategories();
+                }
+                else if (c1.Equals("2"))
+                {
+                    cat.DisplayFlooringTools();
+                }
+                else if (c1.Equals("3"))
+                {
+                    cat.DisplayFencingTools();
+                }
+                else if (c1.Equals("4"))
+                {
+                    cat.DisplayMeasuringTools();
+                }
+                else if (c1.Equals("5"))
+                {
+                    cat.DisplayCleaningTools();
+                }
+                else if (c1.Equals("6"))
+                {
+                    cat.DisplayPaintingTools();
+                }
+                else if (c1.Equals("7"))
+                {
+                    cat.DisplayElectronicTools();
+                }
+                else if (c1.Equals("8"))
+                {
+                    cat.DisplayElectricityTools();
+                }
+                else if (c1.Equals("9"))
+                {
+                    cat.DisplayAutomotiveTools();
+                }
+                else
+                {
+                    Console.WriteLine("Please enter a valid input.");
+                }
+
+                
+                // Select a tool type
+                // Display all the tools of the selected tool type
+                // Add a new tool to the tool type
+                // Display all the tools in the selected tool type again
             }
             // 2. Add new pieces of an existing tool
             else if (num2.Equals("2"))
             {
-                
+                // Display all the tool categories
+                // Select a category
+                // Display all the tool types of the selected category
+                // Select a tool type
+                // Display all the tools of the selected tool type
+                // Select a tool from the tool list
+                // Add the quantity of the tool
             }
             // 3. Remove some pieces of a tool
             else if (num2.Equals("3"))
             {
-
+                // Display all the nine (9) tool categories
+                // Select a category
+                // Display all the tool types of the selected category
+                // Select a tool type
+                // Display all the tools of the selected tool type
+                // Select a tool from the tool list
+                // Input the number of pieces of the tool to be removed
+                // if the number of pieces of the tool is not more than the number of pieces that are currently in the library, reduce the total quantity and the available quantity of the tool
             }
             // 4. Register a new member
             else if (num2.Equals("4"))
@@ -97,7 +161,7 @@ namespace ToolLibrary
                 Member newMember = new Member(firstName, lastName, contactNumber, pin);
                 tls.add(newMember);
                 Console.WriteLine("Member added successfully.");
-                Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number + 1);
+                Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
                 StaffMenu();
             }
             // 5. Remove a member
@@ -133,7 +197,8 @@ namespace ToolLibrary
             // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
             {
-
+                ToolCollection tc = new ToolCollection();
+                Console.WriteLine(tc.toArray());
             }
             // 2. Borrow a tool
             else if (num3.Equals("2"))
@@ -167,9 +232,9 @@ namespace ToolLibrary
             PrintLineTitle();
             PrintLine("==========Staff Login==========");
             Print("Username: ");
-            staffUsername = Console.ReadLine();
+            username = Console.ReadLine();
             Print("Password: ");
-            staffPassword = Console.ReadLine();
+            password = Console.ReadLine();
             if (username.Equals(staffUsername) && password.Equals(staffPassword))
             {
                 Console.Clear(); // clear the console

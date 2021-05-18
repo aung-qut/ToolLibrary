@@ -6,19 +6,20 @@ namespace ToolLibrary.Classes
 {
     class MemberCollection : iMemberCollection
     {
-        private List<iMember> members = new List<iMember>();
+        private List<iMember> memberList = new List<iMember>();
+        private Member[] member;
 
         public int Number
         {
             get
             {
-                return members.Count;
+                return memberList.Count;
             }
         }
 
         public void add(iMember aMember)
         {
-            members.Add(aMember);
+            memberList.Add(aMember);
         }
 
         public void delete(iMember aMember)
@@ -33,12 +34,18 @@ namespace ToolLibrary.Classes
 
         public iMember[] toArray()
         {
-            return members.ToArray();
+            return memberList.ToArray();
         }
 
-        public void FindContactNumber()
+        public string FindContactNumber(string firstName, string lastName)
         {
-
+            Member aMember = new Member(firstName, lastName, "", "");
+            iMember[] membersArr = toArray();
+            for (int i = 0; i < Number; i++)
+            {
+                
+            }
+            return "string";
         }
     }
 }
