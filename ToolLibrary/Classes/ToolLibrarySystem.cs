@@ -6,7 +6,7 @@ namespace ToolLibrary.Classes
 {
     class ToolLibrarySystem : iToolLibrarySystem
     {
-        public iMemberCollection mc = new MemberCollection();
+        public MemberCollection mc = new MemberCollection();
         public ToolCollection tc = new ToolCollection();
 
         public void add(iTool aTool)

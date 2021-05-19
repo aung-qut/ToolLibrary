@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace ToolLibrary.Classes
 {
@@ -12,7 +13,7 @@ namespace ToolLibrary.Classes
 
         public MemberCollection()
         {
-            members = new Member[2];
+            members = new Member[10];
             noMembers = 0;
         }
 
@@ -21,7 +22,7 @@ namespace ToolLibrary.Classes
             get
             {
                 //return memberList.Count + count;
-                return members.Length;
+                return noMembers;
             }
         }
 
@@ -31,16 +32,21 @@ namespace ToolLibrary.Classes
             //memberList.Add(aMember);
 
             // using array to add member
-            for (int i = 1; i < members.Length; i++)
-            {
-                members[i] = (Member)aMember;
-                noMembers++;
-            }
-            foreach (var item in members)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine("Count: " + noMembers);
+            //for (int i = 1; i < members.Length; i++)
+            //{
+            //    members[i] = (Member)aMember;
+                
+            //}
+            //noMembers++;
+            //foreach (var item in members)
+            //{
+            //    Console.WriteLine(item);
+            //}
+            //Console.WriteLine("Number - " + Number);
+
+            // 2nd option
+            members[noMembers] = (Member)aMember;
+            noMembers++;
         }
 
         public void delete(iMember aMember)
@@ -50,21 +56,29 @@ namespace ToolLibrary.Classes
 
         public bool search(iMember aMember)
         {
-            //throw new NotImplementedException();
-
-            if (true) //
+            int i = 0;
+            while (members[i] != null)
             {
-                return true;
+                if (aMember.FirstName.Equals(members[i].FirstName) && aMember.LastName.Equals(members[i].LastName))
+                {
+                    return true;
+                }
+                i++;
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         public iMember[] toArray()
         {
             return members;
+        }
+
+        public void Display()
+        {
+            for (int i = 0; i < noMembers; i++)
+            {
+                Console.WriteLine(members[i]);
+            }
         }
 
         public string FindContactNumber(string firstName, string lastName)

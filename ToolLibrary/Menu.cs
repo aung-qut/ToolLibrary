@@ -30,6 +30,8 @@ namespace ToolLibrary
             Member member2 = new Member("Saw", "Saw", "04", "0001");
             t.add(member);
             t.add(member2);
+            MemberCollection m = new MemberCollection();
+            m.Display();
 
             // -------
             MainMenu();
@@ -163,21 +165,23 @@ namespace ToolLibrary
             // 4. Register a new member
             else if (num2.Equals("4"))
             {
-                string firstName, lastName, contactNumber, pin;
-                // call methods from Member.cs and MemberCollection.cs
-                Print("First Name: ");
-                firstName = Console.ReadLine();
-                Print("Last Name: ");
-                lastName = Console.ReadLine();
-                Print("Contact Number: ");
-                contactNumber = Console.ReadLine();
-                Print("PIN: ");
-                pin = Console.ReadLine();
-                Member newMember = new Member(firstName, lastName, contactNumber, pin);
-                tls.add(newMember);
-                Console.WriteLine("Member added successfully.");
-                Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
-                StaffMenu();
+                do
+                {
+                    string firstName, lastName, contactNumber, pin;
+                    // call methods from Member.cs and MemberCollection.cs
+                    Print("First Name: ");
+                    firstName = Console.ReadLine();
+                    Print("Last Name: ");
+                    lastName = Console.ReadLine();
+                    Print("Contact Number: ");
+                    contactNumber = Console.ReadLine();
+                    Print("PIN: ");
+                    pin = Console.ReadLine();
+                    Member newMember = new Member(firstName, lastName, contactNumber, pin);
+                    tls.add(newMember);
+                    Console.WriteLine("Member added successfully.");
+                    Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
+                } while (true);
             }
             // 5. Remove a member
             else if (num2.Equals("5"))
@@ -187,7 +191,7 @@ namespace ToolLibrary
             // 6. Find the contact number of a member
             else if (num2.Equals("6"))
             {
-
+                //tls.mc.FindContactNumber();
             }
         }
 
