@@ -11,7 +11,7 @@ namespace ToolLibrary.Classes
 
         public void add(iTool aTool)
         {
-            throw new NotImplementedException();
+            tc.add(aTool);
         }
 
         public void add(iTool aTool, int quantity)

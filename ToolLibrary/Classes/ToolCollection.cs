@@ -16,11 +16,12 @@ namespace ToolLibrary.Classes
             noTools = 0;
         }
 
-        public int Number => tools.Length;
+        public int Number => noTools;
 
         public void add(iTool aTool)
         {
-            throw new NotImplementedException();
+            tools[noTools] = (Tool)aTool;
+            noTools++;
         }
 
         public void delete(iTool aTool)
@@ -30,7 +31,16 @@ namespace ToolLibrary.Classes
 
         public bool search(iTool aTool)
         {
-            throw new NotImplementedException();
+            int i = 0;
+            while (tools[i] != null)
+            {
+                if (aTool.Name.Equals(tools[i].Name))
+                {
+                    return true;
+                }
+                i++;
+            }
+            return false;
         }
 
         public iTool[] toArray()

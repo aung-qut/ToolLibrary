@@ -22,16 +22,7 @@ namespace ToolLibrary
         {
             // testing
 
-            Member member = new Member();
-            member.FirstName = "Aung";
-            member.LastName = "Kyaw";
-            member.ContactNumber = "0474268017";
-            member.PIN = "0000";
-            Member member2 = new Member("Saw", "Saw", "04", "0001");
-            t.add(member);
-            t.add(member2);
-            MemberCollection m = new MemberCollection();
-            m.Display();
+            
 
             // -------
             MainMenu();
@@ -49,6 +40,7 @@ namespace ToolLibrary
                     MemberMenu();
                 }
             } while (!num1.Equals("0"));
+            Environment.Exit(0);
         }
 
         // contents for main menu
@@ -82,9 +74,11 @@ namespace ToolLibrary
             // 1. Add a new tool
             if (num2.Equals("1"))
             {
-                // ask tool name
+                Tool newTool = new Tool();
+                // enter tool name
                 Console.Write("Enter the name of a new tool: ");
                 string toolName = Console.ReadLine();
+                newTool.Name = toolName;
 
                 // Display all the nine (9) tool categories
                 ToolCategories cat = new ToolCategories();
@@ -97,38 +91,43 @@ namespace ToolLibrary
                 if (c1.Equals("1"))
                 {
                     cat.DisplayToolCategories();
-                }
-                else if (c1.Equals("2"))
-                {
-                    cat.DisplayFlooringTools();
-                }
-                else if (c1.Equals("3"))
-                {
-                    cat.DisplayFencingTools();
-                }
-                else if (c1.Equals("4"))
-                {
-                    cat.DisplayMeasuringTools();
-                }
-                else if (c1.Equals("5"))
-                {
-                    cat.DisplayCleaningTools();
-                }
-                else if (c1.Equals("6"))
-                {
-                    cat.DisplayPaintingTools();
-                }
-                else if (c1.Equals("7"))
-                {
-                    cat.DisplayElectronicTools();
-                }
-                else if (c1.Equals("8"))
-                {
-                    cat.DisplayElectricityTools();
-                }
-                else if (c1.Equals("9"))
-                {
-                    cat.DisplayAutomotiveTools();
+                    string c2 = Console.ReadLine();
+                    if (c2.Equals("1"))
+                    {
+                        cat.DisplayGardeningTools();
+                    }
+                    else if (c1.Equals("2"))
+                    {
+                        cat.DisplayFlooringTools();
+                    }
+                    else if (c1.Equals("3"))
+                    {
+                        cat.DisplayFencingTools();
+                    }
+                    else if (c1.Equals("4"))
+                    {
+                        cat.DisplayMeasuringTools();
+                    }
+                    else if (c1.Equals("5"))
+                    {
+                        cat.DisplayCleaningTools();
+                    }
+                    else if (c1.Equals("6"))
+                    {
+                        cat.DisplayPaintingTools();
+                    }
+                    else if (c1.Equals("7"))
+                    {
+                        cat.DisplayElectronicTools();
+                    }
+                    else if (c1.Equals("8"))
+                    {
+                        cat.DisplayElectricityTools();
+                    }
+                    else if (c1.Equals("9"))
+                    {
+                        cat.DisplayAutomotiveTools();
+                    }
                 }
                 else
                 {
@@ -165,10 +164,10 @@ namespace ToolLibrary
             // 4. Register a new member
             else if (num2.Equals("4"))
             {
+                int input;
                 do
                 {
                     string firstName, lastName, contactNumber, pin;
-                    // call methods from Member.cs and MemberCollection.cs
                     Print("First Name: ");
                     firstName = Console.ReadLine();
                     Print("Last Name: ");
@@ -181,7 +180,10 @@ namespace ToolLibrary
                     tls.add(newMember);
                     Console.WriteLine("Member added successfully.");
                     Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
-                } while (true);
+                    Console.Write("Please enter 0 to return to staff menu: ");
+                    input = Int32.Parse(Console.ReadLine());
+                } while (input != 0);
+                StaffMenu();
             }
             // 5. Remove a member
             else if (num2.Equals("5"))
@@ -267,33 +269,18 @@ namespace ToolLibrary
             {
                 Console.WriteLine("\nStaff '{0}' not found.", username); // show the error when staff is not found
             }
-            Console.WriteLine("0 to return to main menu: ");
-            string input = Console.ReadLine();
-            if (input.Equals("0"))
-            {
-                MainMenu();
-            }
         }
 
         // handle member login
         static void MemberLogin(string firstName, string lastName, string pin)
         {
             PrintLineTitle();
-            //PrintLine("Fist name: ");
-            //mfirstName = Console.ReadLine();
-            //PrintLine("Last name: ");
-            //mlastName = Console.ReadLine();
-            //PrintLine("      PIN: ");
-            //mpin = Console.ReadLine();
-            //if (mfirstName.Equals(firstName) && mlastName.Equals(lastName) && mpin.Equals(pin))
-            //{
-            //    Console.Clear(); // clear the console
-            //    MemberMenu(); // display member menu
-            //}
-            //else
-            //{
-            //    Console.WriteLine("Member '{0}' does not exist. Please register to use the system.", firstName + " " + lastName);
-            //}
+            Console.Write("Enter first name: ");
+            string fn = Console.ReadLine();
+            Console.Write("Enter last name: ");
+            string ln = Console.ReadLine();
+            Console.Write("Enter PIN: ");
+            string p = Console.ReadLine();
         }
 
         private static void Print(string text)

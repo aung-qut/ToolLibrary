@@ -70,6 +70,7 @@ namespace ToolLibrary.Classes
 
         public iMember[] toArray()
         {
+            // not implemented yet
             return members;
         }
 
