@@ -17,8 +17,21 @@ namespace ToolLibrary
         static string staffPassword = "today123";
 
         // main method for the program to run
+        static ToolLibrarySystem t = new ToolLibrarySystem();
         static void Main(string[] args)
         {
+            // testing
+
+            Member member = new Member();
+            member.FirstName = "Aung";
+            member.LastName = "Kyaw";
+            member.ContactNumber = "0474268017";
+            member.PIN = "0000";
+            Member member2 = new Member("Saw", "Saw", "04", "0001");
+            t.add(member);
+            t.add(member2);
+
+            // -------
             MainMenu();
             do
             {
@@ -152,13 +165,13 @@ namespace ToolLibrary
             {
                 string firstName, lastName, contactNumber, pin;
                 // call methods from Member.cs and MemberCollection.cs
-                Print("----First Name: ");
+                Print("First Name: ");
                 firstName = Console.ReadLine();
-                Print("-----Last Name: ");
+                Print("Last Name: ");
                 lastName = Console.ReadLine();
                 Print("Contact Number: ");
                 contactNumber = Console.ReadLine();
-                Print("-----------PIN: ");
+                Print("PIN: ");
                 pin = Console.ReadLine();
                 Member newMember = new Member(firstName, lastName, contactNumber, pin);
                 tls.add(newMember);
@@ -242,9 +255,19 @@ namespace ToolLibrary
                 Console.Clear(); // clear the console
                 StaffMenu(); 
             }
+            else if (username.Equals(staffUsername) && !password.Equals(staffPassword))
+            {
+                Console.WriteLine("\nWrong password for staff.");
+            }
             else
             {
                 Console.WriteLine("\nStaff '{0}' not found.", username); // show the error when staff is not found
+            }
+            Console.WriteLine("0 to return to main menu: ");
+            string input = Console.ReadLine();
+            if (input.Equals("0"))
+            {
+                MainMenu();
             }
         }
 

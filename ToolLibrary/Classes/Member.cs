@@ -55,7 +55,7 @@ namespace ToolLibrary.Classes
 
         public override string ToString()
         {
-            return "First name - " + this.firstName + "\nLast name - " + this.lastName + "\nContact number - " + this.contactNumber;
+            return "\nFirst name - " + this.firstName + "\nLast name - " + this.lastName + "\nContact number - " + this.contactNumber;
         }
     }
 }
