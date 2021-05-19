@@ -74,6 +74,11 @@ namespace ToolLibrary.Classes
             return members;
         }
 
+        public bool VerifyMember(string name, string password)
+        {
+
+        }
+
         public void Display()
         {
             for (int i = 0; i < noMembers; i++)

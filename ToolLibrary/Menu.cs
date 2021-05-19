@@ -272,7 +272,7 @@ namespace ToolLibrary
         }
 
         // handle member login
-        static void MemberLogin(string firstName, string lastName, string pin)
+        static void MemberLogin()
         {
             PrintLineTitle();
             Console.Write("Enter first name: ");
