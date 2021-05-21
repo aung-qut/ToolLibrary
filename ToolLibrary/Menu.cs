@@ -30,9 +30,10 @@ namespace ToolLibrary
             t.add(aMember);
 
             // -------
-            MainMenu();
+
             do
             {
+                MainMenu();
                 num1 = Console.ReadLine();
                 if (num1.Equals("1"))
                 {
@@ -45,7 +46,6 @@ namespace ToolLibrary
                     MemberLogin();
                 }
             } while (!num1.Equals("0"));
-            Environment.Exit(0);
         }
 
         // contents for main menu
@@ -63,6 +63,8 @@ namespace ToolLibrary
         // contents for staff menu
         static void StaffMenu()
         {
+
+            ToolCategories cat = new ToolCategories();
             string c1;
             int c2;
             ToolLibrarySystem tls = new ToolLibrarySystem();
@@ -84,6 +86,11 @@ namespace ToolLibrary
                 // enter tool name
                 Console.Write("Enter the name of a new tool: ");
                 string toolName = Console.ReadLine();
+                Tool newTool = new Tool();
+                newTool.Name = toolName;
+                newTool.Quantity = 1;
+                newTool.AvailableQuantity = 1;
+                newTool.NoBorrowings = 0;
 
                 Tool tool1 = new Tool();
                 tool1.Name = "Irwin 125mm orbital sander";
@@ -109,7 +116,6 @@ namespace ToolLibrary
                 tls.tc.Display();
 
                 // Display all the nine (9) tool categories
-                ToolCategories cat = new ToolCategories();
                 cat.DisplayToolCategories();
 
                 // select a category
@@ -120,14 +126,20 @@ namespace ToolLibrary
                 {
                     cat.DisplayGardeningTools();
                     c2 = Int32.Parse(Console.ReadLine());
+
+                    // testing ///////////////
                     int[] j = new int[] { 1, 2, 3, 4, 5 };
                     for (int i = 0; i < j.Length; i++)
                     {
                         if (c2 == j[i])
                         {
                             Console.WriteLine(c2 == j[i]);
+                            ToolCollection tc = new ToolCollection();
+                            tls.tc.add(newTool);
                         }
                     }
+                    tls.tc.Display();
+                    /////////////////////////
                 }
                 Console.WriteLine("Tool added to the system successfully.");
                 Console.WriteLine("Press any key to continue...");
@@ -146,6 +158,8 @@ namespace ToolLibrary
                 // Display all the tools of the selected tool type
                 // Select a tool from the tool list
                 // Add the quantity of the tool
+                cat.DisplayToolCategories();
+
             }
             // 3. Remove some pieces of a tool
             else if (num2.Equals("3"))
@@ -158,6 +172,7 @@ namespace ToolLibrary
                 // Select a tool from the tool list
                 // Input the number of pieces of the tool to be removed
                 // if the number of pieces of the tool is not more than the number of pieces that are currently in the library, reduce the total quantity and the available quantity of the tool
+                cat.DisplayToolCategories();
             }
             // 4. Register a new member
             else if (num2.Equals("4"))
@@ -204,11 +219,6 @@ namespace ToolLibrary
             else if (num2.Equals("6"))
             {
                 //tls.mc.FindContactNumber();
-            }
-            else if (num2.Equals("0"))
-            {
-                Console.Clear();
-                MainMenu();
             }
         }
 

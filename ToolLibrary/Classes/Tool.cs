@@ -16,7 +16,13 @@ namespace ToolLibrary.Classes
         public int AvailableQuantity { get => availableQuantity; set => availableQuantity = value; }
         public int NoBorrowings { get => noBorrowings; set => noBorrowings = value; }
 
-        public iMemberCollection GetBorrowers => throw new NotImplementedException();
+        public iMemberCollection GetBorrowers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public void addBorrower(iMember aMember)
         {

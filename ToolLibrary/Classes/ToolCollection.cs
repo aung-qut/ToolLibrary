@@ -9,6 +9,7 @@ namespace ToolLibrary.Classes
         //private List<Tool> tools = new List<Tool>(); // tool list
         private Tool[] tools = new Tool[100];
         private int noTools;
+        private Tool aTool = new Tool();
 
         public ToolCollection()
         {
