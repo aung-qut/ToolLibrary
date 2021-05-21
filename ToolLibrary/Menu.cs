@@ -200,11 +200,11 @@ namespace ToolLibrary
 
                     Console.WriteLine("Member '{0} {1}' added successfully.", firstName, lastName);
                     Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
+                    tls.mc.InOrderTraverse();
 
                     Console.WriteLine("Press any key to continue.");
 
                     // display members
-                    tls.mc.Display();
                     input = Console.ReadLine();
 
                 } while (input.Equals(""));
@@ -309,12 +309,6 @@ namespace ToolLibrary
             string ln = Console.ReadLine();
             Console.Write("Enter PIN: ");
             string p = Console.ReadLine();
-            MemberCollection mc = new MemberCollection();
-            Console.WriteLine(fn, ln, p);
-            if (mc.verifyMember(fn, ln, p))
-            {
-                MemberMenu();
-            }
         }
 
         private static void Print(string text)

@@ -202,28 +202,35 @@ namespace ToolLibrary.Classes
 
         public bool verifyMember(string firstName, string lastName, string pin)
         {
-
-            for (int i = 0; i < members.Length; i++)
+            bool b = false;
+            if (root == null)
             {
-                if (members[i] != null)
+                for (int i = 0; i < members.Length; i++)
                 {
-                    if (firstName.Equals(members[i].FirstName) && lastName.Equals(members[i].LastName) && pin.Equals(members[i].PIN))
+                    if (members[i] != null)
                     {
-                        Console.WriteLine(firstName + members[i].FirstName);
-                        return true;
+                        if (firstName.Equals(members[i].FirstName) && lastName.Equals(members[i].LastName) && pin.Equals(members[i].PIN))
+                        {
+                            Console.WriteLine(firstName + members[i].FirstName);
+                            b = true;
+                        }
+                        else
+                        {
+                            b = false;
+                        }
                     }
                 }
             }
-            return false;
+            return b;
         }
 
-        public void Display()
-        {
-            for (int i = 0; i < noMembers; i++)
-            {
-                Console.WriteLine(members[i]);
-            }
-        }
+        //public void Display()
+        //{
+        //    for (int i = 0; i < noMembers; i++)
+        //    {
+        //        Console.WriteLine(members[i]);
+        //    }
+        //}
 
         public string FindContactNumber(string firstName, string lastName)
         {
