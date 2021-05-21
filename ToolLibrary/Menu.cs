@@ -213,12 +213,14 @@ namespace ToolLibrary
             // 5. Remove a member
             else if (num2.Equals("5"))
             {
-                
+                Member member = new Member();
+                tls.mc.delete(member);
             }
             // 6. Find the contact number of a member
             else if (num2.Equals("6"))
             {
-                //tls.mc.FindContactNumber();
+                Member member = new Member();
+                tls.mc.FindContactNumber(member.FirstName, member.LastName);
             }
         }
 
