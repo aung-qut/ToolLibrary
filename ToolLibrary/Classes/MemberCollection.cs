@@ -25,13 +25,27 @@ namespace ToolLibrary.Classes
             root = null;
         }
 
+        public int countLeaves(BTreeNode node)
+        {
+            if (node == null)
+            {
+                return 0;
+            }
+            else if (node.LChild == null && node.RChild == null)
+            {
+                return 1;
+            }
+            else
+            {
+                return countLeaves(node.LChild) + countLeaves(node.RChild) + 1;
+            }
+        }
+
         public int Number
         {
             get
             {
-                //before implementing bst
-
-                throw new NotImplementedException();
+                return countLeaves(root);
             }
         }
 

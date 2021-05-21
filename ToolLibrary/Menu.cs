@@ -177,7 +177,7 @@ namespace ToolLibrary
             // 4. Register a new member
             else if (num2.Equals("4"))
             {
-                int input;
+                string input;
                 do
                 {
                     string firstName, lastName, contactNumber, pin;
@@ -202,12 +202,12 @@ namespace ToolLibrary
                     Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
 
                     Console.WriteLine("Press any key to continue.");
-                    input = Int32.Parse(Console.ReadLine());
 
                     // display members
                     tls.mc.Display();
+                    input = Console.ReadLine();
 
-                } while (input != 0);
+                } while (input.Equals(""));
                 StaffMenu();
             }
             // 5. Remove a member
