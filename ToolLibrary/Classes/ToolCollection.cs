@@ -12,7 +12,7 @@ namespace ToolLibrary.Classes
 
         public ToolCollection()
         {
-            tools = new Tool[0];
+            tools = new Tool[10];
             noTools = 0;
         }
 
@@ -48,6 +48,14 @@ namespace ToolLibrary.Classes
             //tools.Add(new Tool() { Name = "Gardening tools" });
             //return tools.ToArray();
             throw new NotImplementedException();
+        }
+
+        public void Display()
+        {
+            for (int i = 0; i < noTools; i++)
+            {
+                Console.WriteLine(tools[i]);
+            }
         }
     }
 }

@@ -18,11 +18,16 @@ namespace ToolLibrary
 
         // main method for the program to run
         static ToolLibrarySystem t = new ToolLibrarySystem();
+        static Member aMember = new Member();
         static void Main(string[] args)
         {
             // testing
 
-            
+            aMember.FirstName = "aung";
+            aMember.LastName = "kyaw";
+            aMember.ContactNumber = "1234";
+            aMember.PIN = "0000";
+            t.add(aMember);
 
             // -------
             MainMenu();
@@ -37,7 +42,7 @@ namespace ToolLibrary
                 else if (num1.Equals("2"))
                 {
                     Console.Clear();
-                    MemberMenu();
+                    MemberLogin();
                 }
             } while (!num1.Equals("0"));
             Environment.Exit(0);
@@ -58,6 +63,8 @@ namespace ToolLibrary
         // contents for staff menu
         static void StaffMenu()
         {
+            string c1;
+            int c2;
             ToolLibrarySystem tls = new ToolLibrarySystem();
             PrintLineTitle();
             PrintLine("================Staff Menu================");
@@ -74,65 +81,56 @@ namespace ToolLibrary
             // 1. Add a new tool
             if (num2.Equals("1"))
             {
-                Tool newTool = new Tool();
                 // enter tool name
                 Console.Write("Enter the name of a new tool: ");
                 string toolName = Console.ReadLine();
-                newTool.Name = toolName;
+
+                Tool tool1 = new Tool();
+                tool1.Name = "Irwin 125mm orbital sander";
+                tool1.Quantity = 5;
+                tool1.AvailableQuantity = 3;
+                tool1.NoBorrowings = 2;
+                tls.add(tool1);
+
+                Tool tool2 = new Tool();
+                tool2.Name = "Rocket sandling block holder";
+                tool2.Quantity = 2;
+                tool2.AvailableQuantity = 1;
+                tool2.NoBorrowings = 2;
+                tls.add(tool2);
+
+                Tool tool3 = new Tool();
+                tool3.Name = "Powerfit 120 triangular sander";
+                tool3.Quantity = 1;
+                tool3.AvailableQuantity = 1;
+                tool3.NoBorrowings = 0;
+                tls.add(tool3);
+
+                tls.tc.Display();
 
                 // Display all the nine (9) tool categories
                 ToolCategories cat = new ToolCategories();
                 cat.DisplayToolCategories();
 
                 // select a category
-                string c1 = Console.ReadLine();
+                c1 = Console.ReadLine();
 
                 // Display all the tool types of the selected category
                 if (c1.Equals("1"))
                 {
-                    cat.DisplayToolCategories();
-                    string c2 = Console.ReadLine();
-                    if (c2.Equals("1"))
+                    cat.DisplayGardeningTools();
+                    c2 = Int32.Parse(Console.ReadLine());
+                    int[] j = new int[] { 1, 2, 3, 4, 5 };
+                    for (int i = 0; i < j.Length; i++)
                     {
-                        cat.DisplayGardeningTools();
-                    }
-                    else if (c1.Equals("2"))
-                    {
-                        cat.DisplayFlooringTools();
-                    }
-                    else if (c1.Equals("3"))
-                    {
-                        cat.DisplayFencingTools();
-                    }
-                    else if (c1.Equals("4"))
-                    {
-                        cat.DisplayMeasuringTools();
-                    }
-                    else if (c1.Equals("5"))
-                    {
-                        cat.DisplayCleaningTools();
-                    }
-                    else if (c1.Equals("6"))
-                    {
-                        cat.DisplayPaintingTools();
-                    }
-                    else if (c1.Equals("7"))
-                    {
-                        cat.DisplayElectronicTools();
-                    }
-                    else if (c1.Equals("8"))
-                    {
-                        cat.DisplayElectricityTools();
-                    }
-                    else if (c1.Equals("9"))
-                    {
-                        cat.DisplayAutomotiveTools();
+                        if (c2 == j[i])
+                        {
+                            Console.WriteLine(c2 == j[i]);
+                        }
                     }
                 }
-                else
-                {
-                    Console.WriteLine("Please enter a valid input.");
-                }
+                Console.WriteLine("Tool added to the system successfully.");
+                Console.WriteLine("Press any key to continue...");
                 // Select a tool type
                 // Display all the tools of the selected tool type
                 // Add a new tool to the tool type
@@ -176,12 +174,24 @@ namespace ToolLibrary
                     contactNumber = Console.ReadLine();
                     Print("PIN: ");
                     pin = Console.ReadLine();
-                    Member newMember = new Member(firstName, lastName, contactNumber, pin);
-                    tls.add(newMember);
-                    Console.WriteLine("Member added successfully.");
+
+                    Member member1 = new Member();
+                    member1.FirstName = firstName;
+                    member1.LastName = lastName;
+                    member1.ContactNumber = contactNumber;
+                    member1.PIN = pin;
+
+                    tls.add(member1);
+
+                    Console.WriteLine("Member '{0} {1}' added successfully.", firstName, lastName);
                     Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
-                    Console.Write("Please enter 0 to return to staff menu: ");
+
+                    Console.WriteLine("Press any key to continue.");
                     input = Int32.Parse(Console.ReadLine());
+
+                    // display members
+                    tls.mc.Display();
+
                 } while (input != 0);
                 StaffMenu();
             }
@@ -194,6 +204,11 @@ namespace ToolLibrary
             else if (num2.Equals("6"))
             {
                 //tls.mc.FindContactNumber();
+            }
+            else if (num2.Equals("0"))
+            {
+                Console.Clear();
+                MainMenu();
             }
         }
 
@@ -250,25 +265,28 @@ namespace ToolLibrary
         // handle staff login using default values 
         static void StaffLogin(string username, string password)
         {
-            PrintLineTitle();
-            PrintLine("==========Staff Login==========");
-            Print("Username: ");
-            username = Console.ReadLine();
-            Print("Password: ");
-            password = Console.ReadLine();
-            if (username.Equals(staffUsername) && password.Equals(staffPassword))
+            bool verifyStaff;
+            do
             {
-                Console.Clear(); // clear the console
-                StaffMenu(); 
-            }
-            else if (username.Equals(staffUsername) && !password.Equals(staffPassword))
-            {
-                Console.WriteLine("\nWrong password for staff.");
-            }
-            else
-            {
-                Console.WriteLine("\nStaff '{0}' not found.", username); // show the error when staff is not found
-            }
+                PrintLineTitle();
+                PrintLine("==========Staff Login==========");
+                Print("Username: ");
+                username = Console.ReadLine();
+                Print("Password: ");
+                password = Console.ReadLine();
+                verifyStaff = username.Equals(staffUsername) && password.Equals(staffPassword);
+                if (verifyStaff == true)
+                {
+                    Console.Clear(); // clear the console
+                    verifyStaff = true;
+                    StaffMenu();
+                }
+                else
+                {
+                    Console.WriteLine("\nStaff not found.\n");
+                }
+            } while (verifyStaff == false);
+
         }
 
         // handle member login
@@ -281,6 +299,12 @@ namespace ToolLibrary
             string ln = Console.ReadLine();
             Console.Write("Enter PIN: ");
             string p = Console.ReadLine();
+            MemberCollection mc = new MemberCollection();
+            Console.WriteLine(fn, ln, p);
+            if (mc.verifyMember(fn, ln, p))
+            {
+                MemberMenu();
+            }
         }
 
         private static void Print(string text)

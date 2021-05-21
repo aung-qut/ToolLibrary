@@ -27,5 +27,10 @@ namespace ToolLibrary.Classes
         {
             throw new NotImplementedException();
         }
+
+        public override string ToString()
+        {
+            return "Tool name - " + this.name + "\nAvailable Quantity - " + this.availableQuantity + "\nTotal Quantity - " + this.quantity + "\n";
+        }
     }
 }

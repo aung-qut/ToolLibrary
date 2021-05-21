@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ToolLibrary.Classes
 {
-    class Member : iMember
+    class Member : iMember, IComparable
     {
         private string firstName;     // firstName field
         private string lastName;      // lastName field
@@ -15,14 +15,6 @@ namespace ToolLibrary.Classes
         public Member()
         {
 
-        }
-
-        public Member(string firstName, string lastName, string contactNumber, string pin)
-        {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.contactNumber = contactNumber;
-            this.pin = pin;
         }
 
         public string FirstName { get => firstName; set => firstName = value; }
@@ -42,20 +34,21 @@ namespace ToolLibrary.Classes
             throw new NotImplementedException();
         }
 
-        public int CompareTo(Member another)
-        {
-            if (this.lastName.CompareTo(another.lastName) < 0)
-                return -1;
-            else
-                if (this.lastName.CompareTo(another.lastName) == 0)
-                return this.firstName.CompareTo(another.firstName);
-            else
-                return 1;
-        }
-
         public override string ToString()
         {
             return "\nFirst name - " + this.firstName + "\nLast name - " + this.lastName + "\nContact number - " + this.contactNumber;
+        }
+
+        public int CompareTo(object obj)
+        {
+            Member another = (Member)obj;
+            if (this.lastName.CompareTo(another.LastName) < 0)
+                return -1;
+            else
+                    if (this.lastName.CompareTo(another.LastName) == 0)
+                return this.firstName.CompareTo(another.FirstName);
+            else
+                return 1;
         }
     }
 }

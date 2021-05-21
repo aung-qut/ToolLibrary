@@ -7,6 +7,7 @@ namespace ToolLibrary.Classes
     class ToolCategories
     {
         string[] tools;
+        ToolCollection tc = new ToolCollection();
 
         // displaying tool categories
         public void DisplayToolCategories()
