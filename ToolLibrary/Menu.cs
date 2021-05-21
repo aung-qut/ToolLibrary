@@ -19,15 +19,37 @@ namespace ToolLibrary
         // main method for the program to run
         static ToolLibrarySystem t = new ToolLibrarySystem();
         static Member aMember = new Member();
+
+        static int tableWidth = 75;
+
         static void Main(string[] args)
         {
             // testing
 
-            aMember.FirstName = "aung";
-            aMember.LastName = "kyaw";
-            aMember.ContactNumber = "1234";
-            aMember.PIN = "0000";
-            t.add(aMember);
+            //aMember.FirstName = "aung";
+            //aMember.LastName = "kyaw";
+            //aMember.ContactNumber = "1234";
+            //aMember.PIN = "0000";
+            //t.add(aMember);
+
+            //PrintDash();
+            //PrintRow("Column 1", "Column 2", "Column 3", "Column 4");
+            //PrintDash();
+            //PrintRow("LOL", "", "", "");
+            //PrintRow("", "", "", "");
+            //PrintDash();
+
+            //Tool aTool = new Tool();
+            //aTool.Name = "Jack trimmer";
+
+            //ToolCollection[] gardeningTools = new ToolCollection[5];
+            //gardeningTools[0] = new ToolCollection();
+            //gardeningTools[1] = new ToolCollection();
+            //gardeningTools[2] = new ToolCollection();
+            //gardeningTools[3] = new ToolCollection();;
+
+            //Console.WriteLine(gardeningTools[0]);
+            //Console.ReadLine();
 
             // -------
 
@@ -92,27 +114,6 @@ namespace ToolLibrary
                 newTool.AvailableQuantity = 1;
                 newTool.NoBorrowings = 0;
 
-                Tool tool1 = new Tool();
-                tool1.Name = "Irwin 125mm orbital sander";
-                tool1.Quantity = 5;
-                tool1.AvailableQuantity = 3;
-                tool1.NoBorrowings = 2;
-                tls.add(tool1);
-
-                Tool tool2 = new Tool();
-                tool2.Name = "Rocket sandling block holder";
-                tool2.Quantity = 2;
-                tool2.AvailableQuantity = 1;
-                tool2.NoBorrowings = 2;
-                tls.add(tool2);
-
-                Tool tool3 = new Tool();
-                tool3.Name = "Powerfit 120 triangular sander";
-                tool3.Quantity = 1;
-                tool3.AvailableQuantity = 1;
-                tool3.NoBorrowings = 0;
-                tls.add(tool3);
-
                 tls.tc.Display();
 
                 // Display all the nine (9) tool categories
@@ -121,24 +122,29 @@ namespace ToolLibrary
                 // select a category
                 c1 = Console.ReadLine();
 
+
                 // Display all the tool types of the selected category
                 if (c1.Equals("1"))
                 {
+
+                    
+
+
                     cat.DisplayGardeningTools();
                     c2 = Int32.Parse(Console.ReadLine());
 
                     // testing ///////////////
-                    int[] j = new int[] { 1, 2, 3, 4, 5 };
-                    for (int i = 0; i < j.Length; i++)
-                    {
-                        if (c2 == j[i])
-                        {
-                            Console.WriteLine(c2 == j[i]);
-                            ToolCollection tc = new ToolCollection();
-                            tls.tc.add(newTool);
-                        }
-                    }
-                    tls.tc.Display();
+                    //int[] j = new int[] { 1, 2, 3, 4, 5 };
+                    //for (int i = 0; i < j.Length; i++)
+                    //{
+                    //    if (c2 == j[i])
+                    //    {
+                    //        Console.WriteLine(c2 == j[i]);
+                    //        ToolCollection tc = new ToolCollection();
+                    //        tls.tc.add(newTool);
+                    //    }
+                    //}
+                    //tls.tc.Display();
                     /////////////////////////
                 }
                 Console.WriteLine("Tool added to the system successfully.");
@@ -159,7 +165,13 @@ namespace ToolLibrary
                 // Select a tool from the tool list
                 // Add the quantity of the tool
                 cat.DisplayToolCategories();
+                Tool aTool = new Tool();
 
+                // read amount of quantity to add
+                int quantity = Int32.Parse(Console.ReadLine());
+
+                //method goes from tls
+                t.add(aTool, quantity);
             }
             // 3. Remove some pieces of a tool
             else if (num2.Equals("3"))
@@ -173,6 +185,12 @@ namespace ToolLibrary
                 // Input the number of pieces of the tool to be removed
                 // if the number of pieces of the tool is not more than the number of pieces that are currently in the library, reduce the total quantity and the available quantity of the tool
                 cat.DisplayToolCategories();
+
+                Tool aTool = new Tool();
+
+                int quantity = Int32.Parse(Console.ReadLine());
+
+                t.delete(aTool, quantity);
             }
             // 4. Register a new member
             else if (num2.Equals("4"))
@@ -198,9 +216,11 @@ namespace ToolLibrary
 
                     tls.add(member1);
 
-                    Console.WriteLine("Member '{0} {1}' added successfully.", firstName, lastName);
+                    Console.WriteLine("Member '{0} {1}' added successfully.", member1.FirstName, member1.LastName);
                     Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
                     tls.mc.InOrderTraverse();
+                    //Console.WriteLine(tls.mc.toArray());
+
 
                     Console.WriteLine("Press any key to continue.");
 
@@ -251,22 +271,30 @@ namespace ToolLibrary
             // 2. Borrow a tool
             else if (num3.Equals("2"))
             {
-                
+                Member aMember = new Member();
+                Tool aTool = new Tool();
+
+                t.borrowTool(aMember, aTool);
             }
             // 3. Return a tool
             else if (num3.Equals("3"))
             {
+                Member aMember = new Member();
+                Tool aTool = new Tool();
 
+                t.returnTool(aMember, aTool);
             }
             // 4. List all the tools that I am renting
             else if (num3.Equals("4"))
             {
+                Member aMember = new Member();
 
+                t.listTools(aMember);
             }
             // 5. Display top three (3) most frequently rented tools
             else if (num3.Equals("5"))
             {
-
+                t.displayTopTHree();
             }
             else
             {
@@ -329,6 +357,37 @@ namespace ToolLibrary
         private static void invalidInput(string num)
         {
             Console.WriteLine("Error, input '{0}' is invalid", num);
+        }
+
+        // link: https://stackoverflow.com/questions/856845/how-to-best-way-to-draw-table-in-console-app-c
+        private static void PrintDash()
+        {
+            Console.WriteLine(new string('-', tableWidth));
+        }
+
+        private static void PrintRow(params string[] columns)
+        {
+            int width = (tableWidth - columns.Length) / columns.Length;
+            string row = "|";
+
+            foreach (string column in columns)
+            {
+                row += AlignCentre(column, width) + "|";
+            }
+            Console.WriteLine(row);
+        }
+
+        private static string AlignCentre(string text, int width)
+        {
+            text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
+            if (string.IsNullOrEmpty(text))
+            {
+                return new string(' ', width);
+            }
+            else
+            {
+                return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
+            }
         }
     }
 }

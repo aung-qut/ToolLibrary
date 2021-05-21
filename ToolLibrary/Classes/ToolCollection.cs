@@ -9,7 +9,6 @@ namespace ToolLibrary.Classes
         //private List<Tool> tools = new List<Tool>(); // tool list
         private Tool[] tools = new Tool[100];
         private int noTools;
-        private Tool aTool = new Tool();
 
         public ToolCollection()
         {
@@ -47,8 +46,9 @@ namespace ToolLibrary.Classes
         public iTool[] toArray()
         {
             //tools.Add(new Tool() { Name = "Gardening tools" });
-            //return tools.ToArray();
-            throw new NotImplementedException();
+            ////return tools.ToArray();
+            //throw new NotImplementedException();
+            return tools;
         }
 
         public void Display()

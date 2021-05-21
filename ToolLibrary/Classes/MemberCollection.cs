@@ -10,10 +10,12 @@ namespace ToolLibrary.Classes
     class MemberCollection : iMemberCollection
     {
         //private List<iMember> memberList = new List<iMember>();
-        private Member[] members;
-        private int noMembers;
+        //private Member[] members;
+        //private int noMembers;
 
         private BTreeNode root;
+
+        public ToolLibrarySystem tls = new ToolLibrarySystem();
 
 
         public MemberCollection()
@@ -205,9 +207,9 @@ namespace ToolLibrary.Classes
             bool b = false;
             if (root == null)
             {
-                for (int i = 0; i < members.Length; i++)
+                for (int i = 0; i < tls.mc.Number; i++)
                 {
-                    if (members[i] != null)
+                    if (tls.mc.toArray()[i] != null)
                     {
                         if (firstName.Equals(members[i].FirstName) && lastName.Equals(members[i].LastName) && pin.Equals(members[i].PIN))
                         {
