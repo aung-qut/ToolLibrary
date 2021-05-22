@@ -9,8 +9,8 @@ namespace ToolLibrary.Classes
         public MemberCollection mc = new MemberCollection();
         public ToolCollection tc = new ToolCollection();
 
-        Tool[] topThree = new Tool[3];
-
+        ToolCategories cat = new ToolCategories();
+        
         public void add(iTool aTool)
         {
             tc.add(aTool);

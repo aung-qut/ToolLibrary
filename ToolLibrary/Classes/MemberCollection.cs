@@ -13,10 +13,11 @@ namespace ToolLibrary.Classes
         //private Member[] members;
         //private int noMembers;
 
+        private Member[] members;
+
         private BTreeNode root;
 
-        public ToolLibrarySystem tls = new ToolLibrarySystem();
-
+        //public ToolLibrarySystem tls = new ToolLibrarySystem();
 
         public MemberCollection()
         {
@@ -65,6 +66,7 @@ namespace ToolLibrary.Classes
             {
                 add((Member)aMember, root);
             }
+            InOrderTraverse();
         }
 
         private void add(Member aMember, BTreeNode ptr)
@@ -181,8 +183,10 @@ namespace ToolLibrary.Classes
 
         public iMember[] toArray()
         {
+            Member[] membersArray = members.ToArray();
+            return membersArray;
             // not implemented yet
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void InOrderTraverse()
@@ -207,13 +211,13 @@ namespace ToolLibrary.Classes
             bool b = false;
             if (root == null)
             {
-                for (int i = 0; i < tls.mc.Number; i++)
+                for (int i = 0; i < Number; i++)
                 {
-                    if (tls.mc.toArray()[i] != null)
+                    if (toArray()[i] != null)
                     {
-                        if (firstName.Equals(members[i].FirstName) && lastName.Equals(members[i].LastName) && pin.Equals(members[i].PIN))
+                        if (firstName.Equals(toArray()[i].FirstName) && lastName.Equals(toArray()[i].LastName) && pin.Equals(toArray()[i].PIN))
                         {
-                            Console.WriteLine(firstName + members[i].FirstName);
+                            Console.WriteLine(firstName + toArray()[i].FirstName);
                             b = true;
                         }
                         else
@@ -244,25 +248,26 @@ namespace ToolLibrary.Classes
             return "string";
         }
 
-        public void Sort()
-        {
-            int min;
-            Member temp;
-            for (int i = 0; i < (noMembers -2); i++)
-            {
-                min = i;
-                for (int j = (i + 1); j < (noMembers - 1); j++)
-                {
-                    if (members[j].CompareTo(members[min]) == -1)
-                    {
-                        min = j;
-                    }
-                }
-                temp = members[i];
-                members[i] = members[min];
-                members[min] = temp;
-            }
-        }
+        // comment for a while
+        //public void Sort()
+        //{
+        //    int min;
+        //    Member temp;
+        //    for (int i = 0; i < (tls.mc.Number -2); i++)
+        //    {
+        //        min = i;
+        //        for (int j = (i + 1); j < (tls.mc.Number - 1); j++)
+        //        {
+        //            if (members[j].CompareTo(tls.mc.toArray()[min]) == -1)
+        //            {
+        //                min = j;
+        //            }
+        //        }
+        //        temp = members[i];
+        //        members[i] = members[min];
+        //        members[min] = temp;
+        //    }
+        //}
 
         public void Clear()
         {

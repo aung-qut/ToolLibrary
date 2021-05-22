@@ -7,7 +7,6 @@ namespace ToolLibrary.Classes
     class ToolCategories
     {
         string[] tools;
-        ToolCollection tc = new ToolCollection();
 
         // displaying tool categories
         public void DisplayToolCategories()
@@ -81,7 +80,7 @@ namespace ToolLibrary.Classes
             DisplayList(tools);
         }
 
-        void DisplayList(string[] s)
+        private void DisplayList(string[] s)
         {
             Console.WriteLine("Select a tool type");
             Console.WriteLine("================================");
@@ -89,6 +88,7 @@ namespace ToolLibrary.Classes
             {
                 Console.WriteLine("{0}. {1}", i+1, s[i]);
             }
+            Console.WriteLine("");
         }
     }
 }

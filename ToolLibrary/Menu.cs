@@ -18,41 +18,23 @@ namespace ToolLibrary
 
         // main method for the program to run
         static ToolLibrarySystem t = new ToolLibrarySystem();
-        static Member aMember = new Member();
 
         static int tableWidth = 75;
 
+        public static ToolCollection[] gardeningTools;
+        private static ToolCollection lineTrimmers = new ToolCollection();
+        private static ToolCollection lawnMowers = new ToolCollection();
+        private static ToolCollection handTools = new ToolCollection();
+        private static ToolCollection wheelbarrows = new ToolCollection();
+
+        public Menu()
+        {
+            gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers, handTools, wheelbarrows };
+        }
+
+        /* Main method for the program */
         static void Main(string[] args)
         {
-            // testing
-
-            //aMember.FirstName = "aung";
-            //aMember.LastName = "kyaw";
-            //aMember.ContactNumber = "1234";
-            //aMember.PIN = "0000";
-            //t.add(aMember);
-
-            //PrintDash();
-            //PrintRow("Column 1", "Column 2", "Column 3", "Column 4");
-            //PrintDash();
-            //PrintRow("LOL", "", "", "");
-            //PrintRow("", "", "", "");
-            //PrintDash();
-
-            //Tool aTool = new Tool();
-            //aTool.Name = "Jack trimmer";
-
-            //ToolCollection[] gardeningTools = new ToolCollection[5];
-            //gardeningTools[0] = new ToolCollection();
-            //gardeningTools[1] = new ToolCollection();
-            //gardeningTools[2] = new ToolCollection();
-            //gardeningTools[3] = new ToolCollection();;
-
-            //Console.WriteLine(gardeningTools[0]);
-            //Console.ReadLine();
-
-            // -------
-
             do
             {
                 MainMenu();
@@ -70,7 +52,7 @@ namespace ToolLibrary
             } while (!num1.Equals("0"));
         }
 
-        // contents for main menu
+        /* Display contents for main menu */
         static void MainMenu()
         {
             PrintLineTitle();
@@ -85,11 +67,9 @@ namespace ToolLibrary
         // contents for staff menu
         static void StaffMenu()
         {
-
             ToolCategories cat = new ToolCategories();
             string c1;
             int c2;
-            ToolLibrarySystem tls = new ToolLibrarySystem();
             PrintLineTitle();
             PrintLine("================Staff Menu================");
             PrintLine("1. Add a new tool");
@@ -102,19 +82,16 @@ namespace ToolLibrary
             PrintLine("==========================================\n");
             Print("Please make a selection (1-6, or 0 to return to main menu): ");
             num2 = Console.ReadLine();
+
             // 1. Add a new tool
             if (num2.Equals("1"))
             {
                 // enter tool name
-                Console.Write("Enter the name of a new tool: ");
+                Console.Write("\nEnter the name of a new tool: ");
                 string toolName = Console.ReadLine();
                 Tool newTool = new Tool();
                 newTool.Name = toolName;
                 newTool.Quantity = 1;
-                newTool.AvailableQuantity = 1;
-                newTool.NoBorrowings = 0;
-
-                tls.tc.Display();
 
                 // Display all the nine (9) tool categories
                 cat.DisplayToolCategories();
@@ -122,68 +99,30 @@ namespace ToolLibrary
                 // select a category
                 c1 = Console.ReadLine();
 
-
                 // Display all the tool types of the selected category
                 if (c1.Equals("1"))
                 {
-
-                    
-
-
                     cat.DisplayGardeningTools();
                     c2 = Int32.Parse(Console.ReadLine());
-
-                    // testing ///////////////
-                    //int[] j = new int[] { 1, 2, 3, 4, 5 };
-                    //for (int i = 0; i < j.Length; i++)
-                    //{
-                    //    if (c2 == j[i])
-                    //    {
-                    //        Console.WriteLine(c2 == j[i]);
-                    //        ToolCollection tc = new ToolCollection();
-                    //        tls.tc.add(newTool);
-                    //    }
-                    //}
-                    //tls.tc.Display();
-                    /////////////////////////
+                    if (c2 == 1)
+                    {
+                        ToolCollection type = lineTrimmers;
+                        t.add(newTool);
+                    }
                 }
-                Console.WriteLine("Tool added to the system successfully.");
-                Console.WriteLine("Press any key to continue...");
-                // Select a tool type
-                // Display all the tools of the selected tool type
-                // Add a new tool to the tool type
-                // Display all the tools in the selected tool type again
+                Console.WriteLine("\nTool '{0}' added to the system successfully.", newTool.Name);
+                Console.WriteLine("Press any key to continue...\n");
             }
+
             // 2. Add new pieces of an existing tool
             else if (num2.Equals("2"))
             {
-                // Display all the tool categories
-                // Select a category
-                // Display all the tool types of the selected category
-                // Select a tool type
-                // Display all the tools of the selected tool type
-                // Select a tool from the tool list
-                // Add the quantity of the tool
-                cat.DisplayToolCategories();
-                Tool aTool = new Tool();
-
-                // read amount of quantity to add
-                int quantity = Int32.Parse(Console.ReadLine());
-
-                //method goes from tls
-                t.add(aTool, quantity);
+                
             }
+
             // 3. Remove some pieces of a tool
             else if (num2.Equals("3"))
             {
-                // Display all the nine (9) tool categories
-                // Select a category
-                // Display all the tool types of the selected category
-                // Select a tool type
-                // Display all the tools of the selected tool type
-                // Select a tool from the tool list
-                // Input the number of pieces of the tool to be removed
-                // if the number of pieces of the tool is not more than the number of pieces that are currently in the library, reduce the total quantity and the available quantity of the tool
                 cat.DisplayToolCategories();
 
                 Tool aTool = new Tool();
@@ -192,6 +131,7 @@ namespace ToolLibrary
 
                 t.delete(aTool, quantity);
             }
+
             // 4. Register a new member
             else if (num2.Equals("4"))
             {
@@ -214,15 +154,12 @@ namespace ToolLibrary
                     member1.ContactNumber = contactNumber;
                     member1.PIN = pin;
 
-                    tls.add(member1);
+                    t.add(member1);
 
                     Console.WriteLine("Member '{0} {1}' added successfully.", member1.FirstName, member1.LastName);
-                    Console.WriteLine("Number(s) of members - {0}\n", tls.mc.Number);
-                    tls.mc.InOrderTraverse();
-                    //Console.WriteLine(tls.mc.toArray());
+                    Console.WriteLine("Number(s) of members - {0}\n", t.mc.Number);
 
-
-                    Console.WriteLine("Press any key to continue.");
+                    Console.WriteLine("Press any key to continue.\n");
 
                     // display members
                     input = Console.ReadLine();
@@ -230,19 +167,22 @@ namespace ToolLibrary
                 } while (input.Equals(""));
                 StaffMenu();
             }
+
             // 5. Remove a member
             else if (num2.Equals("5"))
             {
-                Member member = new Member();
-                tls.mc.delete(member);
+                //Member member = new Member();
+                //t.mc.delete(member);
             }
+
             // 6. Find the contact number of a member
             else if (num2.Equals("6"))
             {
-                Member member = new Member();
-                tls.mc.FindContactNumber(member.FirstName, member.LastName);
+                //Member member = new Member();
+                //t.mc.FindContactNumber(member.FirstName, member.LastName);
             }
         }
+
 
         // contents for member menu
         static void MemberMenu()
@@ -265,31 +205,30 @@ namespace ToolLibrary
             // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
             {
-                ToolCollection tc = new ToolCollection();
-                Console.WriteLine(tc.toArray());
+                //ToolCollection tc = new ToolCollection();
+                //Console.WriteLine(tc.toArray());
             }
             // 2. Borrow a tool
             else if (num3.Equals("2"))
             {
-                Member aMember = new Member();
-                Tool aTool = new Tool();
+                //Member aMember = new Member();
+                //Tool aTool = new Tool();
 
-                t.borrowTool(aMember, aTool);
+                //t.borrowTool(aMember, aTool);
             }
             // 3. Return a tool
             else if (num3.Equals("3"))
             {
-                Member aMember = new Member();
-                Tool aTool = new Tool();
+                //Member aMember = new Member();
+                //Tool aTool = new Tool();
 
-                t.returnTool(aMember, aTool);
+                //t.returnTool(aMember, aTool);
             }
             // 4. List all the tools that I am renting
             else if (num3.Equals("4"))
             {
-                Member aMember = new Member();
-
-                t.listTools(aMember);
+                //Member aMember = new Member();
+                //t.listTools(aMember);
             }
             // 5. Display top three (3) most frequently rented tools
             else if (num3.Equals("5"))
@@ -329,7 +268,7 @@ namespace ToolLibrary
 
         }
 
-        // handle member login
+        // handle member login - not working yet
         static void MemberLogin()
         {
             PrintLineTitle();
@@ -339,6 +278,19 @@ namespace ToolLibrary
             string ln = Console.ReadLine();
             Console.Write("Enter PIN: ");
             string p = Console.ReadLine();
+
+            bool b = t.mc.verifyMember(fn, ln, p);
+            if (b == true)
+            {
+                MemberMenu();
+            }
+            else
+            {
+                Console.WriteLine("\n>>> Member does not exist.\n");
+            }
+
+            // if member login success, show MemberMenu()
+            // MemberMenu();
         }
 
         private static void Print(string text)
@@ -389,5 +341,22 @@ namespace ToolLibrary
                 return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
             }
         }
+
+        // not done yet
+        // ref: https://www.geeksforgeeks.org/heap-sort/
+        private static void HeapSort(Tool[] t)
+        {
+            // length of array
+            int n = t.Length;
+
+            for (int i = n / 2 - 1; i >= 0; i--)
+            {
+
+            }
+        }
+
+        
+
+
     }
 }

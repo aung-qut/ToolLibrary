@@ -6,57 +6,76 @@ namespace ToolLibrary.Classes
 {
     class ToolCollection : iToolCollection
     {
-        //private List<Tool> tools = new List<Tool>(); // tool list
-        private Tool[] tools = new Tool[100];
-        private int noTools;
+        private Tool[] tools; // initializing new array for tools
+        private int noTools; // field for number of tools
 
+        public int Number => noTools = tools.Length; // property for number of tools
+
+        /* constructor method for ToolCollection */
         public ToolCollection()
         {
-            tools = new Tool[10];
+            tools = new Tool[100];
             noTools = 0;
         }
 
-        public int Number => noTools;
-
+        /* adding a new tool to this tool collection */
         public void add(iTool aTool)
         {
-            tools[noTools] = (Tool)aTool;
-            noTools++;
+            tools[noTools] = (Tool)aTool; // add tool to tools array
+            noTools++; // increment the size of array
         }
 
+        /* deleting the tool */
         public void delete(iTool aTool)
         {
-            throw new NotImplementedException();
+            tools[noTools] = null; // delete the element
+            noTools--; // decrement the size of array
         }
 
+        /* search the corresponding tool */
         public bool search(iTool aTool)
         {
-            int i = 0;
-            while (tools[i] != null)
+            // loop around the tool array
+            for (int i = 0; i < Number; i++)
             {
-                if (aTool.Name.Equals(tools[i].Name))
+                // compare the tools
+                if (tools[i].Equals(aTool))
                 {
+                    // return true when tool is found
                     return true;
                 }
-                i++;
             }
+            // return false when tool is not found
             return false;
         }
 
+        /* showing tools in this collection to tool array */
         public iTool[] toArray()
         {
-            //tools.Add(new Tool() { Name = "Gardening tools" });
-            ////return tools.ToArray();
-            //throw new NotImplementedException();
-            return tools;
+            iTool[] toolArray = new Tool[Number];
+            int i, j = 0;
+            for (i = 0; i < Number; i++)
+            {
+                if (IsExist(i))
+                {
+                    toolArray[j] = tools[i];
+                    j++;
+                }
+            }
+            return toolArray;
         }
 
-        public void Display()
+        // helper method
+        //===============
+
+        /* check if tool is not null */
+        private bool IsExist(int i)
         {
-            for (int i = 0; i < noTools; i++)
+            if (tools[i] != null)
             {
-                Console.WriteLine(tools[i]);
+                return true;
             }
+            return false;
         }
     }
 }
