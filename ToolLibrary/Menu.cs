@@ -83,18 +83,24 @@ namespace ToolLibrary
             Print("Please make a selection (1-6, or 0 to return to main menu): ");
             num2 = Console.ReadLine();
 
+            ToolCollection type = null;
+
             // 1. Add a new tool
             if (num2.Equals("1"))
             {
                 // enter tool name
                 Console.Write("\nEnter the name of a new tool: ");
                 string toolName = Console.ReadLine();
+
+
+                
                 Tool newTool = new Tool();
                 newTool.Name = toolName;
                 newTool.Quantity = 1;
 
                 // Display all the nine (9) tool categories
                 cat.DisplayToolCategories();
+                DisplayToolCategories();
 
                 // select a category
                 c1 = Console.ReadLine();
@@ -106,7 +112,8 @@ namespace ToolLibrary
                     c2 = Int32.Parse(Console.ReadLine());
                     if (c2 == 1)
                     {
-                        ToolCollection type = lineTrimmers;
+                        // add to line trimmer
+                        type = lineTrimmers;
                         t.add(newTool);
                     }
                 }
@@ -157,7 +164,7 @@ namespace ToolLibrary
                     t.add(member1);
 
                     Console.WriteLine("Member '{0} {1}' added successfully.", member1.FirstName, member1.LastName);
-                    Console.WriteLine("Number(s) of members - {0}\n", t.mc.Number);
+                    //Console.WriteLine("Number(s) of members - {0}\n", t.mc.Number);
 
                     Console.WriteLine("Press any key to continue.\n");
 
@@ -268,29 +275,50 @@ namespace ToolLibrary
 
         }
 
-        // handle member login - not working yet
+        /* ask member details to login */
         static void MemberLogin()
         {
             PrintLineTitle();
+            Console.WriteLine("Member log in");
+            Console.WriteLine("==================");
+
+            // ask member first name
             Console.Write("Enter first name: ");
-            string fn = Console.ReadLine();
+            string firstName = Console.ReadLine();
+
+            // ask member last name
             Console.Write("Enter last name: ");
-            string ln = Console.ReadLine();
+            string lastName = Console.ReadLine();
+
+            // ask member pin
             Console.Write("Enter PIN: ");
-            string p = Console.ReadLine();
+            string pin = Console.ReadLine();
 
-            bool b = t.mc.verifyMember(fn, ln, p);
-            if (b == true)
-            {
-                MemberMenu();
-            }
-            else
-            {
-                Console.WriteLine("\n>>> Member does not exist.\n");
-            }
+            VerifyMember(firstName, lastName, pin);
+        }
 
-            // if member login success, show MemberMenu()
-            // MemberMenu();
+        private static bool VerifyMember(string firstName, string lastName, string pin)
+        {
+            bool b = false;
+            //if (root == null)
+            //{
+            //    for (int i = 0; i < Number; i++)
+            //    {
+            //        if (toArray()[i] != null)
+            //        {
+            //            if (firstName.Equals(toArray()[i].FirstName) && lastName.Equals(toArray()[i].LastName) && pin.Equals(toArray()[i].PIN))
+            //            {
+            //                Console.WriteLine(firstName + toArray()[i].FirstName);
+            //                b = true;
+            //            }
+            //            else
+            //            {
+            //                b = false;
+            //            }
+            //        }
+            //    }
+            //}
+            return b;
         }
 
         private static void Print(string text)
@@ -354,7 +382,31 @@ namespace ToolLibrary
 
             }
         }
+        
+        private static void DisplayToolCategories()
+        {
+            Console.WriteLine("Select a category");
+            Console.WriteLine("=================");
+            Console.WriteLine("1. Gardening Tools");
+            Console.WriteLine("2. Flooring Tools");
+            Console.WriteLine("3. Fencing Tools");
+            Console.WriteLine("4. Measuring Tools");
+            Console.WriteLine("5. Cleaning Tools");
+            Console.WriteLine("6. Painting Tools");
+            Console.WriteLine("7. Electronic Tools");
+            Console.WriteLine("8. Electricity Tools");
+            Console.WriteLine("9. Automotive Tools");
+            Console.Write("Select a category (1-9): ");
 
+            int choice1 = Int32.Parse(Console.ReadLine());
+            if (choice1 == 1)
+            {
+                Console.WriteLine("\nGardening Tools");
+                Console.WriteLine("===============");
+                Console.WriteLine("1. Line Trimmers");
+                Console.WriteLine("2. Lawn Mowers");
+            }
+        }
         
 
 

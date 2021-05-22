@@ -36,7 +36,7 @@ namespace ToolLibrary.Classes
 		}
 	}
 
-	public class BSTree : IBSTree
+	public class BSTree
     {
 		private BTreeNode root;
 

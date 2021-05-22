@@ -10,12 +10,9 @@ namespace ToolLibrary.Classes
         private string lastName;      // lastName field
         private string contactNumber; // contactNumbe field
         private string pin;           // pin field
-        private string[] tools;       // tools field
+        private string[] tools;
 
-        public Member()
-        {
-
-        }
+        private ToolCollection toolCollection = new ToolCollection();
 
         public string FirstName { get => firstName; set => firstName = value; }
         public string LastName { get => lastName; set => lastName = value; }
@@ -26,12 +23,12 @@ namespace ToolLibrary.Classes
 
         public void addTool(iTool aTool)
         {
-            throw new NotImplementedException();
+            toolCollection.add(aTool);
         }
 
         public void deleteTool(iTool aTool)
         {
-            throw new NotImplementedException();
+            toolCollection.delete(aTool);
         }
 
         public override string ToString()

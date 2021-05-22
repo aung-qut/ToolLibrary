@@ -6,24 +6,26 @@ namespace ToolLibrary.Classes
 {
     class ToolLibrarySystem : iToolLibrarySystem
     {
-        public MemberCollection mc = new MemberCollection();
-        public ToolCollection tc = new ToolCollection();
+        public MemberCollection memberCollection = new MemberCollection();
+        private ToolCollection toolCollection = new ToolCollection();
 
         ToolCategories cat = new ToolCategories();
         
         public void add(iTool aTool)
         {
-            tc.add(aTool);
+            toolCollection.add(aTool);
         }
 
+        /* add new pieces of an existing tool to the system */
         public void add(iTool aTool, int quantity)
         {
-            throw new NotImplementedException();
+            aTool.Quantity++;
         }
 
+        /* add a new member to the system */
         public void add(iMember aMember)
         {
-            mc.add(aMember);
+            memberCollection.add(aMember);
         }
 
         public void borrowTool(iMember aMember, iTool aTool)
@@ -43,7 +45,7 @@ namespace ToolLibrary.Classes
 
         public void delete(iMember aMember)
         {
-            throw new NotImplementedException();
+            memberCollection.delete(aMember);
         }
 
         public void displayBorrowingTools(iMember aMember)
