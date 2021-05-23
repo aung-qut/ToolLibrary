@@ -19,6 +19,7 @@ namespace ToolLibrary
         // main method for the program to run
         static ToolLibrarySystem t = new ToolLibrarySystem();
         static MemberCollection memberCollection = new MemberCollection();
+        static ToolCollection toolCollection = new ToolCollection();
         static Member loggedInMember;
 
         static int tableWidth = 75;
@@ -37,6 +38,16 @@ namespace ToolLibrary
         /* Main method for the program */
         static void Main(string[] args)
         {
+
+            Member aMember = new Member();
+            aMember.FirstName = "a";
+            aMember.LastName = "a";
+            aMember.ContactNumber = "a";
+            aMember.PIN = "a";
+            t.add(aMember);
+
+            Console.WriteLine(t.memberCollection.Number);
+
             do
             {
                 MainMenu();
@@ -161,6 +172,28 @@ namespace ToolLibrary
             }
         }
 
+        static void AddPieces()
+        {
+            Tool[] tools = (Tool[])t.toolCollection.toArray();
+        }
+
+        //private bool ShowTools(Tool[] tool)
+        //{
+        //    bool b = tool.Length == 0;
+        //    if (b == true)
+        //    {
+        //        Console.WriteLine("There are no tools to display.");
+        //        b = false;
+        //    }
+        //    else
+        //    {
+        //        for (int i = 0; i < tool.Length; i++)
+        //        {
+        //            int index = i + 1;
+        //        }
+        //    }
+        //}
+
         static void RegisterNewMember()
         {
             Console.Write("Enter first name: ");
@@ -178,7 +211,6 @@ namespace ToolLibrary
             aMember.PIN = pin;
             t.add(aMember);
             Console.WriteLine("\nNew member '{0} {1}' added successfully to the system.\n", aMember.FirstName, aMember.LastName);
-            Member[] registeredMembers = (Member[])t.memberCollection.toArray();
         }
 
         // contents for member menu
@@ -202,13 +234,12 @@ namespace ToolLibrary
             // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
             {
-                
+                DisplayAllTools();
             }
             // 2. Borrow a tool
             else if (num3.Equals("2"))
             {
-                
-
+                BorrowTool();
             }
             // 3. Return a tool
             else if (num3.Equals("3"))
@@ -225,6 +256,17 @@ namespace ToolLibrary
             {
 
             }
+        }
+
+        /* Display all the tools of a tool type */
+        static void DisplayAllTools()
+        {
+
+        }
+
+        static void BorrowTool()
+        {
+
         }
 
         // handle staff login using default values 
@@ -257,7 +299,6 @@ namespace ToolLibrary
         /* ask member details to login */
         static void MemberLogin()
         {
-            Member[] members = (Member[])t.memberCollection.toArray();
             PrintLineTitle();
             Console.WriteLine("Member log in");
             Console.WriteLine("==================");
@@ -274,31 +315,21 @@ namespace ToolLibrary
             Console.Write("Enter PIN: ");
             string pin = Console.ReadLine();
 
-            VerifyMember(firstName, lastName, pin);
-        }
+            Member[] currentMembers = (Member[])t.memberCollection.toArray();
 
-        private static bool VerifyMember(string firstName, string lastName, string pin)
-        {
-            bool b = false;
-            //if (root == null)
-            //{
-            //    for (int i = 0; i < Number; i++)
-            //    {
-            //        if (toArray()[i] != null)
-            //        {
-            //            if (firstName.Equals(toArray()[i].FirstName) && lastName.Equals(toArray()[i].LastName) && pin.Equals(toArray()[i].PIN))
-            //            {
-            //                Console.WriteLine(firstName + toArray()[i].FirstName);
-            //                b = true;
-            //            }
-            //            else
-            //            {
-            //                b = false;
-            //            }
-            //        }
-            //    }
-            //}
-            return b;
+            for (int i = 0; i < currentMembers.Length; ++i)
+                if (currentMembers[i].FirstName == firstName && currentMembers[i].LastName == lastName && currentMembers[i].PIN == pin)
+                    loggedInMember = currentMembers[i];
+            if (loggedInMember == null)
+            {
+                Console.WriteLine("Invalid login details.\n");
+                MainMenu();
+            }
+            else
+            {
+                Console.WriteLine("Logged in successfully!\n");
+                MemberMenu();
+            }
         }
 
         private static void Print(string text)

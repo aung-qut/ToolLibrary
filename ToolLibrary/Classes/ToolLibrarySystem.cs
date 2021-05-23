@@ -7,9 +7,12 @@ namespace ToolLibrary.Classes
     class ToolLibrarySystem : iToolLibrarySystem
     {
         public MemberCollection memberCollection = new MemberCollection();
-        private ToolCollection toolCollection = new ToolCollection();
+        public ToolCollection toolCollection = new ToolCollection();
 
         ToolCategories cat = new ToolCategories();
+
+        // initialize array to store tools borrowed
+        private Tool[] toolsBorrowed = new Tool[0];
         
         public void add(iTool aTool)
         {
@@ -22,25 +25,48 @@ namespace ToolLibrary.Classes
             aTool.Quantity++;
         }
 
-        /* add a new member to the system */
+        // done /* add a new member to the system */
         public void add(iMember aMember)
         {
             memberCollection.add(aMember);
         }
 
+        // done /* member borrowing tool */
         public void borrowTool(iMember aMember, iTool aTool)
         {
-            throw new NotImplementedException();
+            // reduce the available quantity
+            aTool.AvailableQuantity--;
+
+            // add a tool to the member
+            aMember.addTool(aTool);
+
+            // add member to tool
+            aTool.addBorrower(aMember);
+
+            // add tools to borrowings
+            toolsBorrowed = AddToolArr(toolsBorrowed, (Tool)aTool);
         }
+
+
+        private Tool[] AddToolArr(Tool[] tools, Tool aTool)
+        {
+            Tool[] newSizeTools = new Tool[tools.Length + 1];
+            for (int i = 0; i < tools.Length; ++i)
+                newSizeTools[i] = tools[i];
+            newSizeTools[newSizeTools.Length - 1] = aTool;
+            return newSizeTools;
+        }
+
 
         public void delete(iTool aTool)
         {
             toolCollection.delete(aTool);
         }
 
+        /* remove some pieces of tool from the system */
         public void delete(iTool aTool, int quantity)
         {
-            throw new NotImplementedException();
+            delete(aTool);
         }
 
         public void delete(iMember aMember)
@@ -55,7 +81,7 @@ namespace ToolLibrary.Classes
 
         public void displayTools(string aToolType)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(aToolType);
         }
 
         public void displayTopTHree()
