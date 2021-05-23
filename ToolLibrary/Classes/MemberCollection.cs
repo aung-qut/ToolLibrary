@@ -26,7 +26,7 @@ namespace ToolLibrary.Classes
         {
             get
             {
-                return noMembers = countLeaves(root);
+                return noMembers;
             }
         }
 
