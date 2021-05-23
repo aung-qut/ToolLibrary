@@ -139,10 +139,21 @@ namespace ToolLibrary
                 {
                     cat.DisplayGardeningTools();
 
-                    t.toolCollection = lineTrimmers;
-                    t.add(newTool);
+                    c2 = Int32.Parse(Console.ReadLine());
+
+                    if (c2 == 1)
+                    {
+                        t.toolCollection = lineTrimmers;
+                        t.add(newTool);
+                    }
+                    else if (c2 == 2)
+                    {
+                        t.toolCollection = lawnMowers;
+                        t.add(newTool);
+                    }
+
                 }
-                Console.WriteLine("\nTool '{0}' added to the system successfully.", newTool.Name);
+                Console.WriteLine("\n>>> Tool '{0}' added to the system successfully.", newTool.Name);
                 Console.WriteLine("Press any key to continue...\n");
                 Console.ReadLine();
 
@@ -326,8 +337,30 @@ namespace ToolLibrary
         /* 1. Display all the tools of a tool type */
         static void DisplayAllTools()
         {
-            ToolsResult((Tool[])t.toolCollection.toArray());
-            Console.WriteLine("Press any key to continue...");
+            ToolCategories cat = new ToolCategories();
+            cat.DisplayToolCategories();
+
+            int c1 = Int32.Parse(Console.ReadLine());
+
+            if (c1 == 1)
+            {
+                cat.DisplayGardeningTools();
+
+                int c2 = Int32.Parse(Console.ReadLine());
+
+                if (c2 == 1)
+                {
+                    t.toolCollection = lineTrimmers;
+                    ToolsResult((Tool[])t.toolCollection.toArray());
+                }
+                else if (c2 == 2)
+                {
+                    t.toolCollection = lawnMowers;
+                    ToolsResult((Tool[])t.toolCollection.toArray());
+                }
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
 
             Console.ReadLine();
             MemberMenu();
@@ -442,7 +475,7 @@ namespace ToolLibrary
             bool b;
             if (tools.Length > 0)
             {
-                Console.WriteLine("      Tools in the system     ");
+                Console.WriteLine("\n      Tools in the system     ");
                 Console.WriteLine("==============================");
                 for (int i = 0; i < tools.Length; i++)
                 {
@@ -453,6 +486,7 @@ namespace ToolLibrary
             }
             else
             {
+                Console.WriteLine("\n>>>There are no tools in the system.");
                 b = false;
             }
             return b;
