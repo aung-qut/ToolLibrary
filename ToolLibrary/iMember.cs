@@ -31,7 +31,7 @@ namespace ToolLibrary
             set;
         }
 
-        string[] Tools //get a list of tools that this memebr is currently holding
+        iTool[] Tools //get a list of tools that this memebr is currently holding
         {
             get;
         }

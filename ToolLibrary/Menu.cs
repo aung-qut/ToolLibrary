@@ -38,7 +38,6 @@ namespace ToolLibrary
         /* Main method for the program */
         static void Main(string[] args)
         {
-
             Member aMember = new Member();
             aMember.FirstName = "a";
             aMember.LastName = "a";

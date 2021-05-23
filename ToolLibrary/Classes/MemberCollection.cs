@@ -70,7 +70,7 @@ namespace ToolLibrary.Classes
             get
             {
                 InOrderTraverse();
-                return (Member[])memberList.ToArray();
+                return memberList.ToArray();
             }
         }
 
@@ -97,23 +97,24 @@ namespace ToolLibrary.Classes
                 root = new BTreeNode(item);
             else
                 Insert(item, root);
+            InOrderTraverse();
         }
 
-        private void Insert(Member aMember, BTreeNode ptr)
+        private void Insert(Member item, BTreeNode ptr)
         {
-            if (aMember.CompareTo(ptr.Item) < 0)
+            if (item.CompareTo(ptr.Item) < 0)
             {
                 if (ptr.LChild == null)
-                    ptr.LChild = new BTreeNode(aMember);
+                    ptr.LChild = new BTreeNode(item);
                 else
-                    Insert(aMember, ptr.LChild);
+                    Insert(item, ptr.LChild);
             }
             else
             {
                 if (ptr.RChild == null)
-                    ptr.RChild = new BTreeNode(aMember);
+                    ptr.RChild = new BTreeNode(item);
                 else
-                    Insert(aMember, ptr.RChild);
+                    Insert(item, ptr.RChild);
             }
         }
         /* -- BSTree Insert method ends -- */
@@ -212,10 +213,6 @@ namespace ToolLibrary.Classes
         /* BSTree InOrderTraverse Method */
         private void InOrderTraverse()
         {
-            // original
-            //Console.Write("InOrder: ");
-            //InOrderTraverse(root);
-            //Console.WriteLine();
             memberList = new List<Member>();
             InOrderTraverse(root);
         }
@@ -224,8 +221,8 @@ namespace ToolLibrary.Classes
         {
             if (root != null)
             {
+                memberList.Add((Member)root.Item);
                 InOrderTraverse(root.LChild);
-                Console.Write(root.Item);
                 InOrderTraverse(root.RChild);
             }
         }

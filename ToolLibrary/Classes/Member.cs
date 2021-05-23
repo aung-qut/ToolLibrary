@@ -10,7 +10,6 @@ namespace ToolLibrary.Classes
         private string lastName;      // lastName field
         private string contactNumber; // contactNumbe field
         private string pin;           // pin field
-        private string[] tools;
 
         private ToolCollection toolCollection = new ToolCollection();
 
@@ -19,7 +18,7 @@ namespace ToolLibrary.Classes
         public string ContactNumber { get => contactNumber; set => contactNumber = value; }
         public string PIN { get => pin; set => pin = value; }
 
-        public string[] Tools => tools;
+        public iTool[] Tools => toolCollection.toArray();
 
         public void addTool(iTool aTool)
         {
@@ -33,7 +32,7 @@ namespace ToolLibrary.Classes
 
         public override string ToString()
         {
-            return "\nFirst name - " + this.firstName + "\nLast name - " + this.lastName + "\nContact number - " + this.contactNumber;
+            return "First name - " + this.firstName + " | Last name - " + this.lastName + " | Contact number - " + this.contactNumber + "\n";
         }
 
         public int CompareTo(object obj)

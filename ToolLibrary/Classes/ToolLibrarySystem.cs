@@ -91,24 +91,45 @@ namespace ToolLibrary.Classes
             throw new NotImplementedException();
         }
 
+        // done /* display tools according to tool type */
         public void displayTools(string aToolType)
         {
             Console.WriteLine(aToolType);
         }
 
+        /* display top three tools borrowed */
         public void displayTopTHree()
         {
             throw new NotImplementedException();
         }
 
+        // done /* get a list of tools held by a member */
         public string[] listTools(iMember aMember)
         {
-            throw new NotImplementedException();
+            // number of tools
+            int j = aMember.Tools.Length;
+
+            string[] tools = new string[j];
+
+            // using for loop, add to tools string array
+            for (int i = 0; i < tools.Length; i++)
+            {
+                tools[i] = aMember.Tools[i].Name;
+            }
+            return tools;
         }
 
+        // done /* return a tool to the library */
         public void returnTool(iMember aMember, iTool aTool)
         {
-            throw new NotImplementedException();
+            // increase the number of tool to available quantity
+            aTool.AvailableQuantity++;
+
+            // remove a tool from the member
+            aMember.deleteTool(aTool);
+            
+            // remove a member from the tool
+            aTool.deleteBorrower(aMember);
         }
     }
 }
