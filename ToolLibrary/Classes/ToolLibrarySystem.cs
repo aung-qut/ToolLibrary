@@ -14,12 +14,14 @@ namespace ToolLibrary.Classes
         // initialize array to store tools borrowed
         private Tool[] toolsBorrowed = new Tool[0];
         
+        // done /* add new tool to the system */
         public void add(iTool aTool)
         {
             toolCollection.add(aTool);
         }
 
-        /* add new pieces of an existing tool to the system */
+        
+        // done /* add new pieces of an existing tool to the system */
         public void add(iTool aTool, int quantity)
         {
             aTool.Quantity++;
@@ -57,18 +59,28 @@ namespace ToolLibrary.Classes
             return newSizeTools;
         }
 
-
+        // done /* delete a tool from the system */
         public void delete(iTool aTool)
         {
             toolCollection.delete(aTool);
         }
 
-        /* remove some pieces of tool from the system */
+        // done /* remove some pieces of tool from the system */
         public void delete(iTool aTool, int quantity)
         {
-            delete(aTool);
+            int con = aTool.Quantity - quantity;
+            // check quantity of tool before delete performs
+            if (con <= 0)
+            {
+                delete(aTool);
+            }
+            else
+            {
+                aTool.Quantity--;
+            }
         }
 
+        // done /* delete a member from the system */
         public void delete(iMember aMember)
         {
             memberCollection.delete(aMember);

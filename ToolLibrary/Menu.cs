@@ -48,21 +48,8 @@ namespace ToolLibrary
 
             Console.WriteLine(t.memberCollection.Number);
 
-            do
-            {
-                MainMenu();
-                num1 = Console.ReadLine();
-                if (num1.Equals("1"))
-                {
-                    Console.Clear();
-                    StaffLogin("staff", "today123");
-                }
-                else if (num1.Equals("2"))
-                {
-                    Console.Clear();
-                    MemberLogin();
-                }
-            } while (!num1.Equals("0"));
+            MainMenu();
+            
         }
 
         /* Display contents for main menu */
@@ -75,9 +62,24 @@ namespace ToolLibrary
             PrintLine("0. Exit");
             PrintLine("===============================\n");
             Print("Please make a selection (1-2, or 0 to exit): ");
+            num1 = Console.ReadLine();
+            if (num1.Equals("1"))
+            {
+                Console.Clear();
+                StaffLogin("staff", "today123");
+            }
+            else if (num1.Equals("2"))
+            {
+                Console.Clear();
+                MemberLogin();
+            }
+            else if (num1.Equals("0"))
+            {
+                MainMenu();
+            }
         }
 
-        // contents for staff menu
+        /* Menu items for staff menu */
         static void StaffMenu()
         {
             ToolCategories cat = new ToolCategories();
