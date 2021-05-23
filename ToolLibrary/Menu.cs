@@ -127,36 +127,32 @@ namespace ToolLibrary
 
                 // Display all the nine (9) tool categories
                 cat.DisplayToolCategories();
-                DisplayToolCategories();
+
+                Console.Write("Please make a selection (1-9): ");
 
                 // select a category
                 c1 = Console.ReadLine();
 
+                ToolCollection temp = null;
                 // Display all the tool types of the selected category
                 if (c1.Equals("1"))
                 {
                     cat.DisplayGardeningTools();
-                    c2 = Int32.Parse(Console.ReadLine());
-                    if (c2 == 1)
-                    {
-                        // add to line trimmer
-                        t.add(newTool);
-                    }
-                    else if (c2 == 2)
-                    {
-                        
-                        t.add(newTool);
-                    }
+
+                    t.toolCollection = lineTrimmers;
+                    t.add(newTool);
                 }
                 Console.WriteLine("\nTool '{0}' added to the system successfully.", newTool.Name);
                 Console.WriteLine("Press any key to continue...\n");
                 Console.ReadLine();
+
+                StaffMenu();
             }
 
             // 2. Add new pieces of an existing tool
             else if (num2.Equals("2"))
             {
-                //AddPieces();
+                AddPieces();
             }
 
             // 3. Remove some pieces of a tool
@@ -206,22 +202,11 @@ namespace ToolLibrary
             Tool[] tools = (Tool[])t.toolCollection.toArray();
         }
 
-        //private bool ShowTools(Tool[] tool)
-        //{
-        //    bool b = tool.Length == 0;
-        //    if (b == true)
-        //    {
-        //        Console.WriteLine("There are no tools to display.");
-        //        b = false;
-        //    }
-        //    else
-        //    {
-        //        for (int i = 0; i < tool.Length; i++)
-        //        {
-        //            int index = i + 1;
-        //        }
-        //    }
-        //}
+        /* 3. remove quantity of tools */
+        static void RemovePieces()
+        {
+
+        }
 
         // done /* 4. Register new member */
         static void RegisterNewMember()
@@ -341,7 +326,11 @@ namespace ToolLibrary
         /* 1. Display all the tools of a tool type */
         static void DisplayAllTools()
         {
+            ToolsResult((Tool[])t.toolCollection.toArray());
+            Console.WriteLine("Press any key to continue...");
 
+            Console.ReadLine();
+            MemberMenu();
         }
 
         /* 2. Borrow a tool */
@@ -428,7 +417,6 @@ namespace ToolLibrary
             }
         }
 
-        // done // display members by line
         private static bool MembersResult(Member[] members)
         {
             bool b;
@@ -438,7 +426,28 @@ namespace ToolLibrary
                 Console.WriteLine("=============================");
                 for (int i = 0; i < members.Length; i++)
                 {
-                    Console.WriteLine("'{0}. {1} {2}'", i + 1, members[i].FirstName, members[i].LastName);
+                    Console.WriteLine("{0}. {1} {2}", i + 1, members[i].FirstName, members[i].LastName);
+                }
+                b = true;
+            }
+            else
+            {
+                b = false;
+            }
+            return b;
+        }
+
+        private static bool ToolsResult(Tool[] tools)
+        {
+            bool b;
+            if (tools.Length > 0)
+            {
+                Console.WriteLine("      Tools in the system     ");
+                Console.WriteLine("==============================");
+                for (int i = 0; i < tools.Length; i++)
+                {
+                    Console.WriteLine("{0}. ", i + 1);
+                    t.displayTools(tools[i].ToString());
                 }
                 b = true;
             }
@@ -552,10 +561,29 @@ namespace ToolLibrary
             }
         }
         
-        // helper method for choosing categories
-        static void ChooseCategories()
-        {
+        //private static void DisplayToolCategories()
+        //{
+        //    Console.WriteLine("Select a category");
+        //    Console.WriteLine("=================");
+        //    Console.WriteLine("1. Gardening Tools");
+        //    Console.WriteLine("2. Flooring Tools");
+        //    Console.WriteLine("3. Fencing Tools");
+        //    Console.WriteLine("4. Measuring Tools");
+        //    Console.WriteLine("5. Cleaning Tools");
+        //    Console.WriteLine("6. Painting Tools");
+        //    Console.WriteLine("7. Electronic Tools");
+        //    Console.WriteLine("8. Electricity Tools");
+        //    Console.WriteLine("9. Automotive Tools");
+        //    Console.Write("Select a category (1-9): ");
 
-        }
+        //    int choice1 = Int32.Parse(Console.ReadLine());
+        //    if (choice1 == 1)
+        //    {
+        //        Console.WriteLine("\nGardening Tools");
+        //        Console.WriteLine("===============");
+        //        Console.WriteLine("1. Line Trimmers");
+        //        Console.WriteLine("2. Lawn Mowers");
+        //    }
+        //}
     }
 }

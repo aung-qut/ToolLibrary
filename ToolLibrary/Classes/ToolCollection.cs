@@ -6,22 +6,22 @@ namespace ToolLibrary.Classes
 {
     class ToolCollection : iToolCollection
     {
-        private Tool[] tools; // initializing new array for tools
+        private Tool[] tools = new Tool[50]; // initializing new array for tools
         private int noTools; // field for number of tools
 
-        public int Number => noTools = tools.Length; // property for number of tools
-
-        /* constructor method for ToolCollection */
-        public ToolCollection()
-        {
-            tools = new Tool[100];
-            noTools = 0;
-        }
+        public int Number => noTools; // property for number of tools
 
         /* adding a new tool to this tool collection */
         public void add(iTool aTool)
         {
-            tools[noTools] = (Tool)aTool; // add tool to tools array
+            for (int i = 0; i < tools.Length; i++)
+            {
+                if (tools[i] == null)
+                {
+                    tools[i] = (Tool)aTool; // add tool to tools array
+                    break;
+                }
+            }
             noTools++; // increment the size of array
         }
 
@@ -54,9 +54,9 @@ namespace ToolLibrary.Classes
         {
             iTool[] toolArray = new Tool[Number];
             int i, j = 0;
-            for (i = 0; i < Number; i++)
+            for (i = 0; i < tools.Length; i++)
             {
-                if (IsExist(i))
+                if (tools[i] != null)
                 {
                     toolArray[j] = tools[i];
                     j++;
@@ -65,17 +65,17 @@ namespace ToolLibrary.Classes
             return toolArray;
         }
 
-        // helper method
-        //===============
+        //// helper method
+        ////===============
 
-        /* check if tool is not null */
-        private bool IsExist(int i)
-        {
-            if (tools[i] != null)
-            {
-                return true;
-            }
-            return false;
-        }
+        ///* check if tool is not null */
+        //private bool IsExist(int i)
+        //{
+        //    if (tools[i] != null)
+        //    {
+        //        return true;
+        //    }
+        //    return false;
+        //}
     }
 }
