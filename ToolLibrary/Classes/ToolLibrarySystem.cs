@@ -19,7 +19,6 @@ namespace ToolLibrary.Classes
         {
             toolCollection.add(aTool);
         }
-
         
         // done /* add new pieces of an existing tool to the system */
         public void add(iTool aTool, int quantity)

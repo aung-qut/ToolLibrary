@@ -38,12 +38,26 @@ namespace ToolLibrary
         /* Main method for the program */
         static void Main(string[] args)
         {
-            Member aMember = new Member();
-            aMember.FirstName = "aung";
-            aMember.LastName = "khant";
-            aMember.ContactNumber = "a";
-            aMember.PIN = "0000";
-            t.add(aMember);
+            Member member1 = new Member();
+            member1.FirstName = "Aung Khant";
+            member1.LastName = "Kyaw";
+            member1.ContactNumber = "0474268017";
+            member1.PIN = "0000";
+            t.add(member1);
+
+            Member member2 = new Member();
+            member2.FirstName = "Saw Soe";
+            member2.LastName = "Moe";
+            member2.ContactNumber = "049640180";
+            member2.PIN = "0000";
+            t.add(member2);
+
+            Member member3 = new Member();
+            member3.FirstName = "a";
+            member3.LastName = "a";
+            member3.ContactNumber = "049640180";
+            member3.PIN = "a";
+            t.add(member3);
 
             // program starts with main menu
             MainMenu();
@@ -157,22 +171,32 @@ namespace ToolLibrary
                 t.delete(aTool, quantity);
             }
 
-            // 4. Register a new member
+            // done // 4. Register a new member
             else if (num2.Equals("4"))
             {
                 RegisterNewMember();
             }
 
-            // 5. Remove a member
+            // done // 5. Remove a member
             else if (num2.Equals("5"))
             {
                 RemoveMember();
             }
 
-            // 6. Find the contact number of a member
+            // done // 6. Find the contact number of a member
             else if (num2.Equals("6"))
             {
-                //FindContactNumber();
+                Console.Write("Enter member's first name: ");
+                string firstName = Console.ReadLine().Trim();
+
+                Console.Write("Enter member's last name: ");
+                string lastName = Console.ReadLine().Trim();
+
+                FindContactNumber(firstName, lastName);
+
+                Console.WriteLine("\nPress any key to continue...");
+                Console.Read();
+                StaffMenu();
             }
         }
 
@@ -217,17 +241,12 @@ namespace ToolLibrary
             aMember.PIN = pin;
             t.add(aMember);
             Console.WriteLine("\n>>> New member '{0} {1}' added successfully to the system.\n", aMember.FirstName, aMember.LastName);
-            Console.WriteLine("Press any key to continue...");
+            Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
             StaffMenu();
         }
 
-        static Member[] RegisteredMember()
-        {
-            return (Member[])t.memberCollection.toArray();
-        }
-
-        /* 5. Remove a member */
+        // done /* 5. Remove a member */
         static void RemoveMember()
         {
             Member[] registeredMembers = (Member[])t.memberCollection.toArray();
@@ -237,7 +256,7 @@ namespace ToolLibrary
                 Console.Write("Enter the number of member to remove: ");
                 int b = Int32.Parse(Console.ReadLine());
 
-                if (b > registeredMembers.Length)
+                if (b > registeredMembers.Length || b < 1)
                 {
                     Console.WriteLine("\nMember not found.");
                 }
@@ -245,16 +264,36 @@ namespace ToolLibrary
                 {
                     Member member = registeredMembers[b - 1];
                     t.memberCollection.delete(member);
-                    Console.WriteLine("Member '{0}' removed from the system.", member.FirstName);
+                    Console.WriteLine("\n>>>Member '{0}' removed from the system.", member.FirstName);
                 }
 
-                Console.WriteLine("Press any key to continue...");
+                Console.WriteLine("\nPress any key to continue...");
                 Console.ReadLine();
             }
             StaffMenu();
         }
 
-        // contents for member menu
+        // done /* 6. Find contact number of a member */
+        static void FindContactNumber(string firstName, string lastName)
+        {
+            Member[] registerMembers = (Member[])t.memberCollection.toArray();
+            if(registerMembers.Length > 0)
+            {
+                for (int i = 0; i < registerMembers.Length; i++)
+                {
+                    if (registerMembers[i].FirstName.Trim().Equals(firstName) && registerMembers[i].LastName.Trim().Equals(lastName))
+                    {
+                        Console.WriteLine("\n>>> The contact number of '{0} {1}' is {2}", firstName, lastName, registerMembers[i].ContactNumber);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n>>> Member does not exist.");
+            }
+        }
+
+        // done // contents for member menu
         static void MemberMenu()
         {
             PrintLineTitle();
@@ -285,17 +324,17 @@ namespace ToolLibrary
             // 3. Return a tool
             else if (num3.Equals("3"))
             {
-
+                //ReturnTool();
             }
             // 4. List all the tools that I am renting
             else if (num3.Equals("4"))
             {
-
+                //ListAllRentedTools
             }
             // 5. Display top three (3) most frequently rented tools
             else if (num3.Equals("5"))
             {
-
+                //DisplayTopThreeTools
             }
         }
 
@@ -305,7 +344,14 @@ namespace ToolLibrary
 
         }
 
+        /* 2. Borrow a tool */
         static void BorrowTool()
+        {
+
+        }
+
+        /* 3. Return a tool */
+        static void ReturnTool()
         {
 
         }
@@ -382,6 +428,7 @@ namespace ToolLibrary
             }
         }
 
+        // done // display members by line
         private static bool MembersResult(Member[] members)
         {
             bool b;
@@ -505,29 +552,10 @@ namespace ToolLibrary
             }
         }
         
-        private static void DisplayToolCategories()
+        // helper method for choosing categories
+        static void ChooseCategories()
         {
-            Console.WriteLine("Select a category");
-            Console.WriteLine("=================");
-            Console.WriteLine("1. Gardening Tools");
-            Console.WriteLine("2. Flooring Tools");
-            Console.WriteLine("3. Fencing Tools");
-            Console.WriteLine("4. Measuring Tools");
-            Console.WriteLine("5. Cleaning Tools");
-            Console.WriteLine("6. Painting Tools");
-            Console.WriteLine("7. Electronic Tools");
-            Console.WriteLine("8. Electricity Tools");
-            Console.WriteLine("9. Automotive Tools");
-            Console.Write("Select a category (1-9): ");
 
-            int choice1 = Int32.Parse(Console.ReadLine());
-            if (choice1 == 1)
-            {
-                Console.WriteLine("\nGardening Tools");
-                Console.WriteLine("===============");
-                Console.WriteLine("1. Line Trimmers");
-                Console.WriteLine("2. Lawn Mowers");
-            }
         }
     }
 }
