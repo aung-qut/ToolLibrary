@@ -279,7 +279,7 @@ namespace ToolLibrary
                 {
                     if (registerMembers[i].FirstName.Trim().Equals(firstName) && registerMembers[i].LastName.Trim().Equals(lastName))
                     {
-                        Console.WriteLine("\n>>> The contact number of '{0} {1}' is {2}", firstName, lastName, registerMembers[i].ContactNumber);
+                        Console.WriteLine("\n>>> The contact number of '{0} {1}' is {2}.", firstName, lastName, registerMembers[i].ContactNumber);
                     }
                 }
             }
@@ -307,7 +307,7 @@ namespace ToolLibrary
             {
                 MainMenu(); // show the main menu
             }
-            // 1. Display all the tools of a tool type
+            // done // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
             {
                 DisplayAllTools();
