@@ -39,16 +39,14 @@ namespace ToolLibrary
         static void Main(string[] args)
         {
             Member aMember = new Member();
-            aMember.FirstName = "a";
-            aMember.LastName = "a";
+            aMember.FirstName = "aung";
+            aMember.LastName = "khant";
             aMember.ContactNumber = "a";
-            aMember.PIN = "a";
+            aMember.PIN = "0000";
             t.add(aMember);
 
-            Console.WriteLine(t.memberCollection.Number);
-
+            // program starts with main menu
             MainMenu();
-            
         }
 
         /* Display contents for main menu */
@@ -201,7 +199,7 @@ namespace ToolLibrary
         //    }
         //}
 
-        /* 4. Register new member */
+        // done /* 4. Register new member */
         static void RegisterNewMember()
         {
             Console.Write("Enter first name: ");
@@ -224,10 +222,36 @@ namespace ToolLibrary
             StaffMenu();
         }
 
+        static Member[] RegisteredMember()
+        {
+            return (Member[])t.memberCollection.toArray();
+        }
+
         /* 5. Remove a member */
         static void RemoveMember()
         {
+            Member[] registeredMembers = (Member[])t.memberCollection.toArray();
+            if (MembersResult(registeredMembers))
+            {
+                //ask the user input
+                Console.Write("Enter the number of member to remove: ");
+                int b = Int32.Parse(Console.ReadLine());
 
+                if (b > registeredMembers.Length)
+                {
+                    Console.WriteLine("\nMember not found.");
+                }
+                else
+                {
+                    Member member = registeredMembers[b - 1];
+                    t.memberCollection.delete(member);
+                    Console.WriteLine("Member '{0}' removed from the system.", member.FirstName);
+                }
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadLine();
+            }
+            StaffMenu();
         }
 
         // contents for member menu
@@ -335,22 +359,89 @@ namespace ToolLibrary
             // get members in the system
             Member[] registeredMembers = (Member[])t.memberCollection.toArray();
 
+            // loop around the members
             for (int i = 0; i < registeredMembers.Length; ++i)
             {
+                // if details matched, make the member logged in member
                 if (registeredMembers[i].FirstName == firstName && registeredMembers[i].LastName == lastName && registeredMembers[i].PIN == pin)
                     loggedInMember = registeredMembers[i];
             } 
+
+            // if there is no logged in member set to null and show main menu
             if (loggedInMember == null)
             {
-                Console.WriteLine(">>> Login failed. Please check member details. \n");
+                Console.WriteLine(">>> Login failed. Member not found \n");
                 MainMenu();
             }
+
+            // else show it success and show the member menu
             else
             {
                 Console.WriteLine(">>> Member '{0}' logged in successfully.\n", loggedInMember.FirstName);
                 MemberMenu();
             }
         }
+
+        private static bool MembersResult(Member[] members)
+        {
+            bool b;
+            if (members.Length > 0)
+            {
+                Console.WriteLine("    Members in the system    ");
+                Console.WriteLine("=============================");
+                for (int i = 0; i < members.Length; i++)
+                {
+                    Console.WriteLine("'{0}. {1} {2}'", i + 1, members[i].FirstName, members[i].LastName);
+                }
+                b = true;
+            }
+            else
+            {
+                b = false;
+            }
+            return b;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         private static void Print(string text)
         {
@@ -363,7 +454,7 @@ namespace ToolLibrary
 
         private static void PrintLineTitle()
         {
-            Console.WriteLine("\nWelcome to the Tool Library");
+            Console.WriteLine("Welcome to the Tool Library");
         }
         private static void invalidInput(string num)
         {
