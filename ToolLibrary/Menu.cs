@@ -18,6 +18,8 @@ namespace ToolLibrary
 
         // main method for the program to run
         static ToolLibrarySystem t = new ToolLibrarySystem();
+        static MemberCollection memberCollection = new MemberCollection();
+        static Member loggedInMember;
 
         static int tableWidth = 75;
 
@@ -83,7 +85,6 @@ namespace ToolLibrary
             Print("Please make a selection (1-6, or 0 to return to main menu): ");
             num2 = Console.ReadLine();
 
-            ToolCollection type = null;
 
             // 1. Add a new tool
             if (num2.Equals("1"))
@@ -92,8 +93,6 @@ namespace ToolLibrary
                 Console.Write("\nEnter the name of a new tool: ");
                 string toolName = Console.ReadLine();
 
-
-                
                 Tool newTool = new Tool();
                 newTool.Name = toolName;
                 newTool.Quantity = 1;
@@ -113,7 +112,11 @@ namespace ToolLibrary
                     if (c2 == 1)
                     {
                         // add to line trimmer
-                        type = lineTrimmers;
+                        t.add(newTool);
+                    }
+                    else if (c2 == 2)
+                    {
+                        
                         t.add(newTool);
                     }
                 }
@@ -124,7 +127,7 @@ namespace ToolLibrary
             // 2. Add new pieces of an existing tool
             else if (num2.Equals("2"))
             {
-                
+                //AddPieces();
             }
 
             // 3. Remove some pieces of a tool
@@ -142,54 +145,41 @@ namespace ToolLibrary
             // 4. Register a new member
             else if (num2.Equals("4"))
             {
-                string input;
-                do
-                {
-                    string firstName, lastName, contactNumber, pin;
-                    Print("First Name: ");
-                    firstName = Console.ReadLine();
-                    Print("Last Name: ");
-                    lastName = Console.ReadLine();
-                    Print("Contact Number: ");
-                    contactNumber = Console.ReadLine();
-                    Print("PIN: ");
-                    pin = Console.ReadLine();
-
-                    Member member1 = new Member();
-                    member1.FirstName = firstName;
-                    member1.LastName = lastName;
-                    member1.ContactNumber = contactNumber;
-                    member1.PIN = pin;
-
-                    t.add(member1);
-
-                    Console.WriteLine("Member '{0} {1}' added successfully.", member1.FirstName, member1.LastName);
-                    //Console.WriteLine("Number(s) of members - {0}\n", t.mc.Number);
-
-                    Console.WriteLine("Press any key to continue.\n");
-
-                    // display members
-                    input = Console.ReadLine();
-
-                } while (input.Equals(""));
-                StaffMenu();
+                RegisterNewMember();
             }
 
             // 5. Remove a member
             else if (num2.Equals("5"))
             {
-                //Member member = new Member();
-                //t.mc.delete(member);
+                //RemoveMember();
             }
 
             // 6. Find the contact number of a member
             else if (num2.Equals("6"))
             {
-                //Member member = new Member();
-                //t.mc.FindContactNumber(member.FirstName, member.LastName);
+                //FindContactNumber();
             }
         }
 
+        static void RegisterNewMember()
+        {
+            Console.Write("Enter first name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Enter last name: ");
+            string lastName = Console.ReadLine();
+            Console.Write("Enter contact number: ");
+            string contactNumber = Console.ReadLine();
+            Console.Write("Enter PIN: ");
+            string pin = Console.ReadLine();
+            Member aMember = new Member();
+            aMember.FirstName = firstName;
+            aMember.LastName = lastName;
+            aMember.ContactNumber = contactNumber;
+            aMember.PIN = pin;
+            t.add(aMember);
+            Console.WriteLine("\nNew member '{0} {1}' added successfully to the system.\n", aMember.FirstName, aMember.LastName);
+            Member[] registeredMembers = (Member[])t.memberCollection.toArray();
+        }
 
         // contents for member menu
         static void MemberMenu()
@@ -212,39 +202,28 @@ namespace ToolLibrary
             // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
             {
-                //ToolCollection tc = new ToolCollection();
-                //Console.WriteLine(tc.toArray());
+                
             }
             // 2. Borrow a tool
             else if (num3.Equals("2"))
             {
-                //Member aMember = new Member();
-                //Tool aTool = new Tool();
+                
 
-                //t.borrowTool(aMember, aTool);
             }
             // 3. Return a tool
             else if (num3.Equals("3"))
             {
-                //Member aMember = new Member();
-                //Tool aTool = new Tool();
 
-                //t.returnTool(aMember, aTool);
             }
             // 4. List all the tools that I am renting
             else if (num3.Equals("4"))
             {
-                //Member aMember = new Member();
-                //t.listTools(aMember);
+
             }
             // 5. Display top three (3) most frequently rented tools
             else if (num3.Equals("5"))
             {
-                t.displayTopTHree();
-            }
-            else
-            {
-                invalidInput(num3);
+
             }
         }
 
@@ -278,6 +257,7 @@ namespace ToolLibrary
         /* ask member details to login */
         static void MemberLogin()
         {
+            Member[] members = (Member[])t.memberCollection.toArray();
             PrintLineTitle();
             Console.WriteLine("Member log in");
             Console.WriteLine("==================");
@@ -332,7 +312,7 @@ namespace ToolLibrary
 
         private static void PrintLineTitle()
         {
-            Console.WriteLine("Welcome to the Tool Library");
+            Console.WriteLine("\nWelcome to the Tool Library");
         }
         private static void invalidInput(string num)
         {

@@ -9,26 +9,62 @@ namespace ToolLibrary.Classes
 {
     class MemberCollection : iMemberCollection
     {
-        private List<iMember> memberList;
-
-        private Member[] members;
+        private List<Member> memberList;
 
         private BTreeNode root;
 
+        private int noMembers;
+
+        // default null for root
         public MemberCollection()
         {
             root = null;
         }
 
-
+        /* get the number of members in this collection */
         public int Number
         {
             get
             {
-                return countLeaves(root);
+                return noMembers;
             }
         }
 
+        /* add member to the collection */
+        public void add(iMember aMember)
+        {
+            Insert((Member)aMember);
+            noMembers++; // increase the number of members
+        }
+
+        /* delete member from the collection */
+        public void delete(iMember aMember)
+        {
+            Delete((Member)aMember);
+            noMembers--; // decrease the number of members
+        }
+
+        /* Search a member in the collection and return true or false depening on found */
+        public bool search(iMember aMember)
+        {
+            for (int i = 0; i < Number; i++)
+            {
+                if (Search((Member)aMember))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /* result array from this collection */
+        public iMember[] toArray()
+        {
+            return memberArray;
+        }
+
+
+        // helper methods below
         private Member[] memberArray
         {
             get
@@ -38,50 +74,64 @@ namespace ToolLibrary.Classes
             }
         }
 
-        public void add(iMember aMember)
+        private int countLeaves(BTreeNode node)
         {
-            //// before implementing bst
-            //members[noMembers] = (Member)aMember;
-            //noMembers++;
-
-            if (root == null)
+            if (node == null)
             {
-                root = new BTreeNode((IComparable)aMember);
+                return 0;
+            }
+            else if (node.LChild == null && node.RChild == null)
+            {
+                return 1;
             }
             else
             {
-                add((Member)aMember, root);
+                return countLeaves(node.LChild) + countLeaves(node.RChild) + 1;
             }
-            InOrderTraverse();
         }
 
-        private void add(Member aMember, BTreeNode ptr)
+        /* BSTree Insert method */
+        private void Insert(Member item)
+        {
+            if (root == null)
+                root = new BTreeNode(item);
+            else
+                Insert(item, root);
+        }
+
+        private void Insert(Member aMember, BTreeNode ptr)
         {
             if (aMember.CompareTo(ptr.Item) < 0)
             {
                 if (ptr.LChild == null)
                     ptr.LChild = new BTreeNode(aMember);
                 else
-                    add(aMember, ptr.LChild);
+                    Insert(aMember, ptr.LChild);
             }
             else
             {
                 if (ptr.RChild == null)
                     ptr.RChild = new BTreeNode(aMember);
                 else
-                    add(aMember, ptr.RChild);
+                    Insert(aMember, ptr.RChild);
             }
         }
+        /* -- BSTree Insert method ends -- */
 
-        public void delete(iMember aMember)
+        /* BSTree Delete method start */
+        // there are three cases to consider:
+        // 1. the node to be deleted is a leaf
+        // 2. the node to be deleted has only one child 
+        // 3. the node to be deleted has both left and right children
+        private void Delete(Member item)
         {
             // search for item and its parent
             BTreeNode ptr = root; // search reference
             BTreeNode parent = null; // parent of ptr
-            while ((ptr != null) && (((Member)aMember).CompareTo(ptr.Item) != 0))
+            while ((ptr != null) && (item.CompareTo(ptr.Item) != 0))
             {
                 parent = ptr;
-                if (((Member)aMember).CompareTo(ptr.Item) < 0) // move to the left child of ptr
+                if (item.CompareTo(ptr.Item) < 0) // move to the left child of ptr
                     ptr = ptr.LChild;
                 else
                     ptr = ptr.RChild;
@@ -131,26 +181,15 @@ namespace ToolLibrary.Classes
                             parent.RChild = c;
                     }
                 }
+
             }
         }
+        /* -- BSTree Delete method ends -- */
 
-        /* Search a member in the collection and return true or false depening on found */
-        public bool search(iMember aMember)
+        /* BSTree Search methods start */
+        private bool Search(Member aMember)
         {
-            for (int i = 0; i < Number; i++)
-            {
-                if (Search((Member)aMember))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        // BSTree
-        public bool Search(Member aMember)
-        {
-            return Search((Member)aMember, root);
+            return Search(aMember, root);
         }
 
         private bool Search(Member aMember, BTreeNode r)
@@ -168,39 +207,16 @@ namespace ToolLibrary.Classes
             else
                 return false;
         }
-        // ======
+        /* -- BSTree Search methods end --*/
 
-        public iMember[] toArray()
-        {
-            //Member[] membersArray = members.ToArray();
-            //return membersArray;
-            //// not implemented yet
-            return memberArray;
-        }
-
-        public int countLeaves(BTreeNode node)
-        {
-            if (node == null)
-            {
-                return 0;
-            }
-            else if (node.LChild == null && node.RChild == null)
-            {
-                return 1;
-            }
-            else
-            {
-                return countLeaves(node.LChild) + countLeaves(node.RChild) + 1;
-            }
-        }
-
-        public void InOrderTraverse()
+        /* BSTree InOrderTraverse Method */
+        private void InOrderTraverse()
         {
             // original
             //Console.Write("InOrder: ");
             //InOrderTraverse(root);
             //Console.WriteLine();
-            memberList = new List<iMember>();
+            memberList = new List<Member>();
             InOrderTraverse(root);
         }
 
@@ -214,38 +230,7 @@ namespace ToolLibrary.Classes
             }
         }
 
-        // comment for a while
-        //public string FindContactNumber(string firstName, string lastName)
-        //{
-        //    iMember[] membersArr = toArray();
-        //    for (int i = 0; i < Number; i++)
-        //    {
-
-        //    }
-        //    return "string";
-        //}
-
-        // comment for a while
-        //public void Sort()
-        //{
-        //    int min;
-        //    Member temp;
-        //    for (int i = 0; i < (tls.mc.Number -2); i++)
-        //    {
-        //        min = i;
-        //        for (int j = (i + 1); j < (tls.mc.Number - 1); j++)
-        //        {
-        //            if (members[j].CompareTo(tls.mc.toArray()[min]) == -1)
-        //            {
-        //                min = j;
-        //            }
-        //        }
-        //        temp = members[i];
-        //        members[i] = members[min];
-        //        members[min] = temp;
-        //    }
-        //}
-
+        // not neccessary
         public void Clear()
         {
             root = null;

@@ -35,7 +35,7 @@ namespace ToolLibrary.Classes
 
         public void delete(iTool aTool)
         {
-            throw new NotImplementedException();
+            toolCollection.delete(aTool);
         }
 
         public void delete(iTool aTool, int quantity)
