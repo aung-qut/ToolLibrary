@@ -91,7 +91,7 @@ namespace ToolLibrary
         private static ToolCollection drivetrain = new ToolCollection();
 
         /* Main method for the program */
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             // members added default to test the software
             // adding member 3
@@ -120,6 +120,15 @@ namespace ToolLibrary
                 Quantity = 1
             };
 
+            Tool tool4 = new Tool
+            {
+                Name = "trimmer",
+                Quantity = 6
+            };
+
+            t.toolCollection = lineTrimmers;
+            t.add(tool4);
+
             t.toolCollection = sandingTools;
             t.add(tool1);
             t.add(tool2);
@@ -143,7 +152,7 @@ namespace ToolLibrary
             if (num1.Equals("1"))
             {
                 Console.Clear();
-                StaffLogin("staff", "today123");
+                StaffLogin(staffUsername, staffPassword);
             }
             else if (num1.Equals("2"))
             {
@@ -310,18 +319,24 @@ namespace ToolLibrary
         {
             Console.Write("Enter first name: ");
             string firstName = Console.ReadLine();
+
             Console.Write("Enter last name: ");
             string lastName = Console.ReadLine();
+
             Console.Write("Enter contact number: ");
             string contactNumber = Console.ReadLine();
+
             Console.Write("Enter PIN: ");
             string pin = Console.ReadLine();
+
             Member aMember = new Member();
             aMember.FirstName = firstName;
             aMember.LastName = lastName;
             aMember.ContactNumber = contactNumber;
             aMember.PIN = pin;
+
             t.add(aMember);
+
             Console.WriteLine("\n>>> New member '{0} {1}' added successfully to the system.\n", aMember.FirstName, aMember.LastName);
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
@@ -340,10 +355,8 @@ namespace ToolLibrary
                 //read the number of member
                 int b = Int32.Parse(Console.ReadLine());
 
-                // check member size
                 if (b > registeredMembers.Length || b < 1)
                 {
-                    // alert if there is no member 
                     Console.WriteLine("\nMember not found.");
                 }
                 else
@@ -395,7 +408,7 @@ namespace ToolLibrary
             Console.WriteLine("5. Display top three (3) most frequently rented tools");
             Console.WriteLine("0. Return to main menu");
             Console.WriteLine("=========================================\n");
-            Print("Please make a selection (1-5, or 0 to return to main menu): ");
+            Console.Write("Please make a selection (1-5, or 0 to return to main menu): ");
             num3 = Console.ReadLine(); // read the number input
             if (num3.Equals("0"))
             {
@@ -414,17 +427,17 @@ namespace ToolLibrary
             // 3. Return a tool
             else if (num3.Equals("3"))
             {
-                //ReturnTool();
+                ReturnTool();
             }
             // 4. List all the tools that I am renting
             else if (num3.Equals("4"))
             {
-                //ListAllRentedTools
+                ListMyTools();
             }
             // 5. Display top three (3) most frequently rented tools
             else if (num3.Equals("5"))
             {
-                //DisplayTopThreeTools
+                DisplayTopThreeTools();
             }
         }
 
@@ -442,16 +455,60 @@ namespace ToolLibrary
         /* 2. Borrow a tool */
         static void BorrowTool()
         {
+            DisplayToolCategories();
+            Tool[] tools = (Tool[])t.toolCollection.toArray();
+            if (ToolsResult(tools))
+            {
+                Console.Write("Enter the name of the tool: ");
+                string toolName = Console.ReadLine();
+                Console.WriteLine();
 
+                for (int i = 0; i < tools.Length; i++)
+                {
+                    Tool tool = tools[i];
+                    if (toolName == tool.Name && tool.AvailableQuantity > 0)
+                    {
+                        t.borrowTool(loggedInMember, tools[i]);
+                        Console.WriteLine("You borrow '{0}'.\n", tool.Name);
+                        tool.NoBorrowings++;
+                        break;
+                    }
+                    else if (toolName == tool.Name && tool.AvailableQuantity <= 0)
+                    {
+                        Console.WriteLine("No tools to borrow.\n");
+                    }
+                }
+            }
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadLine();
+            MemberMenu();
         }
 
         /* 3. Return a tool */
         static void ReturnTool()
         {
-
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadLine();
+            MemberMenu();
         }
 
+        /* 4. List all tools that I am renting*/
+        static void ListMyTools()
+        {
+            t.displayBorrowingTools(loggedInMember);
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadLine();
+            MemberMenu();
+        }
         
+        /* 5. Display top three (3) most frequently rented tools */
+        static void DisplayTopThreeTools()
+        {
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadLine();
+            MemberMenu();
+        }
+
         // done // handle staff login using default values 
         static void StaffLogin(string username, string password)
         {
@@ -460,9 +517,9 @@ namespace ToolLibrary
             {
                 Console.WriteLine("Welcome to the Tool Library");
                 Console.WriteLine("==========Staff Login==========");
-                Print("Username: ");
+                Console.Write("Username: ");
                 username = Console.ReadLine();
-                Print("Password: ");
+                Console.Write("Password: ");
                 password = Console.ReadLine();
                 verifyStaff = username.Equals(staffUsername) && password.Equals(staffPassword);
                 if (verifyStaff == true)
@@ -524,6 +581,7 @@ namespace ToolLibrary
             }
         }
 
+        // display members
         private static bool MembersResult(Member[] members)
         {
             bool b;
@@ -544,6 +602,7 @@ namespace ToolLibrary
             return b;
         }
 
+        // display tools
         private static bool ToolsResult(Tool[] tools)
         {
             bool b;
@@ -566,10 +625,6 @@ namespace ToolLibrary
             return b;
         }
 
-        private static void Print(string text)
-        {
-            Console.Write(text);
-        }
         private static void invalidInput(string num)
         {
             Console.WriteLine("Error, input '{0}' is invalid", num);

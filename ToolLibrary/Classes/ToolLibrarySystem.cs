@@ -36,7 +36,7 @@ namespace ToolLibrary.Classes
             // reduce the available quantity
             aTool.AvailableQuantity--;
 
-            // add a tool to the member
+            // add member to tool
             aMember.addTool(aTool);
 
             // add member to tool
@@ -86,7 +86,15 @@ namespace ToolLibrary.Classes
         /* display all the tools that a member is borrowing */
         public void displayBorrowingTools(iMember aMember)
         {
-            throw new NotImplementedException();
+            string[] a = listTools(aMember);
+            if (a.Length != 0)
+            {
+                Console.WriteLine("You have not borrowed tools.");
+            }
+            else
+            {
+
+            }
         }
 
         // done /* display tools according to tool type */

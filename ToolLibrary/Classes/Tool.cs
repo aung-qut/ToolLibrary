@@ -10,7 +10,9 @@ namespace ToolLibrary.Classes
         private int quantity; // quantity field
         private int availableQuantity; // availableQuantity field
         private int noBorrowings; // noBorrowings field
-        private int borrowedQuantity;
+        private int borrowedQuantity; // borrowedQuantity field
+
+        private MemberCollection memberCollection = new MemberCollection();
 
         public string Name { get => name; set => name = value; }
         public int Quantity
@@ -34,18 +36,18 @@ namespace ToolLibrary.Classes
         {
             get
             {
-                throw new NotImplementedException();
+                return memberCollection;
             }
         }
 
         public void addBorrower(iMember aMember)
         {
-            throw new NotImplementedException();
+            memberCollection.add(aMember);
         }
 
         public void deleteBorrower(iMember aMember)
         {
-            throw new NotImplementedException();
+            memberCollection.delete(aMember);
         }
 
         public override string ToString()

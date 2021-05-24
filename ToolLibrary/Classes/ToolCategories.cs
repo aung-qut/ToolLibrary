@@ -7,9 +7,7 @@ namespace ToolLibrary.Classes
     class ToolCategories
     {
         string[] tools;
-        public ToolCollection[] gardeningTools;
 
-        // displaying tool categories
         public void DisplayToolCategories()
         {
             tools = new string[] { "Gardening tools", "Flooring tools", "Fencing tools", "Measuring tools", "Cleaning tools", "Painting tools", "Electronic tools", "Electricity tools", "Automotive tools" };
@@ -79,6 +77,7 @@ namespace ToolLibrary.Classes
             DisplayList(tools);
         }
 
+        // helper method for displaying arrays
         private void DisplayList(string[] s)
         {
             Console.WriteLine("      Select a tool type");

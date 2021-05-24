@@ -1,9 +1,6 @@
 ﻿// code borrowed from week 7 question 4 solution
 
-using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Linq;
 
 namespace ToolLibrary.Classes
 {
@@ -64,29 +61,18 @@ namespace ToolLibrary.Classes
         }
 
 
-        // helper methods below
+        //
+        // MemberCollection interfaces end here
+        //
+
+
+        // helper methods for BSTree starts
         private Member[] memberArray
         {
             get
             {
                 InOrderTraverse();
                 return memberList.ToArray();
-            }
-        }
-
-        private int countLeaves(BTreeNode node)
-        {
-            if (node == null)
-            {
-                return 0;
-            }
-            else if (node.LChild == null && node.RChild == null)
-            {
-                return 1;
-            }
-            else
-            {
-                return countLeaves(node.LChild) + countLeaves(node.RChild) + 1;
             }
         }
 
@@ -210,7 +196,7 @@ namespace ToolLibrary.Classes
         }
         /* -- BSTree Search methods end --*/
 
-        /* BSTree InOrderTraverse Method */
+        /* BSTree InOrderTraverse Methods */
         private void InOrderTraverse()
         {
             memberList = new List<Member>();
@@ -226,11 +212,6 @@ namespace ToolLibrary.Classes
                 InOrderTraverse(root.RChild);
             }
         }
-
-        // not neccessary
-        public void Clear()
-        {
-            root = null;
-        }
+        /* -- BSTree InOrderTraverse methods end */
     }
 }
