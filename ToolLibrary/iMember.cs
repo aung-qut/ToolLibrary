@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Assignment
+namespace ToolLibrary
 {
     //The specification of Member ADT
     interface iMember
@@ -31,7 +31,7 @@ namespace Assignment
             set;
         }
 
-        string[] Tools //get a list of tools that this memebr is currently holding
+        iTool[] Tools //get a list of tools that this memebr is currently holding
         {
             get;
         }
@@ -40,6 +40,6 @@ namespace Assignment
 
         void deleteTool(iTool aTool); //delete a given tool from the list of tools that this member is currently holding
 
-        override string ToString(); //return a string containing the first name, lastname, and contact phone number of this memeber
+        string ToString(); //return a string containing the first name, lastname, and contact phone number of this memeber
     }
 }

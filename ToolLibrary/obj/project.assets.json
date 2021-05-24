@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\n10500511\\source\\repos\\ToolLibrary\\ToolLibrary\\ToolLibrary.csproj",
+      "projectUniqueName": "C:\\Users\\n10500511\\Documents\\GitHub\\ToolLibrary\\ToolLibrary\\ToolLibrary.csproj",
       "projectName": "ToolLibrary",
-      "projectPath": "C:\\Users\\n10500511\\source\\repos\\ToolLibrary\\ToolLibrary\\ToolLibrary.csproj",
+      "projectPath": "C:\\Users\\n10500511\\Documents\\GitHub\\ToolLibrary\\ToolLibrary\\ToolLibrary.csproj",
       "packagesPath": "C:\\Users\\n10500511\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\n10500511\\source\\repos\\ToolLibrary\\ToolLibrary\\obj\\",
+      "outputPath": "C:\\Users\\n10500511\\Documents\\GitHub\\ToolLibrary\\ToolLibrary\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\n10500511\\AppData\\Roaming\\NuGet\\NuGet.Config",

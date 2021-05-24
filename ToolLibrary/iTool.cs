@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Assignment
+namespace ToolLibrary
 {
     //The specification of Tool ADT
     interface iTool
@@ -41,7 +41,7 @@ namespace Assignment
 
         void deleteBorrower(iMember aMember); //delte a member from the borrower list
 
-        override string ToString(); //return a string containning the name and the available quantity quantity this tool 
+        string ToString(); //return a string containning the name and the available quantity quantity this tool 
 
     }
 
