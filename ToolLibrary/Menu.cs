@@ -94,22 +94,6 @@ namespace ToolLibrary
         static void Main(string[] args)
         {
             // members added default to test the software
-            // adding member 1
-            Member member1 = new Member();
-            member1.FirstName = "Aung Khant";
-            member1.LastName = "Kyaw";
-            member1.ContactNumber = "0474268017";
-            member1.PIN = "0000";
-            t.add(member1);
-
-            // adding member 2
-            Member member2 = new Member();
-            member2.FirstName = "Saw Soe";
-            member2.LastName = "Moe";
-            member2.ContactNumber = "049640180";
-            member2.PIN = "0000";
-            t.add(member2);
-
             // adding member 3
             Member member3 = new Member();
             member3.FirstName = "a";
@@ -118,6 +102,29 @@ namespace ToolLibrary
             member3.PIN = "a";
             t.add(member3);
 
+            Tool tool1 = new Tool
+            {
+                Name = "Irwin 125mm Orbital Sander",
+                Quantity = 5
+            };
+
+            Tool tool2 = new Tool
+            {
+                Name = "Rocket Sanding Block Holder",
+                Quantity = 2
+            };
+
+            Tool tool3 = new Tool
+            {
+                Name = "PowerFit 120 Triangular Sander",
+                Quantity = 1
+            };
+
+            t.toolCollection = sandingTools;
+            t.add(tool1);
+            t.add(tool2);
+            t.add(tool3);
+
             // program starts with main menu
             MainMenu();
         }
@@ -125,7 +132,7 @@ namespace ToolLibrary
         /* Display contents for main menu */
         static void MainMenu()
         {
-            Console.WriteLine("Welcome to the Tool Library");
+            Console.WriteLine("Welcome to the Tool Library\n");
             Console.WriteLine("===========Main Menu===========");
             Console.WriteLine("1. Staff Login");
             Console.WriteLine("2. Member Login");
@@ -152,7 +159,7 @@ namespace ToolLibrary
         /* Menu items for staff menu */
         static void StaffMenu()
         {
-            Console.WriteLine("Welcome to the Tool Library");
+            Console.WriteLine("Welcome to the Tool Library\n");
             Console.WriteLine("================Staff Menu================");
             Console.WriteLine("1. Add a new tool");
             Console.WriteLine("2. Add new pieces of an existing tool");
@@ -181,9 +188,11 @@ namespace ToolLibrary
                 Console.WriteLine();
 
                 // add name to tool object name with default quantity 1
-                Tool newTool = new Tool();
-                newTool.Name = toolName;
-                newTool.Quantity = 1;
+                Tool newTool = new Tool
+                {
+                    Name = toolName,
+                    Quantity = 1
+                };
 
                 // Display all the nine (9) tool categories 
                 DisplayToolCategories();

@@ -50,7 +50,7 @@ namespace ToolLibrary.Classes
 
         public override string ToString()
         {
-            return "Tool name - " + this.name + " | Available Quantity - " + this.availableQuantity + " | Total Quantity - " + this.quantity + "\n";
+            return "Tool name - " + name + " | Available Quantity - " + availableQuantity + " | Total Quantity - " + quantity;
         }
     }
 }
