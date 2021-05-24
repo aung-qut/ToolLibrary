@@ -92,18 +92,6 @@ namespace ToolLibrary
         private static ToolCollection braking = new ToolCollection();
         private static ToolCollection drivetrain = new ToolCollection();
 
-        public Menu()
-        {
-            flooringTools = new ToolCollection[] { scrapers, floorLasers, floorLevellingTools, floorLevellingMaterials, floorHandTools, tilingTools };
-            fencingTools = new ToolCollection[] { fHandTools, electricFencing, steelFencingTools, powerTools, fencingAccessories };
-            measuringTools = new ToolCollection[] { distanceTools, laserMeasurer, measuringJugs, temperatureAndHumidityTools, levellingTools, markers };
-            cleaningTools = new ToolCollection[] { draining, carCleaning, vacuum, pressureCleaners, poolCleaning, floorCleaning };
-            paintingTools = new ToolCollection[] { sandingTools, brushes, rollers, paintRemovalTools, paintScrapers, sprayers };
-            electronicTools = new ToolCollection[] { voltageTester, oscilloscopes, thermalImaging, dataTestTool, insulationTesters };
-            electricityTools = new ToolCollection[] { testEquipment, safetyEquipment, basicHandTools, circuitProtection, cableTools };
-            automotiveTools = new ToolCollection[] { jacks, airCompressors, batteryChargers, socketTools, braking, drivetrain };
-        }
-
         /* Main method for the program */
         static void Main(string[] args)
         {
@@ -203,132 +191,7 @@ namespace ToolLibrary
 
                 t.add(newTool);
 
-                // select a category
-                //c1 = Int32.Parse(Console.ReadLine());
-
-                // Display all the tool types of the selected category 
-                //if (c1.Equals("1"))
-                //{
-                //    // display gardening tools 
-                //    cat.DisplayGardeningTools();
-
-                //    // ask the user input 
-                //    Console.Write("\nPlease select the number: ");
-
-                //    // read the user input 
-                //    c2 = Int32.Parse(Console.ReadLine());
-
-                //    if (c2 == 1)
-                //    {
-                //        t.toolCollection = lineTrimmers;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 2)
-                //    {
-                //        t.toolCollection = lawnMowers;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 3)
-                //    {
-                //        t.toolCollection = handTools;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 4)
-                //    {
-                //        t.toolCollection = wheelbarrows;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 5)
-                //    {
-                //        t.toolCollection = gardenPowerTools;
-                //        t.add(newTool);
-                //    }
-                //}
-
-                //// 2. Flooring tools
-                //else if (c1.Equals("2"))
-                //{
-                //    //cat.DisplayFlooringTools();
-
-                //    Console.Write("\nPlease select the number: ");
-
-                //    c2 = Int32.Parse(Console.ReadLine());
-
-                //    if (c2 == 1)
-                //    {
-                //        t.toolCollection = scrapers;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 2)
-                //    {
-                //        t.toolCollection = floorLasers;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 3)
-                //    {
-                //        t.toolCollection = floorLevellingTools;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 4)
-                //    {
-                //        t.toolCollection = floorLevellingMaterials;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 5)
-                //    {
-                //        t.toolCollection = floorHandTools;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 6)
-                //    {
-                //        t.toolCollection = tilingTools;
-                //        t.add(newTool);
-                //    }
-                //}
-
-                //// 3. Fencing tools
-                //else if (c1.Equals("3"))
-                //{
-                //    //cat.DisplayFlooringTools();
-
-                //    Console.Write("\nPlease select the number: ");
-
-                //    c2 = Int32.Parse(Console.ReadLine());
-
-                //    if (c2 == 1)
-                //    {
-                //        t.toolCollection = scrapers;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 2)
-                //    {
-                //        t.toolCollection = floorLasers;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 3)
-                //    {
-                //        t.toolCollection = floorLevellingTools;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 4)
-                //    {
-                //        t.toolCollection = floorLevellingMaterials;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 5)
-                //    {
-                //        t.toolCollection = floorHandTools;
-                //        t.add(newTool);
-                //    }
-                //    else if (c2 == 6)
-                //    {
-                //        t.toolCollection = tilingTools;
-                //        t.add(newTool);
-                //    }
-                //}
                 Console.WriteLine("\n>>> Tool '{0}' added to the system successfully.", newTool.Name);
-
-                ToolsResult((Tool[])t.toolCollection.toArray());
 
                 Console.WriteLine("\nPress any key to continue...\n");
                 Console.ReadLine();
@@ -450,7 +313,7 @@ namespace ToolLibrary
         static void FindContactNumber(string firstName, string lastName)
         {
             Member[] registerMembers = (Member[])t.memberCollection.toArray();
-            if(registerMembers.Length > 0)
+            if (registerMembers.Length > 0)
             {
                 for (int i = 0; i < registerMembers.Length; i++)
                 {
@@ -614,7 +477,7 @@ namespace ToolLibrary
                 // if details matched, make the member logged in member
                 if (registeredMembers[i].FirstName == firstName && registeredMembers[i].LastName == lastName && registeredMembers[i].PIN == pin)
                     loggedInMember = registeredMembers[i];
-            } 
+            }
 
             // if there is no logged in member set to null and show main menu
             if (loggedInMember == null)
@@ -673,47 +536,6 @@ namespace ToolLibrary
             return b;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         private static void Print(string text)
         {
             Console.Write(text);
@@ -732,37 +554,6 @@ namespace ToolLibrary
             Console.WriteLine("Error, input '{0}' is invalid", num);
         }
 
-        // link: https://stackoverflow.com/questions/856845/how-to-best-way-to-draw-table-in-console-app-c
-        private static void PrintDash()
-        {
-            Console.WriteLine(new string('-', tableWidth));
-        }
-
-        private static void PrintRow(params string[] columns)
-        {
-            int width = (tableWidth - columns.Length) / columns.Length;
-            string row = "|";
-
-            foreach (string column in columns)
-            {
-                row += AlignCentre(column, width) + "|";
-            }
-            Console.WriteLine(row);
-        }
-
-        private static string AlignCentre(string text, int width)
-        {
-            text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
-            if (string.IsNullOrEmpty(text))
-            {
-                return new string(' ', width);
-            }
-            else
-            {
-                return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
-            }
-        }
-
         // not done yet
         // ref: https://www.geeksforgeeks.org/heap-sort/
         private static void HeapSort(Tool[] t)
@@ -778,31 +569,8 @@ namespace ToolLibrary
 
         private static void DisplayToolCategories()
         {
-            //Console.WriteLine("Select a category");
-            //Console.WriteLine("=================");
-            //Console.WriteLine("1. Gardening Tools");
-            //Console.WriteLine("2. Flooring Tools");
-            //Console.WriteLine("3. Fencing Tools");
-            //Console.WriteLine("4. Measuring Tools");
-            //Console.WriteLine("5. Cleaning Tools");
-            //Console.WriteLine("6. Painting Tools");
-            //Console.WriteLine("7. Electronic Tools");
-            //Console.WriteLine("8. Electricity Tools");
-            //Console.WriteLine("9. Automotive Tools");
-            //Console.Write("Select a category (1-9): ");
-
-            //int choice1 = Int32.Parse(Console.ReadLine());
-            //if (choice1 == 1)
-            //{
-            //    Console.WriteLine("\nGardening Tools");
-            //    Console.WriteLine("===============");
-            //    Console.WriteLine("1. Line Trimmers");
-            //    Console.WriteLine("2. Lawn Mowers");
-            //}
-
-
             ToolCategories tc = new ToolCategories();
-            
+
             tc.DisplayToolCategories();
 
             Console.Write("\nPlease make a selection (1-9): ");
@@ -811,25 +579,84 @@ namespace ToolLibrary
 
             int choice2;
 
+            // 1. Gardening Tools
             if (choice1 == 1)
             {
                 Console.WriteLine("1. Line trimmers");
                 Console.WriteLine("2. Lawn Mowers");
-
                 Console.Write("\nPlease make a selection: ");
-
                 choice2 = Int32.Parse(Console.ReadLine());
-
-                // change to array in ToolCategories here
-                //t.toolCollection = lineTrimmers; // this one works well
-
                 t.toolCollection = GardeningTools(choice2 - 1);
+            }
+            // 2. Flooring Tools
+            else if (choice1 == 2)
+            {
+                tc.DisplayFlooringTools();
+                Console.Write("\nPlease make a selection: ");
+                choice2 = Int32.Parse(Console.ReadLine());
+                t.toolCollection = FlooringTools(choice2 - 1);
+            }
+            // 3. Fencing Tools
+            else if (choice1 == 3)
+            {
+                tc.DisplayFencingTools();
+                Console.Write("\nPlease make a selection: ");
+                choice2 = Int32.Parse(Console.ReadLine());
+                t.toolCollection = FencingTools(choice2 - 1);
+            }
+            // 4. Measuring Tools
+            else if (choice1 == 4)
+            {
+                tc.DisplayMeasuringTools();
+                Console.Write("\nPlease make a selection: ");
+                choice2 = Int32.Parse(Console.ReadLine());
+                t.toolCollection = MeasuringTools(choice2 - 1);
+            }
+            // 5. Cleaning Tools
+            else if (choice1 == 5)
+            {
+                tc.DisplayMeasuringTools();
+                Console.Write("\nPlease make a selection: ");
+                choice2 = Int32.Parse(Console.ReadLine());
+                t.toolCollection = CleaningTools(choice2 - 1);
+            }
+            // 6. Painting Tools
+            else if (choice1 == 6)
+            {
+                tc.DisplayMeasuringTools();
+                Console.Write("\nPlease make a selection: ");
+                choice2 = Int32.Parse(Console.ReadLine());
+                t.toolCollection = PaintingTools(choice2 - 1);
+            }
+            // 7. Electronic Tools
+            else if (choice1 == 7)
+            {
+                tc.DisplayMeasuringTools();
+                Console.Write("\nPlease make a selection: ");
+                choice2 = Int32.Parse(Console.ReadLine());
+                t.toolCollection = ElectronicTools(choice2 - 1);
+            }
+            // 8. Electricity Tools
+            else if (choice1 == 8)
+            {
+                tc.DisplayMeasuringTools();
+                Console.Write("\nPlease make a selection: ");
+                choice2 = Int32.Parse(Console.ReadLine());
+                t.toolCollection = ElectricityTools(choice2 - 1);
+            }
+            // 9. Automotive Tools
+            else if (choice1 == 9)
+            {
+                tc.DisplayMeasuringTools();
+                Console.Write("\nPlease make a selection: ");
+                choice2 = Int32.Parse(Console.ReadLine());
+                t.toolCollection = AutomotiveTools(choice2 - 1);
             }
         }
 
         static ToolCollection category;
-        public static ToolCollection GardeningTools(int j)
-        {   
+        private static ToolCollection GardeningTools(int j)
+        {
             gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers, handTools, wheelbarrows, gardenPowerTools };
             for (int i = 0; i < gardeningTools.Length; i++)
             {
@@ -840,7 +667,83 @@ namespace ToolLibrary
 
         private static ToolCollection FlooringTools(int j)
         {
+            flooringTools = new ToolCollection[] { scrapers, floorLasers, floorLevellingTools, floorLevellingMaterials, floorHandTools, tilingTools };
+            for (int i = 0; i < flooringTools.Length; i++)
+            {
+                category = flooringTools[j];
+            }
+            return category;
+        }
 
+        private static ToolCollection FencingTools(int j)
+        {
+            fencingTools = new ToolCollection[] { fHandTools, electricFencing, steelFencingTools, powerTools, fencingAccessories };
+            for (int i = 0; i < fencingTools.Length; i++)
+            {
+                category = fencingTools[j];
+            }
+            return category;
+        }
+
+        private static ToolCollection MeasuringTools(int j)
+        {
+            measuringTools = new ToolCollection[] { distanceTools, laserMeasurer, measuringJugs, temperatureAndHumidityTools, levellingTools, markers };
+            for (int i = 0; i < measuringTools.Length; i++)
+            {
+                category = measuringTools[j];
+            }
+            return category;
+        }
+
+        private static ToolCollection CleaningTools(int j)
+        {
+            cleaningTools = new ToolCollection[] { draining, carCleaning, vacuum, pressureCleaners, poolCleaning, floorCleaning };
+
+            for (int i = 0; i < cleaningTools.Length; i++)
+            {
+                category = cleaningTools[j];
+            }
+            return category;
+        }
+        private static ToolCollection PaintingTools(int j)
+        {
+            paintingTools = new ToolCollection[] { sandingTools, brushes, rollers, paintRemovalTools, paintScrapers, sprayers };
+
+            for (int i = 0; i < paintingTools.Length; i++)
+            {
+                category = paintingTools[j];
+            }
+            return category;
+        }
+        private static ToolCollection ElectronicTools(int j)
+        {
+            electronicTools = new ToolCollection[] { voltageTester, oscilloscopes, thermalImaging, dataTestTool, insulationTesters };
+
+            for (int i = 0; i < electronicTools.Length; i++)
+            {
+                category = electronicTools[j];
+            }
+            return category;
+        }
+        private static ToolCollection ElectricityTools(int j)
+        {
+            electricityTools = new ToolCollection[] { testEquipment, safetyEquipment, basicHandTools, circuitProtection, cableTools };
+
+            for (int i = 0; i < electricityTools.Length; i++)
+            {
+                category = electricityTools[j];
+            }
+            return category;
+        }
+        private static ToolCollection AutomotiveTools(int j)
+        {
+            automotiveTools = new ToolCollection[] { jacks, airCompressors, batteryChargers, socketTools, braking, drivetrain };
+
+            for (int i = 0; i < automotiveTools.Length; i++)
+            {
+                category = automotiveTools[j];
+            }
+            return category;
         }
     }
 }

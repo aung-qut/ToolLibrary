@@ -29,26 +29,26 @@ namespace ToolLibrary.Classes
             return gardeningTools;
         }
 
-        //// display 2. Flooring Tools
-        //public void DisplayFlooringTools()
-        //{
-        //    tools = new string[] { "Scrapers", "Floor Lasers", "Floor Levelling Tools", "Floor Levelling Materials", "Floor Hand Tools", "Tiling Tools" };
-        //    DisplayList(tools);
-        //}
+        // display 2. Flooring Tools
+        public void DisplayFlooringTools()
+        {
+            tools = new string[] { "Scrapers", "Floor Lasers", "Floor Levelling Tools", "Floor Levelling Materials", "Floor Hand Tools", "Tiling Tools" };
+            DisplayList(tools);
+        }
 
-        //// display 3. Fencing Tools
-        //public void DisplayFencingTools()
-        //{
-        //    tools = new string[] { "Hand Tools", "Electric Fencing", "Steel Fencing Tools", "Power Tools", "Fencing Accessories" };
-        //    DisplayList(tools);
-        //}
+        // display 3. Fencing Tools
+        public void DisplayFencingTools()
+        {
+            tools = new string[] { "Hand Tools", "Electric Fencing", "Steel Fencing Tools", "Power Tools", "Fencing Accessories" };
+            DisplayList(tools);
+        }
 
-        //// display 4. Measuring Tools
-        //public void DisplayMeasuringTools()
-        //{
-        //    tools = new string[] { "Distance Tools", "Laser Measurer", "Measuring Jugs", "Temperature & Humidity Tools", "Levelling Tools", "Markers" };
-        //    DisplayList(tools);
-        //}
+        // display 4. Measuring Tools
+        public void DisplayMeasuringTools()
+        {
+            tools = new string[] { "Distance Tools", "Laser Measurer", "Measuring Jugs", "Temperature & Humidity Tools", "Levelling Tools", "Markers" };
+            DisplayList(tools);
+        }
 
         //// display 5. Cleaning Tools
         //public void DisplayCleaningTools()
