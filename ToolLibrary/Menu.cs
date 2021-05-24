@@ -94,7 +94,6 @@ namespace ToolLibrary
 
         public Menu()
         {
-            gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers, handTools, wheelbarrows, gardenPowerTools };
             flooringTools = new ToolCollection[] { scrapers, floorLasers, floorLevellingTools, floorLevellingMaterials, floorHandTools, tilingTools };
             fencingTools = new ToolCollection[] { fHandTools, electricFencing, steelFencingTools, powerTools, fencingAccessories };
             measuringTools = new ToolCollection[] { distanceTools, laserMeasurer, measuringJugs, temperatureAndHumidityTools, levellingTools, markers };
@@ -800,6 +799,8 @@ namespace ToolLibrary
             //    Console.WriteLine("1. Line Trimmers");
             //    Console.WriteLine("2. Lawn Mowers");
             //}
+
+
             ToolCategories tc = new ToolCategories();
             
             tc.DisplayToolCategories();
@@ -812,18 +813,34 @@ namespace ToolLibrary
 
             if (choice1 == 1)
             {
-                tc.DisplayGardeningTools();
+                Console.WriteLine("1. Line trimmers");
+                Console.WriteLine("2. Lawn Mowers");
 
                 Console.Write("\nPlease make a selection: ");
 
                 choice2 = Int32.Parse(Console.ReadLine());
 
-
                 // change to array in ToolCategories here
-                t.toolCollection = lineTrimmers;
+                //t.toolCollection = lineTrimmers; // this one works well
 
-                Console.Write("index - " + (choice2 - 1));
+                t.toolCollection = GardeningTools(choice2 - 1);
             }
+        }
+
+        static ToolCollection category;
+        public static ToolCollection GardeningTools(int j)
+        {   
+            gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers, handTools, wheelbarrows, gardenPowerTools };
+            for (int i = 0; i < gardeningTools.Length; i++)
+            {
+                category = gardeningTools[j];
+            }
+            return category;
+        }
+
+        private static ToolCollection FlooringTools(int j)
+        {
+
         }
     }
 }

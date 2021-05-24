@@ -8,6 +8,8 @@ namespace ToolLibrary.Classes
     {
         string[] tools;
         public ToolCollection[] gardeningTools;
+        ToolCollection lineTrimmers = new ToolCollection();
+        ToolCollection lawnMowers = new ToolCollection();
 
         // displaying tool categories
         public void DisplayToolCategories()
@@ -21,9 +23,7 @@ namespace ToolLibrary.Classes
         // display 1. Gardening Tools
         public ToolCollection[] DisplayGardeningTools()
         {
-            string[] gardeningToolsString = new string[] { "line trimmers", "lawn mowers" };
-            ToolCollection lineTrimmers = new ToolCollection();
-            ToolCollection lawnMowers = new ToolCollection();
+            string[] gardeningToolsString = new string[] { "Line trimmers", "Lawn mowers" };
             gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers };
             DisplayList(gardeningToolsString);
             return gardeningTools;
