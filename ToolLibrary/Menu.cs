@@ -29,10 +29,80 @@ namespace ToolLibrary
         private static ToolCollection lawnMowers = new ToolCollection();
         private static ToolCollection handTools = new ToolCollection();
         private static ToolCollection wheelbarrows = new ToolCollection();
+        private static ToolCollection gardenPowerTools = new ToolCollection();
+
+        public static ToolCollection[] flooringTools;
+        private static ToolCollection scrapers = new ToolCollection();
+        private static ToolCollection floorLasers = new ToolCollection();
+        private static ToolCollection floorLevellingTools = new ToolCollection();
+        private static ToolCollection floorLevellingMaterials = new ToolCollection();
+        private static ToolCollection floorHandTools = new ToolCollection();
+        private static ToolCollection tilingTools = new ToolCollection();
+
+        public static ToolCollection[] fencingTools;
+        private static ToolCollection fHandTools = new ToolCollection();
+        private static ToolCollection electricFencing = new ToolCollection();
+        private static ToolCollection steelFencingTools = new ToolCollection();
+        private static ToolCollection powerTools = new ToolCollection();
+        private static ToolCollection fencingAccessories = new ToolCollection();
+
+        public static ToolCollection[] measuringTools;
+        private static ToolCollection distanceTools = new ToolCollection();
+        private static ToolCollection laserMeasurer = new ToolCollection();
+        private static ToolCollection measuringJugs = new ToolCollection();
+        private static ToolCollection temperatureAndHumidityTools = new ToolCollection();
+        private static ToolCollection levellingTools = new ToolCollection();
+        private static ToolCollection markers = new ToolCollection();
+
+        public static ToolCollection[] cleaningTools;
+        private static ToolCollection draining = new ToolCollection();
+        private static ToolCollection carCleaning = new ToolCollection();
+        private static ToolCollection vacuum = new ToolCollection();
+        private static ToolCollection pressureCleaners = new ToolCollection();
+        private static ToolCollection poolCleaning = new ToolCollection();
+        private static ToolCollection floorCleaning = new ToolCollection();
+
+        public static ToolCollection[] paintingTools;
+        private static ToolCollection sandingTools = new ToolCollection();
+        private static ToolCollection brushes = new ToolCollection();
+        private static ToolCollection rollers = new ToolCollection();
+        private static ToolCollection paintRemovalTools = new ToolCollection();
+        private static ToolCollection paintScrapers = new ToolCollection();
+        private static ToolCollection sprayers = new ToolCollection();
+
+        public static ToolCollection[] electronicTools;
+        private static ToolCollection voltageTester = new ToolCollection();
+        private static ToolCollection oscilloscopes = new ToolCollection();
+        private static ToolCollection thermalImaging = new ToolCollection();
+        private static ToolCollection dataTestTool = new ToolCollection();
+        private static ToolCollection insulationTesters = new ToolCollection();
+
+        public static ToolCollection[] electricityTools;
+        private static ToolCollection testEquipment = new ToolCollection();
+        private static ToolCollection safetyEquipment = new ToolCollection();
+        private static ToolCollection basicHandTools = new ToolCollection();
+        private static ToolCollection circuitProtection = new ToolCollection();
+        private static ToolCollection cableTools = new ToolCollection();
+
+        public static ToolCollection[] automotiveTools;
+        private static ToolCollection jacks = new ToolCollection();
+        private static ToolCollection airCompressors = new ToolCollection();
+        private static ToolCollection batteryChargers = new ToolCollection();
+        private static ToolCollection socketTools = new ToolCollection();
+        private static ToolCollection braking = new ToolCollection();
+        private static ToolCollection drivetrain = new ToolCollection();
 
         public Menu()
         {
-            gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers, handTools, wheelbarrows };
+            gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers, handTools, wheelbarrows, gardenPowerTools };
+            flooringTools = new ToolCollection[] { scrapers, floorLasers, floorLevellingTools, floorLevellingMaterials, floorHandTools, tilingTools };
+            fencingTools = new ToolCollection[] { fHandTools, electricFencing, steelFencingTools, powerTools, fencingAccessories };
+            measuringTools = new ToolCollection[] { distanceTools, laserMeasurer, measuringJugs, temperatureAndHumidityTools, levellingTools, markers };
+            cleaningTools = new ToolCollection[] { draining, carCleaning, vacuum, pressureCleaners, poolCleaning, floorCleaning };
+            paintingTools = new ToolCollection[] { sandingTools, brushes, rollers, paintRemovalTools, paintScrapers, sprayers };
+            electronicTools = new ToolCollection[] { voltageTester, oscilloscopes, thermalImaging, dataTestTool, insulationTesters };
+            electricityTools = new ToolCollection[] { testEquipment, safetyEquipment, basicHandTools, circuitProtection, cableTools };
+            automotiveTools = new ToolCollection[] { jacks, airCompressors, batteryChargers, socketTools, braking, drivetrain };
         }
 
         /* Main method for the program */
@@ -55,7 +125,7 @@ namespace ToolLibrary
             Member member3 = new Member();
             member3.FirstName = "a";
             member3.LastName = "a";
-            member3.ContactNumber = "049640180";
+            member3.ContactNumber = "a";
             member3.PIN = "a";
             t.add(member3);
 
@@ -94,7 +164,7 @@ namespace ToolLibrary
         static void StaffMenu()
         {
             ToolCategories cat = new ToolCategories();
-            string c1;
+            int c1;
             int c2;
             PrintLineTitle();
             PrintLine("================Staff Menu================");
@@ -105,8 +175,8 @@ namespace ToolLibrary
             PrintLine("5. Remove a member");
             PrintLine("6. Find the contact number of a member");
             PrintLine("0. Return to main menu");
-            PrintLine("==========================================\n");
-            Print("Please make a selection (1-6, or 0 to return to main menu): ");
+            PrintLine("==========================================");
+            Print("\nPlease make a selection (1-6, or 0 to return to main menu): ");
             num2 = Console.ReadLine();
 
             if (num2.Equals("0"))
@@ -117,46 +187,154 @@ namespace ToolLibrary
             // 1. Add a new tool
             else if (num2.Equals("1"))
             {
-                // enter tool name
+                // enter tool name 
                 Console.Write("\nEnter the name of a new tool: ");
+
+                // read the tool name
                 string toolName = Console.ReadLine();
 
+                // add name to tool object name with default quantity 1
                 Tool newTool = new Tool();
                 newTool.Name = toolName;
                 newTool.Quantity = 1;
 
-                // Display all the nine (9) tool categories
-                cat.DisplayToolCategories();
+                // Display all the nine (9) tool categories 
+                //cat.DisplayToolCategories();
+                DisplayToolCategories();
 
-                Console.Write("Please make a selection (1-9): ");
+                t.add(newTool);
 
                 // select a category
-                c1 = Console.ReadLine();
+                //c1 = Int32.Parse(Console.ReadLine());
 
-                ToolCollection temp = null;
-                // Display all the tool types of the selected category
-                if (c1.Equals("1"))
-                {
-                    cat.DisplayGardeningTools();
+                // Display all the tool types of the selected category 
+                //if (c1.Equals("1"))
+                //{
+                //    // display gardening tools 
+                //    cat.DisplayGardeningTools();
 
-                    c2 = Int32.Parse(Console.ReadLine());
+                //    // ask the user input 
+                //    Console.Write("\nPlease select the number: ");
 
-                    if (c2 == 1)
-                    {
-                        t.toolCollection = lineTrimmers;
-                        t.add(newTool);
-                    }
-                    else if (c2 == 2)
-                    {
-                        t.toolCollection = lawnMowers;
-                        t.add(newTool);
-                    }
+                //    // read the user input 
+                //    c2 = Int32.Parse(Console.ReadLine());
 
-                }
+                //    if (c2 == 1)
+                //    {
+                //        t.toolCollection = lineTrimmers;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 2)
+                //    {
+                //        t.toolCollection = lawnMowers;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 3)
+                //    {
+                //        t.toolCollection = handTools;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 4)
+                //    {
+                //        t.toolCollection = wheelbarrows;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 5)
+                //    {
+                //        t.toolCollection = gardenPowerTools;
+                //        t.add(newTool);
+                //    }
+                //}
+
+                //// 2. Flooring tools
+                //else if (c1.Equals("2"))
+                //{
+                //    //cat.DisplayFlooringTools();
+
+                //    Console.Write("\nPlease select the number: ");
+
+                //    c2 = Int32.Parse(Console.ReadLine());
+
+                //    if (c2 == 1)
+                //    {
+                //        t.toolCollection = scrapers;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 2)
+                //    {
+                //        t.toolCollection = floorLasers;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 3)
+                //    {
+                //        t.toolCollection = floorLevellingTools;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 4)
+                //    {
+                //        t.toolCollection = floorLevellingMaterials;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 5)
+                //    {
+                //        t.toolCollection = floorHandTools;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 6)
+                //    {
+                //        t.toolCollection = tilingTools;
+                //        t.add(newTool);
+                //    }
+                //}
+
+                //// 3. Fencing tools
+                //else if (c1.Equals("3"))
+                //{
+                //    //cat.DisplayFlooringTools();
+
+                //    Console.Write("\nPlease select the number: ");
+
+                //    c2 = Int32.Parse(Console.ReadLine());
+
+                //    if (c2 == 1)
+                //    {
+                //        t.toolCollection = scrapers;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 2)
+                //    {
+                //        t.toolCollection = floorLasers;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 3)
+                //    {
+                //        t.toolCollection = floorLevellingTools;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 4)
+                //    {
+                //        t.toolCollection = floorLevellingMaterials;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 5)
+                //    {
+                //        t.toolCollection = floorHandTools;
+                //        t.add(newTool);
+                //    }
+                //    else if (c2 == 6)
+                //    {
+                //        t.toolCollection = tilingTools;
+                //        t.add(newTool);
+                //    }
+                //}
                 Console.WriteLine("\n>>> Tool '{0}' added to the system successfully.", newTool.Name);
-                Console.WriteLine("Press any key to continue...\n");
+
+                ToolsResult((Tool[])t.toolCollection.toArray());
+
+                Console.WriteLine("\nPress any key to continue...\n");
                 Console.ReadLine();
 
+                // call Staff Menu when done
                 StaffMenu();
             }
 
@@ -169,7 +347,7 @@ namespace ToolLibrary
             // 3. Remove some pieces of a tool
             else if (num2.Equals("3"))
             {
-                cat.DisplayToolCategories();
+                //cat.DisplayToolCategories();
 
                 Tool aTool = new Tool();
 
@@ -307,7 +485,7 @@ namespace ToolLibrary
             {
                 MainMenu(); // show the main menu
             }
-            // done // 1. Display all the tools of a tool type
+            // partially done // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
             {
                 DisplayAllTools();
@@ -334,35 +512,39 @@ namespace ToolLibrary
             }
         }
 
-        /* 1. Display all the tools of a tool type */
+        // partially done but not all tool types /* 1. Display all the tools of a tool type */
         static void DisplayAllTools()
         {
             ToolCategories cat = new ToolCategories();
-            cat.DisplayToolCategories();
+            DisplayToolCategories();
 
-            int c1 = Int32.Parse(Console.ReadLine());
+            ToolsResult((Tool[])t.toolCollection.toArray());
+            Console.WriteLine();
 
-            if (c1 == 1)
-            {
-                cat.DisplayGardeningTools();
+            ////int choice1 = Int32.Parse(Console.ReadLine());
 
-                int c2 = Int32.Parse(Console.ReadLine());
+            ////if (choice1 == 1)
+            ////{
+            ////    cat.DisplayGardeningTools();
 
-                if (c2 == 1)
-                {
-                    t.toolCollection = lineTrimmers;
-                    ToolsResult((Tool[])t.toolCollection.toArray());
-                }
-                else if (c2 == 2)
-                {
-                    t.toolCollection = lawnMowers;
-                    ToolsResult((Tool[])t.toolCollection.toArray());
-                }
-            }
+            ////    int choice2 = Int32.Parse(Console.ReadLine());
+
+            ////    if (choice2 == 1)
+            ////    {
+            ////        t.toolCollection = cat.gardeningTools[0];
+            ////        ToolsResult((Tool[])t.toolCollection.toArray());
+            ////    }
+            ////    else if (choice2 == 2)
+            ////    {
+            ////        t.toolCollection = lawnMowers;
+            ////        ToolsResult((Tool[])t.toolCollection.toArray());
+            ////    }
+            ////}
 
             Console.WriteLine("\nPress any key to continue...");
 
             Console.ReadLine();
+
             MemberMenu();
         }
 
@@ -594,30 +776,54 @@ namespace ToolLibrary
 
             }
         }
-        
-        //private static void DisplayToolCategories()
-        //{
-        //    Console.WriteLine("Select a category");
-        //    Console.WriteLine("=================");
-        //    Console.WriteLine("1. Gardening Tools");
-        //    Console.WriteLine("2. Flooring Tools");
-        //    Console.WriteLine("3. Fencing Tools");
-        //    Console.WriteLine("4. Measuring Tools");
-        //    Console.WriteLine("5. Cleaning Tools");
-        //    Console.WriteLine("6. Painting Tools");
-        //    Console.WriteLine("7. Electronic Tools");
-        //    Console.WriteLine("8. Electricity Tools");
-        //    Console.WriteLine("9. Automotive Tools");
-        //    Console.Write("Select a category (1-9): ");
 
-        //    int choice1 = Int32.Parse(Console.ReadLine());
-        //    if (choice1 == 1)
-        //    {
-        //        Console.WriteLine("\nGardening Tools");
-        //        Console.WriteLine("===============");
-        //        Console.WriteLine("1. Line Trimmers");
-        //        Console.WriteLine("2. Lawn Mowers");
-        //    }
-        //}
+        private static void DisplayToolCategories()
+        {
+            //Console.WriteLine("Select a category");
+            //Console.WriteLine("=================");
+            //Console.WriteLine("1. Gardening Tools");
+            //Console.WriteLine("2. Flooring Tools");
+            //Console.WriteLine("3. Fencing Tools");
+            //Console.WriteLine("4. Measuring Tools");
+            //Console.WriteLine("5. Cleaning Tools");
+            //Console.WriteLine("6. Painting Tools");
+            //Console.WriteLine("7. Electronic Tools");
+            //Console.WriteLine("8. Electricity Tools");
+            //Console.WriteLine("9. Automotive Tools");
+            //Console.Write("Select a category (1-9): ");
+
+            //int choice1 = Int32.Parse(Console.ReadLine());
+            //if (choice1 == 1)
+            //{
+            //    Console.WriteLine("\nGardening Tools");
+            //    Console.WriteLine("===============");
+            //    Console.WriteLine("1. Line Trimmers");
+            //    Console.WriteLine("2. Lawn Mowers");
+            //}
+            ToolCategories tc = new ToolCategories();
+            
+            tc.DisplayToolCategories();
+
+            Console.Write("\nPlease make a selection (1-9): ");
+
+            int choice1 = Int32.Parse(Console.ReadLine());
+
+            int choice2;
+
+            if (choice1 == 1)
+            {
+                tc.DisplayGardeningTools();
+
+                Console.Write("\nPlease make a selection: ");
+
+                choice2 = Int32.Parse(Console.ReadLine());
+
+
+                // change to array in ToolCategories here
+                t.toolCollection = lineTrimmers;
+
+                Console.Write("index - " + (choice2 - 1));
+            }
+        }
     }
 }

@@ -9,8 +9,6 @@ namespace ToolLibrary.Classes
         public MemberCollection memberCollection = new MemberCollection();
         public ToolCollection toolCollection = new ToolCollection();
 
-        ToolCategories cat = new ToolCategories();
-
         // initialize array to store tools borrowed
         private Tool[] toolsBorrowed = new Tool[0];
         
@@ -48,7 +46,7 @@ namespace ToolLibrary.Classes
             toolsBorrowed = AddToolArr(toolsBorrowed, (Tool)aTool);
         }
 
-
+        // helper method
         private Tool[] AddToolArr(Tool[] tools, Tool aTool)
         {
             Tool[] newSizeTools = new Tool[tools.Length + 1];
@@ -85,6 +83,7 @@ namespace ToolLibrary.Classes
             memberCollection.delete(aMember);
         }
 
+        /* display all the tools that a member is borrowing */
         public void displayBorrowingTools(iMember aMember)
         {
             throw new NotImplementedException();
