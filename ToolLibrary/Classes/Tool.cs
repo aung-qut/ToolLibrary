@@ -10,9 +10,23 @@ namespace ToolLibrary.Classes
         private int quantity; // quantity field
         private int availableQuantity; // availableQuantity field
         private int noBorrowings; // noBorrowings field
+        private int borrowedQuantity;
 
         public string Name { get => name; set => name = value; }
-        public int Quantity { get => quantity; set => quantity = value; }
+        public int Quantity
+        {
+            get
+            {
+                return quantity;
+            }
+
+            set
+            {
+                borrowedQuantity = quantity - availableQuantity;
+                quantity = value;
+                availableQuantity = quantity - borrowedQuantity;
+            }
+        }
         public int AvailableQuantity { get => availableQuantity; set => availableQuantity = value; }
         public int NoBorrowings { get => noBorrowings; set => noBorrowings = value; }
 
@@ -36,7 +50,7 @@ namespace ToolLibrary.Classes
 
         public override string ToString()
         {
-            return "Tool name - " + this.name + "\nAvailable Quantity - " + this.availableQuantity + "\nTotal Quantity - " + this.quantity + "\n";
+            return "Tool name - " + this.name + " | Available Quantity - " + this.availableQuantity + " | Total Quantity - " + this.quantity + "\n";
         }
     }
 }

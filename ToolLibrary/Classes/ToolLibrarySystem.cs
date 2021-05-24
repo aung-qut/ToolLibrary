@@ -21,7 +21,7 @@ namespace ToolLibrary.Classes
         // done /* add new pieces of an existing tool to the system */
         public void add(iTool aTool, int quantity)
         {
-            aTool.Quantity++;
+            aTool.Quantity += quantity;
         }
 
         // done /* add a new member to the system */

@@ -18,11 +18,9 @@ namespace ToolLibrary
 
         // main method for the program to run
         static ToolLibrarySystem t = new ToolLibrarySystem();
-        static MemberCollection memberCollection = new MemberCollection();
-        static ToolCollection toolCollection = new ToolCollection();
         static Member loggedInMember;
 
-        static int tableWidth = 75;
+        static ToolCollection category;
 
         public static ToolCollection[] gardeningTools;
         private static ToolCollection lineTrimmers = new ToolCollection();
@@ -95,6 +93,8 @@ namespace ToolLibrary
         /* Main method for the program */
         static void Main(string[] args)
         {
+            // members added default to test the software
+            // adding member 1
             Member member1 = new Member();
             member1.FirstName = "Aung Khant";
             member1.LastName = "Kyaw";
@@ -102,6 +102,7 @@ namespace ToolLibrary
             member1.PIN = "0000";
             t.add(member1);
 
+            // adding member 2
             Member member2 = new Member();
             member2.FirstName = "Saw Soe";
             member2.LastName = "Moe";
@@ -109,6 +110,7 @@ namespace ToolLibrary
             member2.PIN = "0000";
             t.add(member2);
 
+            // adding member 3
             Member member3 = new Member();
             member3.FirstName = "a";
             member3.LastName = "a";
@@ -150,9 +152,6 @@ namespace ToolLibrary
         /* Menu items for staff menu */
         static void StaffMenu()
         {
-            ToolCategories cat = new ToolCategories();
-            int c1;
-            int c2;
             PrintLineTitle();
             PrintLine("================Staff Menu================");
             PrintLine("1. Add a new tool");
@@ -171,7 +170,7 @@ namespace ToolLibrary
                 MainMenu();
             }
 
-            // 1. Add a new tool
+            // done // 1. Add a new tool
             else if (num2.Equals("1"))
             {
                 // enter tool name 
@@ -186,9 +185,9 @@ namespace ToolLibrary
                 newTool.Quantity = 1;
 
                 // Display all the nine (9) tool categories 
-                //cat.DisplayToolCategories();
                 DisplayToolCategories();
 
+                // add the tool to the system
                 t.add(newTool);
 
                 Console.WriteLine("\n>>> Tool '{0}' added to the system successfully.", newTool.Name);
@@ -196,7 +195,7 @@ namespace ToolLibrary
                 Console.WriteLine("\nPress any key to continue...\n");
                 Console.ReadLine();
 
-                // call Staff Menu when done
+                // call Staff Menu when any key is pressed
                 StaffMenu();
             }
 
@@ -209,8 +208,6 @@ namespace ToolLibrary
             // 3. Remove some pieces of a tool
             else if (num2.Equals("3"))
             {
-                //cat.DisplayToolCategories();
-
                 Tool aTool = new Tool();
 
                 int quantity = Int32.Parse(Console.ReadLine());
@@ -247,10 +244,28 @@ namespace ToolLibrary
             }
         }
 
-        /* 2. add quantity of tools */
+        // done /* 2. add quantity of tools */
         static void AddPieces()
         {
+            // display the tool categories 
+            DisplayToolCategories();
             Tool[] tools = (Tool[])t.toolCollection.toArray();
+
+            if (ToolsResult(tools))
+            {
+                Console.Write("Please make a selection: ");
+                int choice = Int32.Parse(Console.ReadLine());
+                Tool selectedTool = tools[choice - 1];
+
+                Console.Write("Enter quantity: ");
+                int quantity = Int32.Parse(Console.ReadLine());
+                t.add(selectedTool, quantity);
+
+                Console.WriteLine("\n>>> '{0}' more tool(s) added to '{1}'.", quantity, selectedTool.Name);
+            }
+            Console.WriteLine("\nPress any key to continue...");
+            Console.Read();
+            StaffMenu();
         }
 
         /* 3. remove quantity of tools */
@@ -290,22 +305,30 @@ namespace ToolLibrary
             {
                 //ask the user input
                 Console.Write("Enter the number of member to remove: ");
+
+                //read the number of member
                 int b = Int32.Parse(Console.ReadLine());
 
+                // check member size
                 if (b > registeredMembers.Length || b < 1)
                 {
+                    // alert if there is no member 
                     Console.WriteLine("\nMember not found.");
                 }
                 else
                 {
+                    // search the member using index 
                     Member member = registeredMembers[b - 1];
-                    t.memberCollection.delete(member);
-                    Console.WriteLine("\n>>>Member '{0}' removed from the system.", member.FirstName);
-                }
 
-                Console.WriteLine("\nPress any key to continue...");
-                Console.ReadLine();
+                    // delete the member from the collection 
+                    t.memberCollection.delete(member);
+
+                    // message is shown on the screen when success
+                    Console.WriteLine("\n>>>Member '{0} {1}' removed from the system.", member.FirstName, member.LastName);
+                }
             }
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadLine();
             StaffMenu();
         }
 
@@ -347,7 +370,7 @@ namespace ToolLibrary
             {
                 MainMenu(); // show the main menu
             }
-            // partially done // 1. Display all the tools of a tool type
+            // done // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
             {
                 DisplayAllTools();
@@ -374,39 +397,14 @@ namespace ToolLibrary
             }
         }
 
-        // partially done but not all tool types /* 1. Display all the tools of a tool type */
+        // done /* 1. Display all the tools of a tool type */
         static void DisplayAllTools()
         {
-            ToolCategories cat = new ToolCategories();
             DisplayToolCategories();
-
             ToolsResult((Tool[])t.toolCollection.toArray());
             Console.WriteLine();
-
-            ////int choice1 = Int32.Parse(Console.ReadLine());
-
-            ////if (choice1 == 1)
-            ////{
-            ////    cat.DisplayGardeningTools();
-
-            ////    int choice2 = Int32.Parse(Console.ReadLine());
-
-            ////    if (choice2 == 1)
-            ////    {
-            ////        t.toolCollection = cat.gardeningTools[0];
-            ////        ToolsResult((Tool[])t.toolCollection.toArray());
-            ////    }
-            ////    else if (choice2 == 2)
-            ////    {
-            ////        t.toolCollection = lawnMowers;
-            ////        ToolsResult((Tool[])t.toolCollection.toArray());
-            ////    }
-            ////}
-
             Console.WriteLine("\nPress any key to continue...");
-
             Console.ReadLine();
-
             MemberMenu();
         }
 
@@ -422,7 +420,8 @@ namespace ToolLibrary
 
         }
 
-        // handle staff login using default values 
+        
+        // done // handle staff login using default values 
         static void StaffLogin(string username, string password)
         {
             bool verifyStaff;
@@ -523,7 +522,7 @@ namespace ToolLibrary
                 Console.WriteLine("==============================");
                 for (int i = 0; i < tools.Length; i++)
                 {
-                    Console.WriteLine("{0}. ", i + 1);
+                    Console.Write("{0}. ", i + 1);
                     t.displayTools(tools[i].ToString());
                 }
                 b = true;
@@ -582,8 +581,7 @@ namespace ToolLibrary
             // 1. Gardening Tools
             if (choice1 == 1)
             {
-                Console.WriteLine("1. Line trimmers");
-                Console.WriteLine("2. Lawn Mowers");
+                tc.DisplayGardeningTools();
                 Console.Write("\nPlease make a selection: ");
                 choice2 = Int32.Parse(Console.ReadLine());
                 t.toolCollection = GardeningTools(choice2 - 1);
@@ -615,7 +613,7 @@ namespace ToolLibrary
             // 5. Cleaning Tools
             else if (choice1 == 5)
             {
-                tc.DisplayMeasuringTools();
+                tc.DisplayCleaningTools();
                 Console.Write("\nPlease make a selection: ");
                 choice2 = Int32.Parse(Console.ReadLine());
                 t.toolCollection = CleaningTools(choice2 - 1);
@@ -623,7 +621,7 @@ namespace ToolLibrary
             // 6. Painting Tools
             else if (choice1 == 6)
             {
-                tc.DisplayMeasuringTools();
+                tc.DisplayPaintingTools();
                 Console.Write("\nPlease make a selection: ");
                 choice2 = Int32.Parse(Console.ReadLine());
                 t.toolCollection = PaintingTools(choice2 - 1);
@@ -631,7 +629,7 @@ namespace ToolLibrary
             // 7. Electronic Tools
             else if (choice1 == 7)
             {
-                tc.DisplayMeasuringTools();
+                tc.DisplayElectronicTools();
                 Console.Write("\nPlease make a selection: ");
                 choice2 = Int32.Parse(Console.ReadLine());
                 t.toolCollection = ElectronicTools(choice2 - 1);
@@ -639,7 +637,7 @@ namespace ToolLibrary
             // 8. Electricity Tools
             else if (choice1 == 8)
             {
-                tc.DisplayMeasuringTools();
+                tc.DisplayElectricityTools();
                 Console.Write("\nPlease make a selection: ");
                 choice2 = Int32.Parse(Console.ReadLine());
                 t.toolCollection = ElectricityTools(choice2 - 1);
@@ -647,14 +645,12 @@ namespace ToolLibrary
             // 9. Automotive Tools
             else if (choice1 == 9)
             {
-                tc.DisplayMeasuringTools();
+                tc.DisplayAutomotiveTools();
                 Console.Write("\nPlease make a selection: ");
                 choice2 = Int32.Parse(Console.ReadLine());
                 t.toolCollection = AutomotiveTools(choice2 - 1);
             }
         }
-
-        static ToolCollection category;
         private static ToolCollection GardeningTools(int j)
         {
             gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers, handTools, wheelbarrows, gardenPowerTools };
