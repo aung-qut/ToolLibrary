@@ -8,15 +8,11 @@ namespace ToolLibrary.Classes
     {
         string[] tools;
         public ToolCollection[] gardeningTools;
-        ToolCollection lineTrimmers = new ToolCollection();
-        ToolCollection lawnMowers = new ToolCollection();
 
         // displaying tool categories
         public void DisplayToolCategories()
         {
-            Console.WriteLine("Select a category");
             tools = new string[] { "Gardening tools", "Flooring tools", "Fencing tools", "Measuring tools", "Cleaning tools", "Painting tools", "Electronic tools", "Electricity tools", "Automotive tools" };
-            Console.WriteLine("\n=====Tool Categories=====");
             DisplayList(tools);
         }
 
@@ -85,7 +81,7 @@ namespace ToolLibrary.Classes
 
         private void DisplayList(string[] s)
         {
-            Console.WriteLine("\n      Select a tool type");
+            Console.WriteLine("      Select a tool type");
             Console.WriteLine("================================");
             for (int i = 0; i < s.Length; i++)
             {
