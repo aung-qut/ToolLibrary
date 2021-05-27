@@ -59,6 +59,7 @@ namespace ToolLibrary.Classes
         // done /* delete a tool from the system */
         public void delete(iTool aTool)
         {
+            // delete a tool from the collection
             toolCollection.delete(aTool);
         }
 
@@ -89,15 +90,15 @@ namespace ToolLibrary.Classes
             string[] a = listTools(aMember);
             if (a.Length < 0)
             {
-                Console.WriteLine("There aer no borrowed tools.");
+                Console.WriteLine("\n>>> There are no borrowed tools.");
             }
             else
             {
-                Console.WriteLine("   My Borrowed tools"   );
+                Console.WriteLine("\n   My Borrowed tools"   );
                 Console.WriteLine("=======================");
                 for (int i = 0; i < a.Length; i++)
                 {
-                    Console.Write("{0}. {1} | Quantity - {2}\n", i + 1, a[i], toolCollection.Number - 2);
+                    Console.Write("{0}. {1}\n", i + 1, a[i]);
                 }
             }
         }
