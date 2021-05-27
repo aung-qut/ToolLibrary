@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ToolLibrary.Classes
+﻿namespace ToolLibrary.Classes
 {
     class Tool : iTool
     {
@@ -50,9 +46,11 @@ namespace ToolLibrary.Classes
             memberCollection.delete(aMember);
         }
 
+
         public override string ToString()
         {
-            return "Tool name - " + name + " | Available Quantity - " + availableQuantity + " | Total Quantity - " + quantity;
+            //return "Tool name - " + name + " | Available Quantity - " + availableQuantity + " | Total Quantity - " + quantity;
+            return name.PadRight(60) + availableQuantity.ToString().PadRight(20) + quantity;
         }
     }
 }

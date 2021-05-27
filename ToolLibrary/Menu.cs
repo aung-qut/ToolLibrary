@@ -458,7 +458,7 @@ namespace ToolLibrary
             MemberMenu();
         }
 
-        /* 2. Borrow a tool */
+        // done /* 2. Borrow a tool */
         static void BorrowTool()
         {
             DisplayToolCategories();
@@ -499,14 +499,6 @@ namespace ToolLibrary
 
             if (tools.Length > 0)
             {
-                //for (int i = 0; i < tools.Length; ++i)
-                //    Console.WriteLine("\t" + (i + 1) + ". " + tools[i].Name);
-                //Console.Write("Enter the number associated with the tool to return: ");
-                //int toolNum = Convert.ToInt16(Console.ReadLine());
-                //Tool tool = tools[toolNum - 1];
-                //t.returnTool(loggedInMember, tool);
-                //Console.WriteLine("\nYou have returned " + tool + ".\n");
-
                 Console.WriteLine("    Borrowed Tools    ");
                 Console.WriteLine("======================");
                 int i; 
@@ -547,6 +539,7 @@ namespace ToolLibrary
         static void DisplayTopThreeTools()
         {
             // to do 
+
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
             MemberMenu();
@@ -663,9 +656,11 @@ namespace ToolLibrary
             {
                 Console.WriteLine("\n      Tools in the system      ");
                 Console.WriteLine("===============================");
+                Console.WriteLine("{0}.  {1,-50} {2,-20} {3,10}", "No", "Name", "Available Quantity", "Total Quantity");
+                Console.WriteLine("===========================================================================================");
                 for (int i = 0; i < tools.Length; i++)
                 {
-                    Console.Write("{0}. ", i + 1);
+                    Console.Write(" {0}.  ", i + 1);
                     t.displayTools(tools[i].ToString());
                 }
                 b = true;
@@ -678,6 +673,7 @@ namespace ToolLibrary
             return b;
         }
 
+        // to handle invlaid inputs
         private static void InvalidInput(string num)
         {
             Console.WriteLine("Error, input '{0}' is invalid", num);
@@ -685,14 +681,24 @@ namespace ToolLibrary
 
         // not done yet
         // ref: https://www.geeksforgeeks.org/heap-sort/
-        private static void HeapSort(Tool[] t)
+        private static void Sort(Tool[] arr)
         {
             // length of array
-            int n = t.Length;
+            int n = arr.Length;
 
-            for (int i = n / 2 - 1; i >= 0; i--)
+            for (int i = 0; i < n - 1; i++)
             {
-
+                int min_idx = i;
+                for (int j = 0; j < n; j++)
+                {
+                    if (arr[j].NoBorrowings < arr[min_idx].NoBorrowings)
+                    {
+                        min_idx = j;
+                    }
+                }
+                Tool temp = arr[min_idx];
+                arr[min_idx] = arr[i];
+                arr[i] = temp;
             }
         }
 
@@ -786,6 +792,7 @@ namespace ToolLibrary
                 t.toolCollection = AutomotiveTools(choice2 - 1);
             }
         }
+
         private static ToolCollection GardeningTools(int j)
         {
             gardeningTools = new ToolCollection[] { lineTrimmers, lawnMowers, handTools, wheelbarrows, gardenPowerTools };
@@ -836,6 +843,7 @@ namespace ToolLibrary
             }
             return category;
         }
+
         private static ToolCollection PaintingTools(int j)
         {
             paintingTools = new ToolCollection[] { sandingTools, brushes, rollers, paintRemovalTools, paintScrapers, sprayers };
@@ -846,6 +854,7 @@ namespace ToolLibrary
             }
             return category;
         }
+
         private static ToolCollection ElectronicTools(int j)
         {
             electronicTools = new ToolCollection[] { voltageTester, oscilloscopes, thermalImaging, dataTestTool, insulationTesters };
@@ -856,6 +865,7 @@ namespace ToolLibrary
             }
             return category;
         }
+
         private static ToolCollection ElectricityTools(int j)
         {
             electricityTools = new ToolCollection[] { testEquipment, safetyEquipment, basicHandTools, circuitProtection, cableTools };
@@ -866,6 +876,7 @@ namespace ToolLibrary
             }
             return category;
         }
+
         private static ToolCollection AutomotiveTools(int j)
         {
             automotiveTools = new ToolCollection[] { jacks, airCompressors, batteryChargers, socketTools, braking, drivetrain };
