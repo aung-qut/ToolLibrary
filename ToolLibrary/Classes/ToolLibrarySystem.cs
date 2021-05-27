@@ -36,7 +36,7 @@ namespace ToolLibrary.Classes
             // reduce the available quantity
             aTool.AvailableQuantity--;
 
-            // add member to tool
+            // add tool to member
             aMember.addTool(aTool);
 
             // add member to tool
@@ -83,17 +83,22 @@ namespace ToolLibrary.Classes
             memberCollection.delete(aMember);
         }
 
-        /* display all the tools that a member is borrowing */
+        // done /* display all the tools that a member is borrowing */
         public void displayBorrowingTools(iMember aMember)
         {
             string[] a = listTools(aMember);
-            if (a.Length != 0)
+            if (a.Length < 0)
             {
-                Console.WriteLine("You have not borrowed tools.");
+                Console.WriteLine("There aer no borrowed tools.");
             }
             else
             {
-
+                Console.WriteLine("   My Borrowed tools"   );
+                Console.WriteLine("=======================");
+                for (int i = 0; i < a.Length; i++)
+                {
+                    Console.Write("{0}. {1} | Quantity - {2}\n", i + 1, a[i], toolCollection.Number - 2);
+                }
             }
         }
 

@@ -647,10 +647,13 @@ namespace ToolLibrary
         {
             ToolCategories tc = new ToolCategories();
 
+            // Display the tool categories 
             tc.DisplayToolCategories();
 
+            // ask for the user selection of category
             Console.Write("Please make a selection (1-9): ");
 
+            // read the input
             int choice1 = Int32.Parse(Console.ReadLine());
 
             Console.WriteLine();
