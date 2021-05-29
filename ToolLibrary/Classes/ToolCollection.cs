@@ -53,7 +53,9 @@ namespace ToolLibrary.Classes
         public iTool[] toArray()
         {
             iTool[] toolArray = new Tool[Number];
+
             int i, j = 0;
+
             for (i = 0; i < tools.Length; i++)
             {
                 if (tools[i] != null)

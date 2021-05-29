@@ -320,26 +320,35 @@ namespace ToolLibrary
         // done /* 4. Register new member */
         private static void RegisterNewMember()
         {
+            // ask first name
             Console.Write("Enter first name: ");
             string firstName = Console.ReadLine();
 
+            // ask last name
             Console.Write("Enter last name: ");
             string lastName = Console.ReadLine();
 
+            // ask contact number
             Console.Write("Enter contact number: ");
             string contactNumber = Console.ReadLine();
 
+            // ask pin
             Console.Write("Enter PIN: ");
             string pin = Console.ReadLine();
 
-            Member aMember = new Member();
-            aMember.FirstName = firstName;
-            aMember.LastName = lastName;
-            aMember.ContactNumber = contactNumber;
-            aMember.PIN = pin;
+            // member object
+            Member aMember = new Member
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                ContactNumber = contactNumber,
+                PIN = pin
+            };
 
+            // method to add new member to the system 
             t.add(aMember);
 
+            // console output
             Console.WriteLine("\n>>> New member '{0} {1}' added successfully to the system.", aMember.FirstName, aMember.LastName);
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
@@ -371,7 +380,7 @@ namespace ToolLibrary
                     t.memberCollection.delete(member);
 
                     // message is shown on the screen when success
-                    Console.WriteLine("\n>>>Member '{0} {1}' removed from the system.", member.FirstName, member.LastName);
+                    Console.WriteLine("\n>>> Member '{0} {1}' successfully removed from the system.", member.FirstName, member.LastName);
                 }
             }
             Console.WriteLine("\nPress any key to continue...");
@@ -539,7 +548,7 @@ namespace ToolLibrary
         static void DisplayTopThreeTools()
         {
             // to do 
-
+            t.displayTopTHree();
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
             MemberMenu();
@@ -651,7 +660,7 @@ namespace ToolLibrary
         // display tools
         private static bool ToolsResult(Tool[] tools)
         {
-            bool b;
+            bool b = tools.Length < 0;
             if (tools.Length > 0)
             {
                 Console.WriteLine("\n      Tools in the system      ");
@@ -667,8 +676,8 @@ namespace ToolLibrary
             }
             else
             {
-                Console.WriteLine("\n>>> There are no tools in the system.");
                 b = false;
+                Console.WriteLine("\n>>> There are no tools in the system.");
             }
             return b;
         }
@@ -677,29 +686,6 @@ namespace ToolLibrary
         private static void InvalidInput(string num)
         {
             Console.WriteLine("Error, input '{0}' is invalid", num);
-        }
-
-        // not done yet
-        // ref: https://www.geeksforgeeks.org/heap-sort/
-        private static void Sort(Tool[] arr)
-        {
-            // length of array
-            int n = arr.Length;
-
-            for (int i = 0; i < n - 1; i++)
-            {
-                int min_idx = i;
-                for (int j = 0; j < n; j++)
-                {
-                    if (arr[j].NoBorrowings < arr[min_idx].NoBorrowings)
-                    {
-                        min_idx = j;
-                    }
-                }
-                Tool temp = arr[min_idx];
-                arr[min_idx] = arr[i];
-                arr[i] = temp;
-            }
         }
 
         private static void DisplayToolCategories()

@@ -46,16 +46,6 @@ namespace ToolLibrary.Classes
             toolsBorrowed = AddToolArr(toolsBorrowed, (Tool)aTool);
         }
 
-        // helper method
-        private Tool[] AddToolArr(Tool[] tools, Tool aTool)
-        {
-            Tool[] newSizeTools = new Tool[tools.Length + 1];
-            for (int i = 0; i < tools.Length; ++i)
-                newSizeTools[i] = tools[i];
-            newSizeTools[newSizeTools.Length - 1] = aTool;
-            return newSizeTools;
-        }
-
         // done /* delete a tool from the system */
         public void delete(iTool aTool)
         {
@@ -112,7 +102,60 @@ namespace ToolLibrary.Classes
         /* display top three tools borrowed */
         public void displayTopTHree()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            if (toolsBorrowed.Length > 0)
+            {
+                Sort(toolsBorrowed);
+
+                Tool[] topThreeTools = new Tool[3];
+
+                int i, j;
+
+                for (i = 0; i < topThreeTools.Length; i++)
+                {
+                    for (j = 0; j < toolsBorrowed.Length; j++)
+                    {
+                        //bool isAllTopThreeNull = topThreeTools[i] == null;
+                        //bool isFirstTopThreeNotNull = topThreeTools[0] != null;
+                        //bool isFirstTopThreeNameEqual = topThreeTools[0].Name.Equals(toolsBorrowed[j].Name);
+                        //bool isSecondTopThreeNotNull = topThreeTools[1] != null;
+                        //bool isSecondTopThreeNameEqual = topThreeTools[1].Name.Equals(toolsBorrowed[j].Name);
+
+                        if (i == 0)
+                        {
+                            topThreeTools[i] = toolsBorrowed[j];
+                            break;
+                        }
+                        else if (i == 1 && topThreeTools[i] == null && topThreeTools[0] != null && !topThreeTools[0].Name.Equals(toolsBorrowed[j].Name))
+                        {
+                            topThreeTools[i] = toolsBorrowed[j];
+                            break;
+                        }
+                        else if (i == 2 && topThreeTools[i] == null && topThreeTools[0] != null && topThreeTools[1] != null && !topThreeTools[1].Name.Equals(toolsBorrowed[j].Name) && !topThreeTools[0].Name.Equals(toolsBorrowed[j].Name))
+                        {
+                            topThreeTools[i] = toolsBorrowed[j];
+                            break;
+                        }
+                    }
+                }
+
+                Console.WriteLine("\n     Top three most borrowed tools     ");
+                Console.WriteLine("=======================================");
+
+                for (int k = 0; k < topThreeTools.Length; k++)
+                {
+                    Tool tools = topThreeTools[k];
+
+                    if (tools != null)
+                    {
+                        Console.WriteLine("{0}. Name - {1} | Times borrowed - {2}", k + 1, tools.Name, tools.NoBorrowings);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("\n>>> The library does not have tools borrowed.");
+            }
         }
 
         // done /* get a list of tools held by a member */
@@ -142,6 +185,37 @@ namespace ToolLibrary.Classes
             
             // remove a member from the tool
             aTool.deleteBorrower(aMember);
+        }
+
+        // helper method
+        private Tool[] AddToolArr(Tool[] tools, Tool aTool)
+        {
+            Tool[] newSizeTools = new Tool[tools.Length + 1];
+            for (int i = 0; i < tools.Length; ++i)
+                newSizeTools[i] = tools[i];
+            newSizeTools[newSizeTools.Length - 1] = aTool;
+            return newSizeTools;
+        }
+
+        private void Sort(Tool[] arr)
+        {
+            // length of array
+            int n = arr.Length;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int min_idx = i;
+                for (int j = 0; j < n; j++)
+                {
+                    if (arr[j].NoBorrowings < arr[min_idx].NoBorrowings)
+                    {
+                        min_idx = j;
+                    }
+                }
+                Tool temp = arr[min_idx];
+                arr[min_idx] = arr[i];
+                arr[i] = temp;
+            }
         }
     }
 }
