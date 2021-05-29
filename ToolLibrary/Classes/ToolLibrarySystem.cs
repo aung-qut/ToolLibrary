@@ -13,25 +13,25 @@ namespace ToolLibrary.Classes
         private Tool[] toolsBorrowed = new Tool[0];
         private Tool[] topThreeTools = new Tool[3];
 
-        // done /* add new tool to the system */
+        /* add new tool to the system */
         public void add(iTool aTool)
         {
             toolCollection.add(aTool);
         }
         
-        // done /* add new pieces of an existing tool to the system */
+        /* add new pieces of an existing tool to the system */
         public void add(iTool aTool, int quantity)
         {
             aTool.Quantity += quantity;
         }
 
-        // done /* add a new member to the system */
+        /* add a new member to the system */
         public void add(iMember aMember)
         {
             memberCollection.add(aMember);
         }
 
-        // done /* member borrowing tool */
+        /* member borrowing tool */
         public void borrowTool(iMember aMember, iTool aTool)
         {
             // reduce the available quantity
@@ -47,14 +47,14 @@ namespace ToolLibrary.Classes
             toolsBorrowed = AddToolArr(toolsBorrowed, (Tool)aTool);
         }
 
-        // done /* delete a tool from the system */
+        /* delete a tool from the system */
         public void delete(iTool aTool)
         {
             // delete a tool from the collection
             toolCollection.delete(aTool);
         }
 
-        // done /* remove some pieces of tool from the system */
+        /* remove some pieces of tool from the system */
         public void delete(iTool aTool, int quantity)
         {
             int con = aTool.Quantity - quantity;
@@ -69,13 +69,13 @@ namespace ToolLibrary.Classes
             }
         }
 
-        // done /* delete a member from the system */
+        /* delete a member from the system */
         public void delete(iMember aMember)
         {
             memberCollection.delete(aMember);
         }
 
-        // done /* display all the tools that a member is borrowing */
+        /* display all the tools that a member is borrowing */
         public void displayBorrowingTools(iMember aMember)
         {
             string[] a = listTools(aMember);
@@ -94,7 +94,7 @@ namespace ToolLibrary.Classes
             }
         }
 
-        // done /* display tools according to tool type */
+        /* display tools according to tool type */
         public void displayTools(string aToolType)
         {
             Console.WriteLine(aToolType);

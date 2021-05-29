@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ToolLibrary.Classes;
 
 namespace ToolLibrary
 {
-    class Menu
+    /// <summary>
+    /// The main Program class.
+    /// Contains all the methods from ToolLibrarySysten.cs
+    /// </summary>
+    class Program
     {
         // variables to read menu items
         static string num1; // menu number for main menu
@@ -20,8 +22,10 @@ namespace ToolLibrary
         static ToolLibrarySystem t = new ToolLibrarySystem();
         static Member loggedInMember;
 
+        // field for adding a appropriate collection to category
         static ToolCollection category;
 
+        // fields for appropriate tool categories 
         public static ToolCollection[] gardeningTools;
         private static ToolCollection lineTrimmers = new ToolCollection();
         private static ToolCollection lawnMowers = new ToolCollection();
@@ -211,7 +215,7 @@ namespace ToolLibrary
             {
                 MainMenu();
             }
-            // done // 1. Add a new tool
+            // 1. Add a new tool
             else if (num2.Equals("1"))
             {
                 // enter tool name 
@@ -256,31 +260,31 @@ namespace ToolLibrary
                 StaffMenu();
             }
 
-            // done // 2. Add new pieces of an existing tool
+            // 2. Add new pieces of an existing tool
             else if (num2.Equals("2"))
             {
                 AddPieces();
             }
 
-            // done // 3. Remove some pieces of a tool
+            // 3. Remove some pieces of a tool
             else if (num2.Equals("3"))
             {
                 RemovePieces();
             }
 
-            // done // 4. Register a new member
+            // 4. Register a new member
             else if (num2.Equals("4"))
             {
                 RegisterNewMember();
             }
 
-            // done // 5. Remove a member
+            // 5. Remove a member
             else if (num2.Equals("5"))
             {
                 RemoveMember();
             }
 
-            // done // 6. Find the contact number of a member
+            // 6. Find the contact number of a member
             else if (num2.Equals("6"))
             {
                 Console.Write("Enter member's first name: ");
@@ -304,7 +308,7 @@ namespace ToolLibrary
             }
         }
 
-        // done /* 2. add quantity of tools */
+        /* 2. add quantity of tools */
         static void AddPieces()
         {
             // display the tool categories 
@@ -330,7 +334,7 @@ namespace ToolLibrary
             StaffMenu();
         }
 
-        // done /* 3. remove quantity of tools */
+        /* 3. remove quantity of tools */
         private static void RemovePieces()
         {
             DisplayToolCategories();
@@ -363,7 +367,7 @@ namespace ToolLibrary
             StaffMenu();
         }
 
-        // done /* 4. Register new member */
+        /* 4. Register new member */
         private static void RegisterNewMember()
         {
             // ask first name
@@ -408,7 +412,7 @@ namespace ToolLibrary
             StaffMenu();
         }
 
-        // done /* 5. Remove a member */
+        /* 5. Remove a member */
         static void RemoveMember()
         {
             Member[] registeredMembers = (Member[])t.memberCollection.toArray();
@@ -449,7 +453,7 @@ namespace ToolLibrary
             StaffMenu();
         }
 
-        // done /* 6. Find contact number of a member */
+        /* 6. Find contact number of a member */
         static void FindContactNumber(string firstName, string lastName)
         {
             Member[] registerMembers = (Member[])t.memberCollection.toArray();
@@ -476,7 +480,7 @@ namespace ToolLibrary
             }
         }
 
-        // done // contents for member menu
+        // contents for member menu
         static void MemberMenu()
         {
             Console.Clear();
@@ -496,34 +500,34 @@ namespace ToolLibrary
             {
                 MainMenu(); // show the main menu
             }
-            // done // 1. Display all the tools of a tool type
+            // 1. Display all the tools of a tool type
             else if (num3.Equals("1"))
             {
                 DisplayAllTools();
             }
-            // done // 2. Borrow a tool
+            // 2. Borrow a tool
             else if (num3.Equals("2"))
             {
                 BorrowTool();
             }
-            // done // 3. Return a tool
+            // 3. Return a tool
             else if (num3.Equals("3"))
             {
                 ReturnTool();
             }
-            // done // 4. List all the tools that I am renting
+            // 4. List all the tools that I am renting
             else if (num3.Equals("4"))
             {
                 ListMyTools();
             }
-            // done // 5. Display top three (3) most frequently rented tools
+            // 5. Display top three (3) most frequently rented tools
             else if (num3.Equals("5"))
             {
                 DisplayTopThreeTools();
             }
         }
 
-        // done /* 1. Display all the tools of a tool type */
+        /* 1. Display all the tools of a tool type */
         static void DisplayAllTools()
         {
             DisplayToolCategories();
@@ -537,7 +541,7 @@ namespace ToolLibrary
             MemberMenu();
         }
 
-        // done /* 2. Borrow a tool */
+        /* 2. Borrow a tool */
         static void BorrowTool()
         {
             DisplayToolCategories();
@@ -571,7 +575,7 @@ namespace ToolLibrary
             MemberMenu();
         }
 
-        // done /* 3. Return a tool */
+        /* 3. Return a tool */
         static void ReturnTool()
         {
             Tool[] tools = (Tool[])loggedInMember.Tools;
@@ -604,7 +608,7 @@ namespace ToolLibrary
             MemberMenu();
         }
 
-        // done /* 4. List all tools that I am renting*/
+        /* 4. List all tools that I am renting*/
         static void ListMyTools()
         {
             t.displayBorrowingTools(loggedInMember);
@@ -624,7 +628,7 @@ namespace ToolLibrary
             MemberMenu();
         }
 
-        // done // handle staff login using default values 
+        // handle staff login using default values 
         static void StaffLogin(string username, string password)
         {
             bool verifyStaff;
@@ -654,7 +658,7 @@ namespace ToolLibrary
             } while (verifyStaff == false);
         }
 
-        // done /* ask member details to login */
+        /* ask member details to login */
         static void MemberLogin(string firstName, string lastName, string pin)
         {
 
@@ -699,7 +703,7 @@ namespace ToolLibrary
             }
         }
 
-        // done // display members
+        // display members
         private static bool MembersResult(Member[] members)
         {
             bool b;
@@ -721,7 +725,7 @@ namespace ToolLibrary
             return b;
         }
 
-        // done // display tools
+        // display tools
         private static bool ToolsResult(Tool[] tools)
         {
             bool b;
