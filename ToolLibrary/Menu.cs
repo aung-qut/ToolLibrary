@@ -158,17 +158,42 @@ namespace ToolLibrary
             else if (num1.Equals("2"))
             {
                 Console.Clear();
-                MemberLogin();
+                Console.WriteLine("Welcome to the Tool Library\n");
+                Console.WriteLine("   Member log in");
+                Console.WriteLine("===================");
+
+                // ask member first name
+                Console.Write("Enter first name: ");
+                string firstName = Console.ReadLine();
+
+                // ask member last name
+                Console.Write("Enter last name: ");
+                string lastName = Console.ReadLine();
+
+                // ask member pin
+                Console.Write("Enter PIN: ");
+                string pin = Console.ReadLine();
+                Console.WriteLine();
+
+                MemberLogin(firstName, lastName, pin);
             }
             else if (num1.Equals("0"))
             {
                 Environment.Exit(0);
+            }
+            else
+            {
+                InvalidInput(num1);
+                Console.WriteLine("\nPress enter to return to Main Menu...");
+                Console.ReadLine();
+                MainMenu();
             }
         }
 
         /* Menu items for staff menu */
         static void StaffMenu()
         {
+            Console.Clear();
             Console.WriteLine("Welcome to the Tool Library\n");
             Console.WriteLine("================Staff Menu================");
             Console.WriteLine("1. Add a new tool");
@@ -181,39 +206,51 @@ namespace ToolLibrary
             Console.WriteLine("==========================================");
             Console.Write("\nPlease make a selection (1-6, or 0 to return to main menu): ");
             num2 = Console.ReadLine();
-
+            Console.WriteLine();
             if (num2.Equals("0"))
             {
                 MainMenu();
             }
-
             // done // 1. Add a new tool
             else if (num2.Equals("1"))
             {
                 // enter tool name 
-                Console.Write("\nEnter the name of a new tool: ");
+                Console.Write("Enter the name of a new tool: ");
 
                 // read the tool name
                 string toolName = Console.ReadLine();
                 Console.WriteLine();
 
-                // add name to tool object name with default quantity 1
-                Tool newTool = new Tool
+                Tool[] tools = (Tool[])t.toolCollection.toArray();
+
+                for (int i = 0; i < tools.Length; i++)
                 {
-                    Name = toolName,
-                    Quantity = 1 // default quantity is 1
-                };
+                    if (toolName == tools[i].Name)
+                    {
+                        Console.WriteLine(">>> Tool with the name '{0}' already existed. Please enter a different name.", toolName);
+                    }
+                    else
+                    {
+                        // add name to tool object name with default quantity 1
+                        Tool newTool = new Tool
+                        {
+                            Name = toolName,
+                            Quantity = 1 // default quantity is 1
+                        };
 
-                // Display all the nine (9) tool categories 
-                DisplayToolCategories();
+                        // Display all the nine (9) tool categories 
+                        DisplayToolCategories();
 
-                // add the tool to the system
-                t.add(newTool);
+                        // add the tool to the system
+                        t.add(newTool);
 
-                Console.WriteLine("\n>>> Tool '{0}' added to the system successfully.", newTool.Name);
+                        Console.WriteLine("\n>>> Tool '{0}' added to the system successfully.", newTool.Name);
+                    }
+                }
 
-                Console.WriteLine("\nPress enter to return to Staff Menu...\n");
+                Console.WriteLine("\nPress enter to return to Staff Menu...");
                 Console.ReadLine();
+                Console.Clear();
 
                 // call Staff Menu when any key is pressed
                 StaffMenu();
@@ -258,6 +295,13 @@ namespace ToolLibrary
                 Console.ReadLine();
                 StaffMenu();
             }
+            else
+            {
+                InvalidInput(num2);
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadLine();
+                StaffMenu();
+            }
         }
 
         // done /* 2. add quantity of tools */
@@ -265,6 +309,7 @@ namespace ToolLibrary
         {
             // display the tool categories 
             DisplayToolCategories();
+
             Tool[] tools = (Tool[])t.toolCollection.toArray();
 
             if (ToolsResult(tools))
@@ -275,6 +320,7 @@ namespace ToolLibrary
 
                 Console.Write("\nEnter quantity: ");
                 int quantity = Int32.Parse(Console.ReadLine());
+
                 t.add(selectedTool, quantity);
 
                 Console.WriteLine("\n>>> '{0}' more tool(s) added to '{1}'.", quantity, selectedTool.Name);
@@ -345,11 +391,18 @@ namespace ToolLibrary
                 PIN = pin
             };
 
-            // method to add new member to the system 
-            t.add(aMember);
+            if (t.memberCollection.search(aMember) == true)
+            {
+                Console.WriteLine("\n>>> Member is registered already in the system. Please enter a new member.");
+            }
+            else
+            {
+                // method to add new member to the system 
+                t.add(aMember);
+                Console.WriteLine("\n>>> New member '{0} {1}' added successfully to the system.", aMember.FirstName, aMember.LastName);
+            }
 
             // console output
-            Console.WriteLine("\n>>> New member '{0} {1}' added successfully to the system.", aMember.FirstName, aMember.LastName);
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
             StaffMenu();
@@ -359,28 +412,36 @@ namespace ToolLibrary
         static void RemoveMember()
         {
             Member[] registeredMembers = (Member[])t.memberCollection.toArray();
+
             if (MembersResult(registeredMembers))
             {
                 //ask the user input
-                Console.Write("Enter the number of member to remove: ");
+                Console.Write("\nEnter the number of member to remove: ");
 
-                //read the number of member
-                int b = Int32.Parse(Console.ReadLine());
-
-                if (b > registeredMembers.Length || b < 1)
+                try
                 {
-                    Console.WriteLine("\nMember not found.");
+                    //read the number of member
+                    int b = Int32.Parse(Console.ReadLine());
+
+                    if (b > registeredMembers.Length || b < 1)
+                    {
+                        Console.WriteLine("\n>>> Member not found.");
+                    }
+                    else
+                    {
+                        // search the member using index 
+                        Member member = registeredMembers[b - 1];
+
+                        // delete the member from the collection 
+                        t.memberCollection.delete(member);
+
+                        // message is shown on the screen when success
+                        Console.WriteLine("\n>>> Member '{0} {1}' successfully removed from the system.", member.FirstName, member.LastName);
+                    }
                 }
-                else
+                catch (FormatException)
                 {
-                    // search the member using index 
-                    Member member = registeredMembers[b - 1];
-
-                    // delete the member from the collection 
-                    t.memberCollection.delete(member);
-
-                    // message is shown on the screen when success
-                    Console.WriteLine("\n>>> Member '{0} {1}' successfully removed from the system.", member.FirstName, member.LastName);
+                    Console.WriteLine("\nPlease enter a valid input.");
                 }
             }
             Console.WriteLine("\nPress any key to continue...");
@@ -392,11 +453,18 @@ namespace ToolLibrary
         static void FindContactNumber(string firstName, string lastName)
         {
             Member[] registerMembers = (Member[])t.memberCollection.toArray();
+
+            Member aMember = new Member
+            {
+                FirstName = firstName,
+                LastName = lastName,
+            };
+
             if (registerMembers.Length > 0)
             {
                 for (int i = 0; i < registerMembers.Length; i++)
                 {
-                    if (registerMembers[i].FirstName.Trim().Equals(firstName) && registerMembers[i].LastName.Trim().Equals(lastName))
+                    if (t.memberCollection.search(aMember) == true && registerMembers[i].FirstName.Trim().Equals(firstName) && registerMembers[i].LastName.Trim().Equals(lastName))
                     {
                         Console.WriteLine("\n>>> The contact number of '{0} {1}' is {2}.", firstName, lastName, registerMembers[i].ContactNumber);
                     }
@@ -411,6 +479,7 @@ namespace ToolLibrary
         // done // contents for member menu
         static void MemberMenu()
         {
+            Console.Clear();
             Console.WriteLine("Welcome to the Tool Library");
             Console.WriteLine("===============Member Menu===============");
             Console.WriteLine("1. Display all the tools of a tool type");
@@ -422,6 +491,7 @@ namespace ToolLibrary
             Console.WriteLine("=========================================\n");
             Console.Write("Please make a selection (1-5, or 0 to return to main menu): ");
             num3 = Console.ReadLine(); // read the number input
+            Console.WriteLine();
             if (num3.Equals("0"))
             {
                 MainMenu(); // show the main menu
@@ -446,7 +516,7 @@ namespace ToolLibrary
             {
                 ListMyTools();
             }
-            // 5. Display top three (3) most frequently rented tools
+            // done // 5. Display top three (3) most frequently rented tools
             else if (num3.Equals("5"))
             {
                 DisplayTopThreeTools();
@@ -476,7 +546,7 @@ namespace ToolLibrary
 
             if (ToolsResult(tools))
             {
-                Console.Write("Enter the name of the tool: ");
+                Console.Write("\nEnter the name of the tool: ");
                 string toolName = Console.ReadLine();
                 Console.WriteLine();
 
@@ -585,36 +655,30 @@ namespace ToolLibrary
         }
 
         // done /* ask member details to login */
-        static void MemberLogin()
+        static void MemberLogin(string firstName, string lastName, string pin)
         {
-            Console.WriteLine("Welcome to the Tool Library\n");
-            Console.WriteLine("   Member log in"   );
-            Console.WriteLine("===================");
-
-            // ask member first name
-            Console.Write("Enter first name: ");
-            string firstName = Console.ReadLine();
-
-            // ask member last name
-            Console.Write("Enter last name: ");
-            string lastName = Console.ReadLine();
-
-            // ask member pin
-            Console.Write("Enter PIN: ");
-            string pin = Console.ReadLine();
-            Console.WriteLine();
 
             // get members in the system
             Member[] registeredMembers = (Member[])t.memberCollection.toArray();
 
+            // create object for member sign in 
+            loggedInMember = new Member {
+                FirstName = firstName,
+                LastName = lastName,
+                PIN = pin
+            };
+
             // loop around the members
             for (int i = 0; i < registeredMembers.Length; ++i)
             {
-                // if details matched, make the member logged in member
-                if (registeredMembers[i].FirstName == firstName && registeredMembers[i].LastName == lastName && registeredMembers[i].PIN == pin)
+                if (t.memberCollection.search(loggedInMember) == true)
+                {
                     loggedInMember = registeredMembers[i];
+                }
                 else
+                {
                     loggedInMember = null;
+                }
             }
 
             // if there is no logged in member set to null and show main menu
@@ -635,7 +699,7 @@ namespace ToolLibrary
             }
         }
 
-        // display members
+        // done // display members
         private static bool MembersResult(Member[] members)
         {
             bool b;
@@ -657,14 +721,14 @@ namespace ToolLibrary
             return b;
         }
 
-        // display tools
+        // done // display tools
         private static bool ToolsResult(Tool[] tools)
         {
-            bool b = tools.Length < 0;
+            bool b;
             if (tools.Length > 0)
             {
-                Console.WriteLine("\n      Tools in the system      ");
-                Console.WriteLine("===============================");
+                Console.WriteLine("\n                                     Tools in the system                                 ");
+                Console.WriteLine("===========================================================================================");
                 Console.WriteLine("{0}.  {1,-50} {2,-20} {3,10}", "No", "Name", "Available Quantity", "Total Quantity");
                 Console.WriteLine("===========================================================================================");
                 for (int i = 0; i < tools.Length; i++)
@@ -685,7 +749,7 @@ namespace ToolLibrary
         // to handle invlaid inputs
         private static void InvalidInput(string num)
         {
-            Console.WriteLine("Error, input '{0}' is invalid", num);
+            Console.WriteLine("\n>>> Error, input '{0}' is invalid", num);
         }
 
         private static void DisplayToolCategories()
@@ -709,7 +773,7 @@ namespace ToolLibrary
             if (choice1 == 1)
             {
                 tc.DisplayGardeningTools();
-                Console.Write("Please make a selection: ");
+                Console.Write("\nPlease make a selection: ");
                 choice2 = Int32.Parse(Console.ReadLine());
                 t.toolCollection = GardeningTools(choice2 - 1);
             }

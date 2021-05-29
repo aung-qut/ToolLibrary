@@ -50,7 +50,7 @@
         public override string ToString()
         {
             //return "Tool name - " + name + " | Available Quantity - " + availableQuantity + " | Total Quantity - " + quantity;
-            return name.PadRight(60) + availableQuantity.ToString().PadRight(20) + quantity;
+            return name.PadRight(60) + availableQuantity.ToString().PadRight(19) + quantity;
         }
     }
 }

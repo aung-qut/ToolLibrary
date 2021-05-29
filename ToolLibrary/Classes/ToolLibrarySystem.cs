@@ -11,7 +11,8 @@ namespace ToolLibrary.Classes
 
         // initialize array to store tools borrowed
         private Tool[] toolsBorrowed = new Tool[0];
-        
+        private Tool[] topThreeTools = new Tool[3];
+
         // done /* add new tool to the system */
         public void add(iTool aTool)
         {
@@ -107,20 +108,12 @@ namespace ToolLibrary.Classes
             {
                 Sort(toolsBorrowed);
 
-                Tool[] topThreeTools = new Tool[3];
-
                 int i, j;
 
                 for (i = 0; i < topThreeTools.Length; i++)
                 {
                     for (j = 0; j < toolsBorrowed.Length; j++)
                     {
-                        //bool isAllTopThreeNull = topThreeTools[i] == null;
-                        //bool isFirstTopThreeNotNull = topThreeTools[0] != null;
-                        //bool isFirstTopThreeNameEqual = topThreeTools[0].Name.Equals(toolsBorrowed[j].Name);
-                        //bool isSecondTopThreeNotNull = topThreeTools[1] != null;
-                        //bool isSecondTopThreeNameEqual = topThreeTools[1].Name.Equals(toolsBorrowed[j].Name);
-
                         if (i == 0)
                         {
                             topThreeTools[i] = toolsBorrowed[j];
