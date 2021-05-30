@@ -197,7 +197,6 @@ namespace ToolLibrary
         /* Menu items for staff menu */
         static void StaffMenu()
         {
-            Console.Clear();
             Console.WriteLine("Welcome to the Tool Library\n");
             Console.WriteLine("================Staff Menu================");
             Console.WriteLine("1. Add a new tool");
@@ -229,6 +228,7 @@ namespace ToolLibrary
 
                 for (int i = 0; i < tools.Length; i++)
                 {
+                    // if tool already exist in the library
                     if (toolName == tools[i].Name)
                     {
                         Console.WriteLine(">>> Tool with the name '{0}' already existed. Please enter a different name.", toolName);
@@ -297,6 +297,7 @@ namespace ToolLibrary
 
                 Console.WriteLine("\nPress any key to continue...");
                 Console.ReadLine();
+                Console.Clear();
                 StaffMenu();
             }
             else
@@ -304,6 +305,7 @@ namespace ToolLibrary
                 InvalidInput(num2);
                 Console.WriteLine("\nPress any key to continue...");
                 Console.ReadLine();
+                Console.Clear();
                 StaffMenu();
             }
         }
@@ -331,6 +333,7 @@ namespace ToolLibrary
             }
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
+            Console.Clear();
             StaffMenu();
         }
 
@@ -364,6 +367,7 @@ namespace ToolLibrary
             }
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
+            Console.Clear();
             StaffMenu();
         }
 
@@ -409,6 +413,7 @@ namespace ToolLibrary
             // console output
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
+            Console.Clear();
             StaffMenu();
         }
 
@@ -448,8 +453,9 @@ namespace ToolLibrary
                     Console.WriteLine("\nPlease enter a valid input.");
                 }
             }
-            Console.WriteLine("\nPress any key to continue...");
+            Console.WriteLine("\nPress enter to return to staff menu...");
             Console.ReadLine();
+            Console.Clear();
             StaffMenu();
         }
 
@@ -483,7 +489,6 @@ namespace ToolLibrary
         // contents for member menu
         static void MemberMenu()
         {
-            Console.Clear();
             Console.WriteLine("Welcome to the Tool Library");
             Console.WriteLine("===============Member Menu===============");
             Console.WriteLine("1. Display all the tools of a tool type");
@@ -649,6 +654,8 @@ namespace ToolLibrary
                 {
                     Console.Clear(); // clear the console
                     verifyStaff = true;
+
+                    Console.WriteLine("\n>>> Staff successfully logged in.\n");
                     StaffMenu();
                 }
                 else
