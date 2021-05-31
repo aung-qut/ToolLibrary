@@ -59,18 +59,5 @@ namespace ToolLibrary.Classes
             }
             return toolArray;
         }
-
-        //// helper method
-        ////===============
-
-        ///* check if tool is not null */
-        //private bool IsExist(int i)
-        //{
-        //    if (tools[i] != null)
-        //    {
-        //        return true;
-        //    }
-        //    return false;
-        //}
     }
 }

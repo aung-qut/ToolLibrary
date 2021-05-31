@@ -224,18 +224,5 @@ namespace ToolLibrary.Classes
             }
             return arr;
         }
-
-        //n = size of array
-        //for i=0 to n-1
-        //  min_idx = i
-        //  for j=0 to n
-        //      if arr[j] < arr[min_idx] then
-        //          min_idx = j;
-        //      end if
-        //  end for
-        //  temp = arr[min_idx]
-        //  swap arr[i] and arr[min_idx]
-        //end for
-
     }
 }

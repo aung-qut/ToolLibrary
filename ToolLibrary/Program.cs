@@ -554,6 +554,7 @@ namespace ToolLibrary
 
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
+            Console.Clear();
             MemberMenu();
         }
 
@@ -588,6 +589,7 @@ namespace ToolLibrary
             }
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
+            Console.Clear();
             MemberMenu();
         }
 
@@ -631,6 +633,7 @@ namespace ToolLibrary
 
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
+            Console.Clear();
             MemberMenu();
         }
         
@@ -640,6 +643,7 @@ namespace ToolLibrary
             t.displayTopTHree();
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
+            Console.Clear();
             MemberMenu();
         }
 
@@ -708,6 +712,7 @@ namespace ToolLibrary
                 Console.WriteLine(">>> Login failed. Member not found \n");
                 Console.WriteLine("Press any key to return to Main Menu...");
                 Console.ReadLine();
+                Console.Clear();
                 MainMenu();
             }
 
