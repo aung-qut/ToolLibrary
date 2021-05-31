@@ -98,7 +98,7 @@ namespace ToolLibrary
         private static void Main(string[] args)
         {
             // members added default to test the software
-            // adding member 3
+            // adding an example member
             Member member3 = new Member();
             member3.FirstName = "a";
             member3.LastName = "a";
@@ -142,7 +142,9 @@ namespace ToolLibrary
             MainMenu();
         }
 
-        /* Display contents for main menu */
+        /// <summary>
+        /// This is the main functions included in the Main Menu.
+        /// </summary>
         static void MainMenu()
         {
             Console.Clear();
@@ -194,7 +196,9 @@ namespace ToolLibrary
             }
         }
 
-        /* Menu items for staff menu */
+        /// <summary>
+        /// This is the Staff Menu. 
+        /// </summary>
         static void StaffMenu()
         {
             Console.WriteLine("Welcome to the Tool Library\n");
@@ -287,12 +291,15 @@ namespace ToolLibrary
             // 6. Find the contact number of a member
             else if (num2.Equals("6"))
             {
+                // ask member's first name and read it 
                 Console.Write("Enter member's first name: ");
                 string firstName = Console.ReadLine().Trim();
 
+                // ask member's last name and read it 
                 Console.Write("Enter member's last name: ");
                 string lastName = Console.ReadLine().Trim();
 
+                // Find the contact number using firstname and lastname as parameters
                 FindContactNumber(firstName, lastName);
 
                 Console.WriteLine("\nPress any key to continue...");
@@ -459,7 +466,11 @@ namespace ToolLibrary
             StaffMenu();
         }
 
-        /* 6. Find contact number of a member */
+        /// <summary>
+        /// This method is used to find the contact number of a given member. 
+        /// </summary>
+        /// <param name="firstName"></param>
+        /// <param name="lastName"></param>
         static void FindContactNumber(string firstName, string lastName)
         {
             Member[] registerMembers = (Member[])t.memberCollection.toArray();
@@ -626,7 +637,6 @@ namespace ToolLibrary
         /* 5. Display top three (3) most frequently rented tools */
         static void DisplayTopThreeTools()
         {
-            // to do 
             t.displayTopTHree();
             Console.WriteLine("\nPress any key to continue...");
             Console.ReadLine();
@@ -672,14 +682,14 @@ namespace ToolLibrary
             // get members in the system
             Member[] registeredMembers = (Member[])t.memberCollection.toArray();
 
-            // create object for member sign in 
+            // create object for current signed in member 
             loggedInMember = new Member {
                 FirstName = firstName,
                 LastName = lastName,
                 PIN = pin
             };
 
-            // loop around the members
+            // loop around the members and search 
             for (int i = 0; i < registeredMembers.Length; ++i)
             {
                 if (t.memberCollection.search(loggedInMember) == true)

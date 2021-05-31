@@ -18,7 +18,7 @@ namespace ToolLibrary.Classes
         {
             toolCollection.add(aTool);
         }
-        
+
         /* add new pieces of an existing tool to the system */
         public void add(iTool aTool, int quantity)
         {
@@ -85,7 +85,7 @@ namespace ToolLibrary.Classes
             }
             else
             {
-                Console.WriteLine("\n   My Borrowed tools"   );
+                Console.WriteLine("\n   My Borrowed tools");
                 Console.WriteLine("=======================");
                 for (int i = 0; i < a.Length; i++)
                 {
@@ -103,55 +103,61 @@ namespace ToolLibrary.Classes
         /* display top three tools borrowed */
         public void displayTopTHree()
         {
-            //throw new NotImplementedException();
+            // if borrowed tools is greater than 0
             if (toolsBorrowed.Length > 0)
             {
+                // Sort the borrowed tools using selection sort. 
                 Sort(toolsBorrowed);
+
+                // diplay the title to console. 
+                Console.WriteLine("     Top three most borrowed tools     ");
+                Console.WriteLine("=======================================");
 
                 int i, j;
 
-                for (i = 0; i < topThreeTools.Length; i++)
+                if (toolsBorrowed[0] != null)
                 {
-                    for (j = 0; j < toolsBorrowed.Length; j++)
+                    // loop around topthreetools array
+                    for (i = 0; i < topThreeTools.Length; i++)
                     {
-                        if (i == 0)
+                        // loop around toolsborrowed array
+                        for (j = 0; j < toolsBorrowed.Length; j++)
                         {
-                            topThreeTools[i] = toolsBorrowed[j];
-                            break;
+                            if (i == 0)
+                            {
+                                topThreeTools[i] = toolsBorrowed[j];
+                                break;
+                            }
+                            // checking names
+                            else if (i == 1 && !topThreeTools[0].Name.Equals(toolsBorrowed[j].Name))
+                            {
+                                topThreeTools[i] = toolsBorrowed[j];
+                                break;
+                            }
+                            // checking names
+                            else if (i == 2 && topThreeTools[1] != null && !topThreeTools[1].Name.Equals(toolsBorrowed[j].Name) && !topThreeTools[0].Name.Equals(toolsBorrowed[j].Name))
+                            {
+                                topThreeTools[i] = toolsBorrowed[j];
+                                break;
+                            }
                         }
-                        else if (i == 1 && topThreeTools[i] == null && topThreeTools[0] != null && !topThreeTools[0].Name.Equals(toolsBorrowed[j].Name))
+                        // display the top three tools
+                        if (topThreeTools[i] != null)
                         {
-                            topThreeTools[i] = toolsBorrowed[j];
-                            break;
+                            Console.WriteLine("{0}. Name - {1} | Times borrowed - {2}", i + 1, topThreeTools[i].Name, topThreeTools[i].NoBorrowings);
+
                         }
-                        else if (i == 2 && topThreeTools[i] == null && topThreeTools[0] != null && topThreeTools[1] != null && !topThreeTools[1].Name.Equals(toolsBorrowed[j].Name) && !topThreeTools[0].Name.Equals(toolsBorrowed[j].Name))
-                        {
-                            topThreeTools[i] = toolsBorrowed[j];
-                            break;
-                        }
-                    }
-                }
-
-                Console.WriteLine("\n     Top three most borrowed tools     ");
-                Console.WriteLine("=======================================");
-
-                for (int k = 0; k < topThreeTools.Length; k++)
-                {
-                    Tool tools = topThreeTools[k];
-
-                    if (tools != null)
-                    {
-                        Console.WriteLine("{0}. Name - {1} | Times borrowed - {2}", k + 1, tools.Name, tools.NoBorrowings);
                     }
                 }
             }
+            // if there are not borrowed tools 
             else
             {
                 Console.WriteLine("\n>>> The library does not have tools borrowed.");
             }
         }
 
-        // done /* get a list of tools held by a member */
+        /* get a list of tools held by a member */
         public string[] listTools(iMember aMember)
         {
             // number of tools
@@ -167,7 +173,7 @@ namespace ToolLibrary.Classes
             return tools;
         }
 
-        // done /* return a tool to the library */
+        /* return a tool to the library */
         public void returnTool(iMember aMember, iTool aTool)
         {
             // increase the number of tool to available quantity
@@ -175,12 +181,12 @@ namespace ToolLibrary.Classes
 
             // remove a tool from the member
             aMember.deleteTool(aTool);
-            
+
             // remove a member from the tool
             aTool.deleteBorrower(aMember);
         }
 
-        // helper method
+        // helper method 
         private Tool[] AddToolArr(Tool[] tools, Tool aTool)
         {
             Tool[] newSizeTools = new Tool[tools.Length + 1];
@@ -190,13 +196,19 @@ namespace ToolLibrary.Classes
             return newSizeTools;
         }
 
-        private void Sort(Tool[] arr)
+        /// <summary>
+        /// This method uses Selection sort.
+        /// </summary>
+        /// <param name="arr"></param>
+        private Tool[] Sort(Tool[] arr)
         {
             // length of array
             int n = arr.Length;
 
+            // One by one move boundary of unsorted subarray
             for (int i = 0; i < n - 1; i++)
             {
+                // Find the minimum element in unsorted array
                 int min_idx = i;
                 for (int j = 0; j < n; j++)
                 {
@@ -205,10 +217,25 @@ namespace ToolLibrary.Classes
                         min_idx = j;
                     }
                 }
+                // Swap the found minimum element with the first element
                 Tool temp = arr[min_idx];
                 arr[min_idx] = arr[i];
                 arr[i] = temp;
             }
+            return arr;
         }
+
+        //n = size of array
+        //for i=0 to n-1
+        //  min_idx = i
+        //  for j=0 to n
+        //      if arr[j] < arr[min_idx] then
+        //          min_idx = j;
+        //      end if
+        //  end for
+        //  temp = arr[min_idx]
+        //  swap arr[i] and arr[min_idx]
+        //end for
+
     }
 }
